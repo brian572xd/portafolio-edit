@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>P1 Actividad 4 — Mecanismos de defensa en red — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    /* ── Page overrides ── */
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt {
+      color:#6b8cae; font-size:13px; margin-bottom:10px;
+    }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px;
+      font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f; position:sticky; top:90px;
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+          <ul class="nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="breadcrumb-txt">Parcial 1 &rsaquo; Actividad 4</div>
+    <h1>Actividad 4</h1>
+    <p class="subtitle">Mecanismos de defensa en red — Reglas iptables con topología real</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+      <a href="#descripcion">Descripción y contexto</a>
+      <a href="#intro">Introducción</a>
+      <a href="#desarrollo">Desarrollo — Reglas iptables</a>
+      <a href="#conclusion">Conclusión</a>
+        </div>
+        <!-- Content sections -->
+
+        <div class="card-section">
+          <h2 id="descripcion">Descripción de la Actividad</h2>
+          <h3>Contexto</h3>
+          <p>Teniendo en cuenta la topología de red mostrada, completa la tabla con las reglas de iptables que deberían aplicarse en el Firewall para llevar a cabo las acciones solicitadas. Las reglas, siempre que sea posible, deben determinar protocolo, dirección IP origen y destino, puerto/s origen y destino y el estado de la conexión.</p>
+          <img src="img/cap_act4.png" alt="Topología de red Actividad 4" style="max-width:70%;">
+        </div>
+
+        <div class="card-section">
+          <h2 id="intro">Introducción</h2>
+          <p>La actividad presenta la implementación de reglas iptables para establecer políticas de seguridad en una red. A través de siete reglas específicas, se configura un firewall que permite gestionar el tráfico entrante y saliente, protegiendo los recursos de red mientras se mantiene la funcionalidad de servicios esenciales como web, correo y DNS.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="desarrollo">Desarrollo — Reglas iptables</h2>
+          <table>
+            <tr class="table-header"><th>#</th><th>Acción requerida</th><th>Regla iptables</th></tr>
+            <tr><td>1</td><td>Establecer una política restrictiva.</td><td><code>iptables -A INPUT -p tcp --dport 80 -j DROP</code></td></tr>
+            <tr><td>2</td><td>Permitir el tráfico de conexiones ya establecidas.</td><td><code>iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT</code></td></tr>
+            <tr><td>3</td><td>Aceptar tráfico DNS (TCP) saliente de la red local.</td><td><code>iptables -A OUTPUT -p tcp -j ACCEPT</code></td></tr>
+            <tr><td>4</td><td>Aceptar correo entrante proveniente de Internet en el servidor de correo.</td><td><code>iptables -A INPUT -p tcp -s 192.1.2.10 -j ACCEPT</code></td></tr>
+            <tr><td>5</td><td>Permitir correo saliente a Internet desde el servidor de correo.</td><td><code>iptables -A OUTPUT -p tcp -s 192.1.2.10 -j ACCEPT</code></td></tr>
+            <tr><td>6</td><td>Aceptar conexiones HTTP desde Internet a nuestro servidor web.</td><td><code>iptables -A INPUT -p tcp -s 192.1.2.10 --dport 80 -j ACCEPT</code></td></tr>
+            <tr><td>7</td><td>Permitir tráfico HTTP desde la red local a Internet.</td><td><code>iptables -A INPUT -p tcp --dport 80 -j ACCEPT</code></td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="conclusion">Conclusión</h2>
+          <p>El conjunto de reglas iptables analizado establece un equilibrio entre seguridad y funcionalidad, priorizando el bloqueo de tráfico no autorizado, mientras se permiten conexiones legítimas ya establecidas y servicios específicos. Sin embargo, se identifican áreas de mejora como la necesidad de especificar puertos DNS, definir correctamente las direcciones IP de servidores, y ajustar las reglas HTTP para distinguir entre tráfico local y de Internet, lo que fortalecería la postura de seguridad de la red.</p>
+        </div>
+
+
+    <div class="card-section" style="text-align:center;">
+      <h2>Descargar Actividad</h2>
+      <a href="tareas/parcial1/175031_ACT04.pdf" download class="btn-download">
+        <i class="fas fa-file-pdf"></i> Descargar PDF
+      </a>
+    </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Información</h5>
+
+        <div class="meta-item">
+          <div class="meta-label">Parcial</div>
+          <div class="meta-value">1</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tema</div>
+          <div class="meta-value">Firewall / iptables</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Herramienta</div>
+          <div class="meta-value">Linux iptables</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Periodo</div>
+          <div class="meta-value">Enero–Junio 2026</div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <p style="margin:0; color:#6b8cae; font-size:13px;">Brian Salvador Espinoza Aguilar &mdash; Universidad Politécnica de San Luis Potosí</p>
+      </div>
+      <div class="col-lg-4 text-end">
+        <a href="https://github.com/" target="_blank">
+          <img src="img/Github_dark.svg" width="26" height="26" alt="GitHub">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+</html>

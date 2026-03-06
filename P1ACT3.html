@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>P1 Actividad 3 — iptables — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    /* ── Page overrides ── */
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt {
+      color:#6b8cae; font-size:13px; margin-bottom:10px;
+    }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px;
+      font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f; position:sticky; top:90px;
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+          <ul class="nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="breadcrumb-txt">Parcial 1 &rsaquo; Actividad 3</div>
+    <h1>Actividad 3</h1>
+    <p class="subtitle">Interpretación y traducción de políticas de filtrado en iptables</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+      <a href="#intro">Introducción</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#conclusion">Conclusión</a>
+        </div>
+        <!-- Content sections -->
+
+        <div class="card-section">
+          <h2 id="intro">Introducción</h2>
+          <p>En la administración de sistemas Linux, la seguridad y el control del tráfico de red son aspectos fundamentales. Iptables es la herramienta de firewall por excelencia que permite gestionar este control, actuando como un filtro de paquetes que opera directamente en el núcleo del sistema. Su funcionamiento se basa en una estructura jerárquica y organizada: cuando un paquete de red llega al sistema, este debe atravesar diferentes niveles de decisión.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="desarrollo">Desarrollo</h2>
+
+          <h3>1. Flujo de un paquete en iptables</h3>
+          <p>Cuando un paquete llega al sistema, primero pasa por una <strong>tabla</strong>, después pasa por una <strong>cadena</strong> y finalmente se ejecuta una <strong>regla/acción</strong>.</p>
+
+          <h3>2. Tablas principales y su propósito</h3>
+          <table>
+            <tr class="table-header"><th>Tabla</th><th>Propósito principal</th><th>Ejemplo de uso</th></tr>
+            <tr><td>FILTER</td><td>Filtrado de paquetes</td><td>Bloquear conexiones SSH</td></tr>
+            <tr><td>NAT</td><td>Traducción de direcciones IP</td><td>Port Forwarding</td></tr>
+            <tr><td>MANGLE</td><td>Medir calidad de servicio</td><td>Cambiar cabeceras</td></tr>
+            <tr><td>RAW</td><td>Seguimiento de paquetes</td><td>Paquetes no inspeccionados</td></tr>
+            <tr><td>SECURITY</td><td>Marcar etiquetas de seguridad</td><td>Paquete autorizado o no autorizado</td></tr>
+          </table>
+
+          <h3>3. Anatomía de un comando iptables</h3>
+          <pre>iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT</pre>
+          <p>Este comando define la tabla, cadena, protocolo; el parámetro <code>multiport</code> permite analizar varios puertos y estamos analizando los puertos de origen 80 y 443 y los acepta.</p>
+
+          <h3>4. Variables y opciones comunes</h3>
+          <ul>
+            <li><strong>Limitar intentos por minuto:</strong> <code>--limit 5/minute</code></li>
+            <li><strong>Filtrar por IP de origen:</strong> <code>-s 192.168.25.0/24</code></li>
+            <li><strong>Ver solo números, sin DNS:</strong> <code>--list -n</code></li>
+            <li><strong>Ver reglas con contadores:</strong> <code>-L -V</code></li>
+          </ul>
+
+          <h3>5. Análisis de una regla compleja</h3>
+          <pre>iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443   -m state --state NEW,ESTABLISHED -j ACCEPT</pre>
+          <p>Permite el tráfico TCP entrante por interfaz eth0 a los puertos 22, 80 y 443 siempre que sea parte de una conexión nueva o establecida.</p>
+
+          <h3>6. Reglas de práctica</h3>
+          <ul>
+            <li><strong>Permitir tráfico HTTP entrante:</strong><br><code>iptables -A INPUT -p tcp --dport 80 -j ACCEPT</code></li>
+            <li><strong>Permitir todo el tráfico saliente:</strong><br><code>iptables -A OUTPUT -j ACCEPT</code></li>
+            <li><strong>Permitir SSH solo desde la IP 192.168.1.50:</strong><br><code>iptables -A INPUT -p tcp -s 192.168.1.50 --dport 22 -j ACCEPT</code></li>
+            <li><strong>Tráfico TCP entrante a puertos 80 y 443 solo si es conexión establecida o relacionada:</strong><br><code>iptables -A INPUT -p tcp -m multiport --dports 80,443 -m state --state ESTABLISHED,RELATED -j ACCEPT</code></li>
+            <li><strong>Tráfico TCP entrante por eth0 a 22, 80 y 443, solo NEW y ESTABLISHED:</strong><br><code>iptables -A INPUT -p tcp -i eth0 -m multiport --dports 80,22,443 -m state --state NEW,ESTABLISHED -j ACCEPT</code></li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h2 id="conclusion">Conclusión</h2>
+          <p>El recorrido por los fundamentos de iptables nos confirma su papel como una herramienta indispensable y poderosa para la seguridad perimetral en entornos Linux. Concluimos y comprobamos que con una sola línea de comando puede implementar políticas de seguridad complejas, como permitir tráfico nuevo y establecido a servicios críticos.</p>
+        </div>
+
+
+    <div class="card-section" style="text-align:center;">
+      <h2>Descargar Actividad</h2>
+      <a href="tareas/parcial1/175031_act3.pdf" download class="btn-download">
+        <i class="fas fa-file-pdf"></i> Descargar PDF
+      </a>
+    </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Información</h5>
+
+        <div class="meta-item">
+          <div class="meta-label">Parcial</div>
+          <div class="meta-value">1</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tema</div>
+          <div class="meta-value">Firewall iptables Linux</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">SO</div>
+          <div class="meta-value">Linux</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Periodo</div>
+          <div class="meta-value">Enero–Junio 2026</div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <p style="margin:0; color:#6b8cae; font-size:13px;">Brian Salvador Espinoza Aguilar &mdash; Universidad Politécnica de San Luis Potosí</p>
+      </div>
+      <div class="col-lg-4 text-end">
+        <a href="https://github.com/" target="_blank">
+          <img src="img/Github_dark.svg" width="26" height="26" alt="GitHub">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+</html>

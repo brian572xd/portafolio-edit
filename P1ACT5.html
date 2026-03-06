@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>P1 Actividad 5 — Metodologías de Pentesting — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    /* ── Page overrides ── */
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt {
+      color:#6b8cae; font-size:13px; margin-bottom:10px;
+    }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px;
+      font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f; position:sticky; top:90px;
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+          <ul class="nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="breadcrumb-txt">Parcial 1 &rsaquo; Actividad 5</div>
+    <h1>Actividad 5</h1>
+    <p class="subtitle">Comparativa de metodologías y marcos de referencia en seguridad informática</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+      <a href="#descripcion">Descripción de la actividad</a>
+      <a href="#intro">Introducción</a>
+      <a href="#mitre">MITRE ATT&CK</a>
+      <a href="#owasp">OWASP WSTG</a>
+      <a href="#nist">NIST SP 800-115</a>
+      <a href="#osstmm">OSSTMM</a>
+      <a href="#ptes">PTES</a>
+      <a href="#issaf">ISSAF</a>
+      <a href="#conclusion">Conclusión</a>
+      <a href="#referencias">Referencias</a>
+        </div>
+        <!-- Content sections -->
+
+        <div class="card-section">
+          <h2 id="descripcion">Descripción de la Actividad</h2>
+          <h3>Objetivo General</h3>
+          <p>Analizar y comparar de manera estructurada las principales metodologías y marcos de referencia utilizados en pruebas de penetración y evaluación de seguridad informática, con el fin de que el estudiante comprenda sus enfoques, objetivos, contextos de aplicación y alcances técnicos, fortaleciendo su criterio para seleccionar y aplicar la metodología más adecuada según distintos escenarios de seguridad.</p>
+          <h3>Objetivos Específicos</h3>
+          <ul>
+            <li><strong>Identificar y describir</strong> las características fundamentales de las principales metodologías de pentesting y seguridad informática, incluyendo su propósito, fases de implementación y orientación estratégica.</li>
+            <li><strong>Relacionar</strong> cada metodología con los escenarios de aplicación más adecuados, considerando el tipo de sistema, el enfoque de seguridad y el objetivo de la evaluación.</li>
+            <li><strong>Comparar</strong> las metodologías analizadas a partir de criterios como autores, documentación oficial, certificaciones y vigencia, desarrollando una visión crítica sobre su uso en contextos profesionales.</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h2 id="intro">Introducción</h2>
+          <p>Para entender la ciberseguridad moderna, no basta con conocer las herramientas; es fundamental dominar las metodologías que dictan cómo, cuándo y por qué se realizan las pruebas.</p>
+          <p>En el ecosistema digital actual, la evaluación de la seguridad ha dejado de ser una actividad caótica para convertirse en una disciplina altamente estructurada.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="mitre">MITRE ATT&amp;CK</h2>
+          <table>
+            <tr class="table-header"><th>Campo</th><th>Detalle</th></tr>
+            <tr><td>Descripción</td><td>El marco MITRE ATT&amp;CK es una base de conocimientos universalmente accesible y actualizada para modelar, detectar, prevenir y combatir las amenazas de ciberseguridad basadas en los comportamientos adversarios conocidos de los delincuentes cibernéticos.</td></tr>
+            <tr><td>Fases de implementación</td><td>Emulación de adversario Red Teaming; Desarrollo de análisis de comportamiento; Evaluación de brechas defensivas; Evaluación de madurez de SOC; Enriquecimiento de inteligencia de amenazas cibernéticas.</td></tr>
+            <tr><td>Objetivo principal</td><td>Proporcionar información sobre tácticas y técnicas utilizadas por ciberdelincuentes.</td></tr>
+            <tr><td>Escenarios de uso</td><td>Clasificación de alertas, detección de amenazas y respuesta; Caza amenazas; Equipo rojo/emulación de adversario; Análisis de brechas de seguridad.</td></tr>
+            <tr><td>Orientación</td><td>Defensa</td></tr>
+            <tr><td>Autores / Organismo</td><td>MITRE Corporation (sin fines de lucro) con aportes de la comunidad global.</td></tr>
+            <tr><td>Material original</td><td><a href="https://attack.mitre.org/" target="_blank">https://attack.mitre.org/</a></td></tr>
+            <tr><td>Certificaciones asociadas</td><td>SANS Institute (GIAC), CREST, Certificaciones de Offensive Security, Certificaciones Blue Team / SOC.</td></tr>
+            <tr><td>Versión vigente</td><td>Versión 16 lanzada en Octubre 2024.</td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="owasp">OWASP WSTG</h2>
+          <table>
+            <tr class="table-header"><th>Campo</th><th>Detalle</th></tr>
+            <tr><td>Descripción</td><td>Es una guía completa para probar la seguridad de aplicaciones web y servicios web. La WSTG proporciona un marco de mejores prácticas comúnmente utilizadas por testeadores de penetración externos y organizaciones que realizan pruebas internas.</td></tr>
+            <tr><td>Fases de implementación</td><td>Planificación; Reconocimiento; Pruebas de Configuración; Pruebas de Autenticación y Sesiones; Autorización; Validación de Entrada (Inyecciones); Lógica de Negocio; APIs y Servicios Web; Lado del Cliente; Revisión y Reporte.</td></tr>
+            <tr><td>Objetivo principal</td><td>Identificar y corregir vulnerabilidades en aplicaciones web.</td></tr>
+            <tr><td>Escenarios de uso</td><td>Pentesting Ético Formal, Bug Bounty Programs, DevSecOps, Auditorías de Cumplimiento, Respuesta a Incidentes.</td></tr>
+            <tr><td>Orientación</td><td>Evaluación</td></tr>
+            <tr><td>Autores / Organismo</td><td>OWASP (comunidad de seguridad).</td></tr>
+            <tr><td>Certificaciones asociadas</td><td>OSWE, GWAPT, Burp Suite Certified Practitioner, eLearnSecurity.</td></tr>
+            <tr><td>Versión vigente</td><td>WSTG v4.2 (2021).</td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="nist">NIST SP 800-115</h2>
+          <table>
+            <tr class="table-header"><th>Campo</th><th>Detalle</th></tr>
+            <tr><td>Descripción</td><td>Marco metodológico formal para la evaluación técnica de seguridad.</td></tr>
+            <tr><td>Fases de implementación</td><td>Planificación, Descubrimiento, Ataque, Reporte.</td></tr>
+            <tr><td>Objetivo principal</td><td>Asistir a organizaciones en la planificación y conducción de pruebas técnicas y exámenes de seguridad de la información.</td></tr>
+            <tr><td>Escenarios de uso</td><td>Sector Público Federal de EE.UU., Sectores Regulados, Organizaciones de Alta Madurez, Auditorías de Cumplimiento.</td></tr>
+            <tr><td>Orientación</td><td>Evaluación</td></tr>
+            <tr><td>Autores / Organismo</td><td>Gobierno de Estados Unidos (NIST).</td></tr>
+            <tr><td>Material original</td><td><a href="https://www.nist.gov/privacy-framework/nist-sp-800-115" target="_blank">https://www.nist.gov/privacy-framework/nist-sp-800-115</a></td></tr>
+            <tr><td>Certificaciones asociadas</td><td>No hay certificaciones oficiales emitidas por NIST.</td></tr>
+            <tr><td>Versión vigente</td><td>Única versión lanzada en 2008.</td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="osstmm">OSSTMM</h2>
+          <table>
+            <tr class="table-header"><th>Campo</th><th>Detalle</th></tr>
+            <tr><td>Descripción</td><td>Es una metodología de pruebas de seguridad con una orientación radicalmente diferente a NIST, OWASP; su enfoque es científico, holístico y de evaluación cuantitativa.</td></tr>
+            <tr><td>Fases de implementación</td><td>Seguridad Humana, Seguridad Física, Seguridad Inalámbrica (Wireless), Telecomunicaciones, Redes de Datos.</td></tr>
+            <tr><td>Objetivo principal</td><td>Medir la seguridad operacional con precisión matemática.</td></tr>
+            <tr><td>Escenarios de uso</td><td>Grandes organizaciones con alta madurez, Equipos de aseguramiento, Telecomunicaciones, Logística.</td></tr>
+            <tr><td>Orientación</td><td>Evaluación</td></tr>
+            <tr><td>Autores / Organismo</td><td>ISECOM.</td></tr>
+            <tr><td>Material original</td><td><a href="https://www.isecom.org/OSSTMM.3.pdf" target="_blank">https://www.isecom.org/OSSTMM.3.pdf</a></td></tr>
+            <tr><td>Certificaciones asociadas</td><td>OPST, OPSA, OPSE.</td></tr>
+            <tr><td>Versión vigente</td><td>OSSTMM 3 (2016).</td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="ptes">PTES</h2>
+          <table>
+            <tr class="table-header"><th>Campo</th><th>Detalle</th></tr>
+            <tr><td>Descripción</td><td>Es un estándar técnico/operacional. Su propósito es unificar criterios, fases y metodologías en la ejecución de pruebas de penetración, eliminando la ambigüedad entre distintos proveedores y equipos internos.</td></tr>
+            <tr><td>Fases de implementación</td><td>Pre-engagement, Intelligence Gathering, Threat Modeling, Vulnerability Analysis, Exploitation, Post-Exploitation, Reporting.</td></tr>
+            <tr><td>Objetivo principal</td><td>Establecer un estándar universal para la ejecución de pruebas de penetración.</td></tr>
+            <tr><td>Escenarios de uso</td><td>Pentesting externo, Pentesting interno (Active Directory), Pentesting de aplicaciones web, Cloud (AWS, Azure, GCP), Ingeniería social y físico.</td></tr>
+            <tr><td>Orientación</td><td>Ataque</td></tr>
+            <tr><td>Autores / Organismo</td><td>Comunidad de ciberseguridad.</td></tr>
+            <tr><td>Certificaciones asociadas</td><td>Certified Lead Ethical Hacker (PECB), GPEN, OSCP.</td></tr>
+            <tr><td>Versión vigente</td><td>No hay sistema de versiones; se divide en The Standard y Technical Guidelines.</td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="issaf">ISSAF</h2>
+          <table>
+            <tr class="table-header"><th>Campo</th><th>Detalle</th></tr>
+            <tr><td>Descripción</td><td>Es una metodología extremadamente detallada y estructurada diseñada para que los profesionales de la ciberseguridad realicen auditorías de seguridad y pruebas de penetración de manera organizada y profesional.</td></tr>
+            <tr><td>Fases de implementación</td><td>Planificación y Preparación, Evaluación (Assessment), Reporte y Limpieza.</td></tr>
+            <tr><td>Objetivo principal</td><td>Proporcionar un marco de trabajo estandarizado, exhaustivo y técnico para evaluar la seguridad de los sistemas de información de una organización de principio a fin.</td></tr>
+            <tr><td>Escenarios de uso</td><td>Auditorías de Cumplimiento, Pentesting White Box, Evaluación de Infraestructuras Críticas, Formación de Nuevos Auditores.</td></tr>
+            <tr><td>Orientación</td><td>Evaluación y Ataque</td></tr>
+            <tr><td>Autores / Organismo</td><td>OISSG (Open Information Systems Security Group).</td></tr>
+            <tr><td>Material original</td><td><a href="https://pymesec.org/issaf/" target="_blank">https://pymesec.org/issaf/</a></td></tr>
+            <tr><td>Certificaciones asociadas</td><td>CISA, CISSP, CEH, OSCP.</td></tr>
+            <tr><td>Versión vigente</td><td>v0.2 (2000).</td></tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="conclusion">Conclusión</h2>
+          <p>La evolución de las metodologías de seguridad informática demuestra que la protección de dispositivos y archivos digitales ha pasado de ser una serie de pruebas aisladas a convertirse en una disciplina científica y estratégica. Mientras que marcos históricos como el ISSAF sentaron las bases procedimentales y técnicas, estándares modernos como el PTES han desplazado el enfoque hacia el impacto real en el negocio y la post-explotación. Por otro lado, la especialización de OWASP en el ámbito web, la rigurosidad normativa de NIST y el enfoque métrico de OSSTMM ofrecen soluciones específicas para cada necesidad organizacional. Finalmente, la integración de MITRE ATT&amp;CK como lenguaje universal de tácticas de ataque cierra el círculo, permitiendo que la evaluación de seguridad no solo detecte fallos, sino que anticipe comportamientos de adversarios reales.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="referencias">Referencias</h2>
+          <ul>
+            <li>IBM. (2025). Mitre Attack. <a href="https://www.ibm.com/mx-es/think/topics/mitre-attack" target="_blank">https://www.ibm.com/mx-es/think/topics/mitre-attack</a></li>
+            <li>Admin. (2024). Guía NIST SP 800-115. Tu Consultor TI. <a href="https://www.tuconsultorti.com/ciberseguridad/guia-nist-sp-800-115/" target="_blank">enlace</a></li>
+            <li>Admin. (2024). Guía OSSTMM. Tu Consultor TI. <a href="https://www.tuconsultorti.com/ciberseguridad/guia-osstmm/" target="_blank">enlace</a></li>
+            <li>Metodología ISSAF. H4CKdotCL. <a href="https://book.h4ck.cl/metodologia-y-fases-de-hacking-etico/metodologias/metodologia-issaf" target="_blank">enlace</a></li>
+          </ul>
+        </div>
+
+
+    <div class="card-section" style="text-align:center;">
+      <h2>Descargar Actividad</h2>
+      <a href="tareas/parcial1/175031_act05.pdf" download class="btn-download">
+        <i class="fas fa-file-pdf"></i> Descargar PDF
+      </a>
+    </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Información</h5>
+
+        <div class="meta-item">
+          <div class="meta-label">Parcial</div>
+          <div class="meta-value">1</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tema</div>
+          <div class="meta-value">Metodologías Pentesting</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Marcos</div>
+          <div class="meta-value">MITRE, OWASP, NIST, OSSTMM, PTES, ISSAF</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Periodo</div>
+          <div class="meta-value">Enero–Junio 2026</div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <p style="margin:0; color:#6b8cae; font-size:13px;">Brian Salvador Espinoza Aguilar &mdash; Universidad Politécnica de San Luis Potosí</p>
+      </div>
+      <div class="col-lg-4 text-end">
+        <a href="https://github.com/" target="_blank">
+          <img src="img/Github_dark.svg" width="26" height="26" alt="GitHub">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+</html>
