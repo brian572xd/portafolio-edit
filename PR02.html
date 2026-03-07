@@ -125,10 +125,6 @@
               <a href="javascript:void(0)">Proyectos</a>
               <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
             </li>
-            <li class="has-sub">
-              <a href="javascript:void(0)">Road to hall of fame</a>
-              <ul class="sub-menu"><li><a href="SQLi.html">SQLi</a></li></ul>
-            </li>
           </ul>
           <a class="menu-trigger"><span>Menu</span></a>
         </nav>
@@ -161,14 +157,16 @@
           <a href="#descripcion">Descripción del Proyecto</a>
           <a href="#objetivo-general">Objetivo General</a>
           <a href="#objetivos-especificos">Objetivos Específicos</a>
-          <a href="#plataformas">Plataformas de Simulación de Phishing</a>
-          <a href="#tabla-comparativa">Tabla Comparativa</a>
+          <a href="#criterio1">01 · Marco Teórico y Fundamentación Técnica</a>
+          <a href="#criterio2">02 · Análisis Individual de las 8 Plataformas</a>
+          <a href="#criterio3">03 · Tabla Técnica Comparativa</a>
+          <a href="#criterio4">04 · Análisis Crítico y Conclusiones</a>
         </div>
 
         <!-- Descripción -->
         <div class="card-section">
           <h2 id="descripcion">Descripción del Proyecto</h2>
-          <p>En el apartado PR02 se realiza una <strong>investigación comparativa de las principales plataformas de simulación de phishing del mercado</strong> (Hoxhunt, Proofpoint, KnowBe4, Cofense, Phished, Ninjio, Mimecast, Infosec IQ), elaborando fichas descriptivas y una tabla técnica con criterios de análisis y enfoque ético.</p>
+          <p>En el apartado PR02 se realiza una <strong>investigación comparativa de las principales plataformas de simulación de phishing del mercado</strong> (Hoxhunt, Proofpoint, KnowBe4, Cofense, Phished, NINJIO, Mimecast, Infosec IQ), elaborando fichas descriptivas y una tabla técnica con criterios de análisis y enfoque ético.</p>
           <p>El proyecto integra tres componentes principales: el análisis comparativo de plataformas profesionales, el diseño e implementación de un <em>Phishing Quiz</em> interactivo con 10 escenarios de ingeniería social, y el desarrollo de un sistema de score global para interpretar resultados bajo principios de privacidad y ética digital.</p>
         </div>
 
@@ -182,131 +180,239 @@
         <div class="card-section">
           <h2 id="objetivos-especificos">Objetivos Específicos</h2>
           <ul>
-            <li>
-              <strong>Analizar y comparar</strong> plataformas profesionales de simulación de phishing
-              (Hoxhunt, Proofpoint, KnowBe4, Cofense, Phished, NINJIO, Mimecast e Infosec IQ),
-              identificando sus capacidades técnicas, métricas de medición, enfoques de entrenamiento
-              y controles éticos en la gestión del riesgo humano.
-            </li>
-            <li>
-              <strong>Diseñar e implementar</strong> una simulación interactiva tipo <em>Phishing Quiz</em>
-              compuesta por 10 escenarios realistas de ingeniería social, incorporando criterios de
-              evaluación, retroalimentación formativa y un sistema de puntuación individual.
-            </li>
-            <li>
-              <strong>Desarrollar e interpretar</strong> un sistema de score global que consolide los
-              resultados de los participantes, permitiendo analizar tendencias de desempeño, niveles
-              de vulnerabilidad y oportunidades de mejora en la concientización en ciberseguridad,
-              bajo principios de privacidad y ética digital.
-            </li>
+            <li><strong>Analizar y comparar</strong> plataformas profesionales de simulación de phishing (Hoxhunt, Proofpoint, KnowBe4, Cofense, Phished, NINJIO, Mimecast e Infosec IQ), identificando sus capacidades técnicas, métricas de medición, enfoques de entrenamiento y controles éticos en la gestión del riesgo humano.</li>
+            <li><strong>Diseñar e implementar</strong> una simulación interactiva tipo <em>Phishing Quiz</em> compuesta por 10 escenarios realistas de ingeniería social, incorporando criterios de evaluación, retroalimentación formativa y un sistema de puntuación individual.</li>
+            <li><strong>Desarrollar e interpretar</strong> un sistema de score global que consolide los resultados de los participantes, permitiendo analizar tendencias de desempeño, niveles de vulnerabilidad y oportunidades de mejora en la concientización en ciberseguridad, bajo principios de privacidad y ética digital.</li>
           </ul>
         </div>
 
-        <!-- Plataformas -->
         <div class="card-section">
-          <h2 id="plataformas">Plataformas de Simulación de Phishing</h2>
-          <p>Se analizaron ocho plataformas líderes en el mercado de concientización en ciberseguridad. A continuación se presentan las fichas descriptivas de cada una.</p>
+          <h2 id="criterio1">
+            Marco Teórico y Fundamentación Técnica
+          </h2>
 
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>Hoxhunt</h3>
-          <p>Plataforma gamificada de entrenamiento continuo que adapta los ataques simulados al perfil de riesgo individual de cada usuario mediante inteligencia artificial. Mide la tasa de reporte de phishing y el tiempo de respuesta. Enfoque ético basado en refuerzo positivo, sin penalizaciones.</p>
+          <h3>¿Qué es la simulación de phishing?</h3>
+          <p>La simulación de phishing es una técnica de seguridad ofensiva controlada que consiste en enviar correos electrónicos o mensajes fraudulentos a los propios empleados de una organización, con el objetivo de medir su nivel de susceptibilidad ante ataques de ingeniería social reales. A diferencia del phishing malicioso, estas simulaciones son autorizadas, éticas y formativas: cuando un usuario cae en la trampa, recibe retroalimentación inmediata en lugar de sufrir consecuencias reales.</p>
 
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>Proofpoint Security Awareness Training</h3>
-          <p>Solución empresarial que combina simulaciones de phishing con módulos de micro-aprendizaje. Incluye métricas de vulnerabilidad por departamento, análisis de clics y datos de reportes. Cuenta con controles de privacidad y consentimiento configurables para cumplimiento normativo.</p>
+          <h3>Métricas Clave del Sector</h3>
+          <p>Las plataformas profesionales del mercado comparten un conjunto de métricas estandarizadas para medir el riesgo humano en ciberseguridad:</p>
+          <ul>
+            <li><strong>Click Rate:</strong> Porcentaje de usuarios que interactúan con un correo de phishing simulado, tambien se entiende como todos los usuarios que hacen clic en el enlace o abren el archivo adjunto. Es el indicador primario de vulnerabilidad. Un click rate superior al 30% indica alto riesgo organizacional.</li>
+            <li><strong>Reporting Rate:</strong> Porcentaje de usuarios que identifican correctamente el correo como phishing y lo reportan al equipo de seguridad. Una tasa de reporte alta es el objetivo final del entrenamiento; indica cultura de seguridad consolidada.</li>
+            <li><strong>Risk Score:</strong> Índice compuesto que combina múltiples señales de comportamiento del usuario como clics, credenciales entregadas, velocidad de respuesta y historial de entrenamiento para generar un perfil de riesgo individual y organizacional.</li>
+            <li><strong>Credential Submission Rate:</strong> Proporción de usuarios que, además de hacer clic, ingresan sus credenciales en una página falsa. Representa el nivel más crítico de exposición.</li>
+            <li><strong>Time-to-Report:</strong> Tiempo promedio que tarda un usuario en reportar un intento de phishing. Cuanto menor, mayor la madurez del programa de concientización.</li>
+          </ul>
 
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>KnowBe4</h3>
-          <p>Una de las plataformas más utilizadas a nivel mundial. Ofrece la mayor biblioteca de plantillas de phishing simulado, contenido de entrenamiento en video y un sistema de gestión de riesgo por usuario (UEBA). Permite segmentar campañas por área y nivel de riesgo.</p>
+          <h3>Enfoques de Entrenamiento</h3>
+          <p>Las plataformas del mercado utilizan tres grandes enfoques pedagógicos:</p>
+          <ul>
+            <li><strong>Microlearning:</strong> Módulos de aprendizaje breves entregados justo después de que el usuario cae en una simulación. Es el enfoque dominante en Proofpoint, KnowBe4 y Phished. Su ventaja es la relevancia contextual inmediata.</li>
+            <li><strong>Gamificación:</strong> Hoxhunt convierte el entrenamiento en un juego donde los usuarios acumulan puntos al reportar amenazas reales y simuladas. Aumenta el engagement y la frecuencia de reporte.</li>
+            <li><strong>Narrativa / Storytelling:</strong> NINJIO utiliza episodios animados de 90 segundos basados en ciberataques reales para generar empatía y retención emocional del aprendizaje, especialmente efectivo en organizaciones con baja cultura de seguridad inicial.</li>
+          </ul>
 
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>Cofense</h3>
-          <p>Especializada en detección y respuesta ante phishing real. Sus simulaciones están basadas en amenazas activas del mercado. Destaca por su plataforma de reporte PhishMe y su integración con SOC para correlacionar amenazas simuladas con reales.</p>
-
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>Phished</h3>
-          <p>Plataforma europea con fuerte enfoque en cumplimiento del RGPD. Utiliza IA para personalizar escenarios y mide el Phishing Threat Score (PTS) por usuario. Incluye módulos de micro-entrenamiento automático post-simulación.</p>
-
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>NINJIO</h3>
-          <p>Enfocada en contenido de concienciación mediante episodios animados cortos (90 segundos) basados en ciberataques reales. Complementa las simulaciones con narrativas de ingeniería social para mejorar la retención del aprendizaje.</p>
-
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>Mimecast</h3>
-          <p>Integra la simulación de phishing dentro de su ecosistema de seguridad de correo electrónico. Permite correlacionar intentos de phishing simulados con amenazas reales bloqueadas. Ofrece reportes consolidados de riesgo organizacional.</p>
-
-          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>Infosec IQ</h3>
-          <p>Plataforma orientada a la academia y empresas medianas. Ofrece más de 2,000 recursos de entrenamiento y una amplia biblioteca de plantillas de phishing por industria. Incluye rutas de aprendizaje personalizadas y reportes de cumplimiento.</p>
+          <h3>Diferencias Técnicas Reales entre Plataformas</h3>
+          <p>Las diferencias técnicas más relevantes entre las 8 plataformas analizadas se concentran en tres dimensiones:</p>
+          <ul>
+            <li><strong>Nivel de personalización de amenazas:</strong> Hoxhunt y Phished utilizan IA generativa para adaptar los ataques simulados al perfil de cada usuario en tiempo real. KnowBe4 y Proofpoint ofrecen segmentación por departamento y rol, pero con plantillas predefinidas. Cofense se distingue por usar amenazas activas del mercado en lugar de plantillas.</li>
+            <li><strong>Integración con infraestructura existente:</strong> Mimecast se integra nativamente con su gateway de correo electrónico, lo que permite correlacionar amenazas simuladas con ataques reales bloqueados. Cofense se integra con plataformas SIEM y SOAR para respuesta coordinada.</li>
+            <li><strong>Cobertura normativa:</strong> Phished lidera en cumplimiento del RGPD europeo. Infosec IQ destaca en certificaciones de cumplimiento. Proofpoint ofrece la mayor flexibilidad de configuración para distintos marcos regulatorios.</li>
+          </ul>
         </div>
 
-        <!-- Tabla Comparativa -->
+         <div class="card-section">
+          <h2 id="criterio2">
+            Análisis Individual de las 8 Plataformas
+          </h2>
+
+          <!-- Hoxhunt -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>1. Hoxhunt</h3>
+          <p><strong>Diferenciador crítico:</strong> Es la única plataforma del mercado que convierte a los propios empleados en cazadores de amenazas activos, no en sujetos pasivos del entrenamiento. Su motor de IA genera amenazas personalizadas para cada usuario basándose en su historial de comportamiento, rol y nivel de riesgo. El elemento diferenciador más importante es su modelo de refuerzo positivo exclusivo: los usuarios ganan puntos y recompensas por reportar amenazas, nunca son penalizados por fallar. Esto genera una curva de aprendizaje sostenida a largo plazo y reduce la resistencia cultural al programa de seguridad.</p>
+          <p><strong>Limitación crítica:</strong> Su modelo requiere una inversión de cambio cultural significativa antes de mostrar resultados. Organizaciones con alta rotación de personal o cultura de seguridad muy baja pueden no ver ROI en los primeros 6-12 meses.</p>
+
+          <!-- Proofpoint -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>2. Proofpoint Security Awareness Training</h3>
+          <p><strong>Diferenciador crítico:</strong> Su punto de ventaja competitiva es la visibilidad granular del riesgo organizacional. Permite identificar no solo qué usuarios son vulnerables, sino qué departamentos, roles y comportamientos específicos generan mayor exposición. Su módulo de análisis de amenazas reales permite contrastar el comportamiento simulado con las amenazas bloqueadas por el gateway de correo, creando un ciclo de mejora continua basado en datos reales.</p>
+          <p><strong>Limitación crítica:</strong> La plataforma tiene una curva de configuración alta. Organizaciones sin personal dedicado de seguridad pueden subutilizar hasta el 60% de sus capacidades analíticas.</p>
+
+          <!-- KnowBe4 -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>3. KnowBe4</h3>
+          <p><strong>Diferenciador crítico:</strong> Posee la biblioteca de plantillas de phishing simulado más grande del mundo, actualizada semanalmente con amenazas reales activas. Su métrica Phish-prone Percentage se ha convertido en el estándar de facto para benchmarking de riesgo humano en la industria. Su sistema UEBA permite detectar patrones de comportamiento de riesgo más allá del phishing, incluyendo uso inadecuado de credenciales y acceso a recursos sensibles.</p>
+          <p><strong>Limitación crítica:</strong> Su dominio de mercado ha generado saturación de plantillas reconocibles entre usuarios con mayor cultura de seguridad, reduciendo la efectividad de las simulaciones en organizaciones maduras.</p>
+
+          <!-- Cofense -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>4. Cofense</h3>
+          <p><strong>Diferenciador crítico:</strong> Cofense es la única plataforma del análisis cuyo núcleo de valor está en la respuesta, no solo en la simulación. Su botón PhishMe Reporter, instalado directamente en el cliente de correo del usuario, permite reportar amenazas con un clic, generando datos en tiempo real para el SOC. Sus simulaciones están basadas en campañas de phishing activas recopiladas de su red de inteligencia global, lo que garantiza que los usuarios sean entrenados con las mismas técnicas que los atacantes reales están usando en ese momento.</p>
+          <p><strong>Limitación crítica:</strong> Su propuesta de valor máxima solo se realiza en organizaciones con un SOC operativo. Sin capacidad de respuesta a incidentes, Cofense se convierte en una plataforma de simulación costosa sin ventaja diferencial sobre KnowBe4.</p>
+
+          <!-- Phished -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>5. Phished</h3>
+          <p><strong>Diferenciador crítico:</strong> Phished lidera en el diseño de privacidad. Su arquitectura de privacidad por diseño y el almacenamiento exclusivo en servidores de la Unión Europea la posicionan como la opción natural para organizaciones sujetas al RGPD. Su Phishing Threat Score combina datos de comportamiento, historial de entrenamiento y benchmarking sectorial para generar un índice de riesgo comparable con el de otras organizaciones del mismo sector.</p>
+          <p><strong>Limitación crítica:</strong> Su menor presencia en mercados latinoamericanos limita el soporte local y la disponibilidad de plantillas de phishing contextualizadas en español para entornos corporativos mexicanos.</p>
+
+          <!-- NINJIO -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>6. NINJIO</h3>
+          <p><strong>Diferenciador crítico:</strong> NINJIO resuelve el problema de la fatiga de contenido: la mayoría de los empleados ignoran los módulos de entrenamiento extensos o los completan de forma superficial. Sus episodios animados de 90 segundos, con personajes y narrativas basados en ciberataques reales, generan una retención del aprendizaje significativamente mayor. Su enfoque narrativo humaniza la amenaza y conecta emocionalmente al usuario con las consecuencias del error.</p>
+          <p><strong>Limitación crítica:</strong> NINJIO no incluye simulaciones de phishing propias, lo que la convierte en una solución de entrenamiento que debe combinarse con otra plataforma para completar el ciclo de medición y práctica. Es un complemento, no una solución integral.</p>
+
+          <!-- Mimecast -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>7. Mimecast</h3>
+          <p><strong>Diferenciador crítico:</strong> La ventaja de Mimecast es única en el mercado: es la única plataforma que puede mostrar a una organización el porcentaje de amenazas reales que sí fueron bloqueadas en paralelo con las simulaciones que <em>los usuarios no detectaron</em>. Esta correlación crea un mapa de riesgo real-vs-simulado que ninguna otra plataforma puede generar de forma nativa. Para organizaciones que ya usan Mimecast como gateway de correo, añadir el módulo de awareness tiene un ROI excepcional.</p>
+          <p><strong>Limitación crítica:</strong> Fuera del ecosistema Mimecast, la plataforma pierde su ventaja diferencial principal y compite en desventaja contra KnowBe4 o Proofpoint en términos de funcionalidades de entrenamiento puras.</p>
+
+          <!-- Infosec IQ -->
+          <h3><i class="fas fa-shield-alt me-2" style="color:#f7c948;"></i>8. Infosec IQ</h3>
+          <p><strong>Diferenciador crítico:</strong> Infosec IQ es la plataforma con mejor relación costo-beneficio para instituciones educativas y organizaciones que necesitan cumplimiento normativo documentado. Su biblioteca de más de 2,000 recursos de entrenamiento, organizada por industria y marco normativo, permite diseñar rutas de aprendizaje personalizadas que demuestran cumplimiento ante auditores. Su enfoque académico la hace especialmente relevante para el contexto universitario.</p>
+          <p><strong>Limitación crítica:</strong> Su infraestructura tecnológica no ha evolucionado al ritmo de las plataformas nativas de IA. Carece de personalización dinámica de amenazas y sus métricas de riesgo son menos sofisticadas que las de sus competidores directos.</p>
+        </div>
+        
         <div class="card-section">
-          <h2 id="tabla-comparativa">Tabla Comparativa de Plataformas</h2>
+          <h2 id="criterio3">
+            Tabla Técnica Comparativa
+          </h2>
+          <p>Comparación de las 8 plataformas bajo criterios analíticos, de integración, éticos y limitaciones reales:</p>
           <div style="overflow-x:auto;">
             <table>
               <thead>
                 <tr class="table-header">
                   <th>Plataforma</th>
-                  <th>Capacidades Técnicas</th>
-                  <th>Métricas Principales</th>
-                  <th>Entrenamiento</th>
+                  <th>Analítica / Métricas</th>
+                  <th>Integración</th>
                   <th>Controles Éticos</th>
+                  <th>Limitaciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong style="color:#f7c948;">Hoxhunt</strong></td>
-                  <td>IA adaptativa, simulaciones personalizadas</td>
-                  <td>Tasa de reporte, tiempo de respuesta</td>
-                  <td>Gamificado, continuo</td>
-                  <td>Refuerzo positivo, sin penalización</td>
+                  <td>Click rate, reporting rate, risk score adaptativo por IA</td>
+                  <td>Microsoft 365, Google Workspace, Slack, SIEM</td>
+                  <td>Refuerzo positivo exclusivo; sin penalización; política de no shaming</td>
+                  <td>Curva de adopción alta; requiere cambio cultural previo; precio elevado</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">Proofpoint</strong></td>
-                  <td>Micro-aprendizaje, análisis por departamento</td>
-                  <td>Tasa de clics, reportes, vulnerabilidad</td>
-                  <td>Módulos integrados</td>
-                  <td>Consentimiento configurable, GDPR</td>
+                  <td>Click rate, credential submission, vulnerability score por dept.</td>
+                  <td>Active Directory, SIEM, API REST, Microsoft/Google</td>
+                  <td>Consentimiento configurable; cumplimiento GDPR/CCPA; anonimización de datos</td>
+                  <td>Interfaz compleja para administradores; alto costo de licenciamiento</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">KnowBe4</strong></td>
-                  <td>UEBA, mayor biblioteca de plantillas</td>
-                  <td>Phish-prone %, riesgo por usuario</td>
-                  <td>Video, microlearning</td>
-                  <td>Segmentación por riesgo</td>
+                  <td>Phish-prone %, UEBA, risk score individual y grupal</td>
+                  <td>Active Directory, SCIM, SIEM, 200+ integraciones</td>
+                  <td>Segmentación por nivel de riesgo; políticas de privacidad granulares</td>
+                  <td>Contenido de entrenamiento puede percibirse repetitivo; soporte variable por región</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">Cofense</strong></td>
-                  <td>Basada en amenazas reales activas, PhishMe</td>
-                  <td>Reportes, correlación SOC</td>
-                  <td>Basado en amenazas reales</td>
-                  <td>Integración SOC, respuesta coordinada</td>
+                  <td>Reporting rate, time-to-report, correlación SOC con amenazas reales</td>
+                  <td>SOAR, SIEM, plataformas de email (Exchange, O365), PhishMe Reporter</td>
+                  <td>Orientado a respuesta coordinada; transparencia con equipos SOC</td>
+                  <td>Enfocado en email; no cubre otros vectores (SMS, voz); precio alto para PYMEs</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">Phished</strong></td>
-                  <td>IA personalizada, Phishing Threat Score</td>
-                  <td>PTS individual y grupal</td>
-                  <td>Micro-entrenamiento automático</td>
-                  <td>RGPD nativo, privacidad por diseño</td>
+                  <td>Phishing Threat Score (PTS), benchmarking sectorial, tendencias temporales</td>
+                  <td>Microsoft 365, Google Workspace, SCIM, SSO</td>
+                  <td>RGPD nativo; privacidad por diseño; datos almacenados en UE; sin shaming</td>
+                  <td>Menor biblioteca de plantillas vs. KnowBe4; cobertura limitada fuera de Europa</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">NINJIO</strong></td>
-                  <td>Episodios animados, casos reales</td>
-                  <td>Retención de contenido</td>
-                  <td>Video narrativo (90 seg.)</td>
-                  <td>Ética narrativa, sin simulaciones agresivas</td>
+                  <td>Retención de contenido, tasas de completado, quiz scores post-episodio</td>
+                  <td>LMS compatibles (SCORM), Microsoft 365, SSO</td>
+                  <td>Contenido basado en hechos reales sin re-victimizar; foco educativo, no punitivo</td>
+                  <td>No incluye simulaciones de phishing propias; depende de complementarse con otra plataforma</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">Mimecast</strong></td>
-                  <td>Ecosistema de email security integrado</td>
-                  <td>Riesgo organizacional consolidado</td>
-                  <td>Integrado con gateway de correo</td>
-                  <td>Correlación amenazas reales/simuladas</td>
+                  <td>Riesgo organizacional consolidado, correlación amenazas reales vs. simuladas</td>
+                  <td>Nativo con Mimecast Email Security; O365; API; SIEM</td>
+                  <td>Correlación controlada entre simulación y realidad; cumplimiento configurable</td>
+                  <td>Valor máximo solo si ya se usa el ecosistema Mimecast; vendor lock-in</td>
                 </tr>
                 <tr>
                   <td><strong style="color:#f7c948;">Infosec IQ</strong></td>
-                  <td>+2,000 recursos, rutas personalizadas</td>
-                  <td>Cumplimiento, progreso de rutas</td>
-                  <td>Academia, rutas por industria</td>
-                  <td>Reportes de cumplimiento normativo</td>
+                  <td>Cumplimiento normativo, progreso de rutas, phish rates por industria</td>
+                  <td>SCIM, SSO, LMS, Active Directory</td>
+                  <td>Reportes de cumplimiento HIPAA/PCI-DSS; consentimiento de usuario documentado</td>
+                  <td>Interfaz menos moderna; IA menos avanzada que Hoxhunt o Phished; orientado a academia</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+
+        <div class="card-section">
+          <h2 id="criterio4">
+            Análisis Crítico y Conclusiones
+          </h2>
+
+          <h3>Ventajas Comparativas Clave</h3>
+          <p>Tras el análisis de las 8 plataformas, se identifican tres grupos diferenciados según su propuesta de valor principal:</p>
+          <ul>
+            <li><strong>Líderes en personalización por IA:</strong> Hoxhunt y Phished destacan por adaptar los ataques simulados al perfil de riesgo de cada usuario en tiempo real. Esto elimina el problema de la "fatiga de phishing" que generan las campañas con plantillas genéricas. Su principal ventaja es la relevancia contextual de cada simulación.</li>
+            <li><strong>Líderes en volumen y madurez de mercado:</strong> KnowBe4 y Proofpoint dominan el mercado empresarial por su amplitud de plantillas, integraciones y la robustez de sus ecosistemas de gestión de riesgo. Son la elección más segura para organizaciones grandes con equipos de seguridad consolidados.</li>
+            <li><strong>Especializados en respuesta e integración:</strong> Cofense y Mimecast ofrecen el mayor valor cuando el objetivo es conectar el entrenamiento con la respuesta a incidentes reales, integrando las simulaciones directamente con el SOC o el gateway de correo.</li>
+          </ul>
+
+          <h3>Limitaciones Identificadas en el Mercado</h3>
+          <ul>
+            <li><strong>Sesgo hacia el correo electrónico:</strong> La mayoría de las plataformas analizadas concentran sus simulaciones en phishing por email. Los vectores emergentes como smishing (SMS), vishing (voz) y phishing en redes sociales tienen cobertura limitada o nula en todas las plataformas excepto KnowBe4 y Proofpoint.</li>
+            <li><strong>El dilema ético de la simulación:</strong> Existe una tensión inherente entre la efectividad del entrenamiento (que requiere simular ataques creíbles) y el bienestar psicológico de los empleados. Las plataformas que aplican el modelo punitivo —mostrar públicamente quién "cayó"— generan estrés laboral y reducen la confianza organizacional, aunque aumentan la tasa de atención a corto plazo.</li>
+            <li><strong>Dependencia del contexto organizacional:</strong> Ninguna plataforma es universalmente superior. NINJIO es ideal para organizaciones con baja cultura de seguridad inicial; Cofense para entornos con SOC maduro; Infosec IQ para instituciones educativas y PYMEs con presupuesto limitado; Hoxhunt para organizaciones que priorizan el cambio cultural a largo plazo.</li>
+          </ul>
+
+          <h3>Contexto de Uso Recomendado</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Contexto Organizacional</th>
+                <th>Plataforma Recomendada</th>
+                <th>Justificación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Gran empresa, equipo SOC activo</td>
+                <td><strong style="color:#f7c948;">Cofense o Proofpoint</strong></td>
+                <td>Integración con respuesta a incidentes reales</td>
+              </tr>
+              <tr>
+                <td>Empresa mediana, presupuesto moderado</td>
+                <td><strong style="color:#f7c948;">KnowBe4</strong></td>
+                <td>Mayor relación costo-beneficio del mercado</td>
+              </tr>
+              <tr>
+                <td>Empresa europea, cumplimiento RGPD crítico</td>
+                <td><strong style="color:#f7c948;">Phished</strong></td>
+                <td>Privacidad por diseño, datos en la UE</td>
+              </tr>
+              <tr>
+                <td>Cultura de seguridad baja, cambio a largo plazo</td>
+                <td><strong style="color:#f7c948;">Hoxhunt o NINJIO</strong></td>
+                <td>Gamificación y narrativa favorecen adopción</td>
+              </tr>
+              <tr>
+                <td>Institución educativa o PYME</td>
+                <td><strong style="color:#f7c948;">Infosec IQ</strong></td>
+                <td>Precio accesible, orientación académica</td>
+              </tr>
+              <tr>
+                <td>Ya usuario del ecosistema Mimecast</td>
+                <td><strong style="color:#f7c948;">Mimecast</strong></td>
+                <td>Sinergia con email security existente</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Conclusión General</h3>
+          <p>El mercado de simulación de phishing ha madurado significativamente: la competencia ya no está en <em>si</em> se puede simular un ataque, sino en <em>qué tan inteligente, ético y accionable</em> es el entrenamiento resultante. La tendencia dominante apunta hacia plataformas que combinan IA adaptativa, métricas de riesgo individualizado y controles éticos estrictos. Para el contexto académico del curso de Seguridad Informática CNOV, el diseño ético del Phishing Quiz propuesto en este proyecto sigue precisamente esta filosofía: medir la vulnerabilidad humana con fines formativos, no punitivos, generando conciencia sobre la ingeniería social como el vector de ataque más prevalente en la actualidad.</p>
+        </div>
+
+       
 
       </div><!-- /col-lg-9 -->
 
