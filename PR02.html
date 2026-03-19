@@ -87,6 +87,227 @@
       display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
     }
     .page-hero .hero-back:hover { color:#f7c948; }
+
+    /* ══════════════════════════════════════
+       PHISHING QUIZ STYLES
+    ══════════════════════════════════════ */
+    #phishing-quiz { scroll-margin-top: 90px; }
+
+    /* Login screen */
+    .quiz-login {
+      background: #0a1628;
+      border: 1px solid #1e3a5f;
+      border-radius: 14px;
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .quiz-login .shield-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg,#f7c948,#e6a800);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px; color: #0d1b2a;
+    }
+    .quiz-login h3 { color:#f7c948; font-size:1.3rem; margin-bottom:8px; }
+    .quiz-login p  { color:#8eb4d8; font-size:13.5px; margin-bottom:28px; }
+    .quiz-login input[type="text"] {
+      width: 100%; background: #112240; border: 1px solid #1e3a5f;
+      border-radius: 8px; padding: 12px 16px; color: #c5d0dc;
+      font-size: 15px; font-family: 'Poppins', sans-serif;
+      outline: none; transition: border-color .2s; margin-bottom: 16px;
+    }
+    .quiz-login input[type="text"]:focus { border-color: #f7c948; }
+    .quiz-login input[type="text"]::placeholder { color:#4a6a8a; }
+    .quiz-login .error-msg {
+      color: #f87171; font-size: 13px; margin-bottom: 12px;
+      display: none;
+    }
+    .btn-start-quiz {
+      width: 100%; background: #f7c948; color: #0d1b2a;
+      border: none; border-radius: 8px; padding: 13px;
+      font-size: 15px; font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-start-quiz:hover { background: #e6b830; }
+    .quiz-login .disclaimer {
+      font-size: 12px; color: #4a6a8a; margin-top: 18px; line-height: 1.6;
+    }
+
+    /* Quiz container */
+    .quiz-wrap { display:none; }
+
+    /* Progress bar */
+    .quiz-progress-bar {
+      background: #0a1628; border-radius: 20px;
+      height: 6px; margin-bottom: 20px; overflow: hidden;
+    }
+    .quiz-progress-fill {
+      background: linear-gradient(90deg, #f7c948, #ffa500);
+      height: 100%; border-radius: 20px;
+      transition: width .4s ease;
+    }
+    .quiz-meta {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 10px;
+    }
+    .quiz-meta .q-counter { color:#6b8cae; font-size:12.5px; }
+    .quiz-meta .q-score   { color:#f7c948; font-size:13px; font-weight:600; }
+
+    /* Scenario card */
+    .scenario-card {
+      background: #0a1628; border: 1px solid #1e3a5f;
+      border-radius: 12px; padding: 24px; margin-bottom: 20px;
+    }
+    .scenario-type-badge {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .8px;
+      padding: 3px 11px; border-radius: 20px; margin-bottom: 14px;
+    }
+    .type-email    { background:#1a2a4a; color:#60a5fa; border:1px solid #2a3a6a; }
+    .type-sms      { background:#1a3a1a; color:#4ade80; border:1px solid #2a5a2a; }
+    .type-web      { background:#2a1a3a; color:#a78bfa; border:1px solid #4a2a6a; }
+    .type-llamada  { background:#3a1a1a; color:#f87171; border:1px solid #5a2a2a; }
+    .type-redes    { background:#3a2a1a; color:#fb923c; border:1px solid #5a3a1a; }
+
+    .scenario-title { color:#f7c948; font-size:.95rem; font-weight:600; margin-bottom:12px; }
+    .scenario-body {
+      background: #112240; border-radius: 8px; padding: 16px 18px;
+      border-left: 3px solid #1e3a5f; margin-bottom: 6px;
+    }
+    .scenario-body p { color:#c5d0dc; font-size:13.5px; line-height:1.7; margin:0; }
+    .scenario-body .from-line {
+      color:#6b8cae; font-size:12px; margin-bottom:6px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .scenario-body .msg-subject {
+      color:#8eb4d8; font-size:13px; font-weight:600; margin-bottom:8px;
+    }
+    .scenario-hint { color:#4a6a8a; font-size:12px; margin-top:8px; font-style:italic; }
+
+    /* Answer options */
+    .quiz-question { color:#c5d0dc; font-size:14.5px; font-weight:600; margin:16px 0 12px; }
+    .options-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-bottom: 6px;
+    }
+    @media(max-width:600px){ .options-grid { grid-template-columns: 1fr; } }
+    .option-btn {
+      background: #112240; border: 1px solid #1e3a5f;
+      border-radius: 8px; padding: 12px 14px;
+      color: #c5d0dc; font-size: 13.5px; font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer; text-align: left;
+      transition: all .15s; display: flex; align-items: center; gap: 10px;
+    }
+    .option-btn:hover:not(:disabled) { background:#1a3050; border-color:#f7c948; color:#f7c948; }
+    .option-btn .opt-letter {
+      min-width: 24px; height: 24px; border-radius: 50%;
+      background: #1e3a5f; color: #8eb4d8; font-size: 11px;
+      font-weight: 700; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .option-btn.correct  { background:#0d2a1a; border-color:#4ade80; color:#4ade80; }
+    .option-btn.correct .opt-letter { background:#1a4a2a; color:#4ade80; }
+    .option-btn.wrong    { background:#2a0a0a; border-color:#f87171; color:#f87171; }
+    .option-btn.wrong .opt-letter { background:#4a1a1a; color:#f87171; }
+    .option-btn.reveal   { background:#1a2a0a; border-color:#4ade80; color:#4ade80; opacity:.8; }
+    .option-btn:disabled { cursor:default; }
+
+    /* Feedback */
+    .feedback-box {
+      background: #071a0e; border-left: 3px solid #4ade80;
+      border-radius: 8px; padding: 14px 18px; margin-top: 14px;
+      display: none;
+    }
+    .feedback-box.wrong-feedback {
+      background: #1a0505; border-left-color: #f87171;
+    }
+    .feedback-box .fb-header {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 6px;
+    }
+    .feedback-box .fb-icon { font-size: 16px; }
+    .feedback-box .fb-title { font-size: 13px; font-weight: 700; }
+    .feedback-box.wrong-feedback .fb-title { color: #f87171; }
+    .feedback-box:not(.wrong-feedback) .fb-title { color: #4ade80; }
+    .feedback-box p { color:#a7d4b0; font-size:13px; line-height:1.7; margin:0; }
+    .feedback-box.wrong-feedback p { color:#f4a0a0; }
+    .feedback-box .red-flags {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid rgba(74,222,128,.2);
+    }
+    .feedback-box .red-flags strong { color:#f7c948; font-size:12px; }
+    .feedback-box .red-flags ul { padding-left:18px; margin:6px 0 0; }
+    .feedback-box .red-flags li { color:#c5d0dc; font-size:12.5px; line-height:1.6; }
+
+    /* Next button */
+    .btn-next-q {
+      background: #f7c948; color: #0d1b2a;
+      border: none; border-radius: 8px; padding: 11px 28px;
+      font-size: 14px; font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer; transition: background .2s;
+      margin-top: 16px; display: none;
+    }
+    .btn-next-q:hover { background: #e6b830; }
+
+    /* Results screen */
+    .quiz-results { display:none; text-align:center; }
+    .results-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg,#1e3a5f,#112240);
+      border: 2px solid #f7c948;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 28px;
+    }
+    .results-username { color:#f7c948; font-size:1.2rem; font-weight:700; margin-bottom:4px; }
+    .results-subtitle { color:#8eb4d8; font-size:13px; margin-bottom:28px; }
+    .score-circle {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 5px solid #f7c948;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .score-circle .score-num { color:#f7c948; font-size:2rem; font-weight:800; line-height:1; }
+    .score-circle .score-denom { color:#6b8cae; font-size:13px; }
+    .risk-level-badge {
+      display: inline-block; padding: 6px 20px;
+      border-radius: 20px; font-size: 13px; font-weight:700;
+      margin-bottom: 20px;
+    }
+    .risk-alto   { background:#2a0a0a; color:#f87171; border:1px solid #5a1a1a; }
+    .risk-medio  { background:#2a1a0a; color:#fb923c; border:1px solid #5a3a1a; }
+    .risk-bajo   { background:#0d2a1a; color:#4ade80; border:1px solid #1a4a2a; }
+    .risk-experto{ background:#1a1a2e; color:#a78bfa; border:1px solid #3a2a5a; }
+    .results-breakdown {
+      background:#0a1628; border-radius:10px; padding:18px;
+      border:1px solid #1e3a5f; margin-bottom:20px; text-align:left;
+    }
+    .results-breakdown h4 { color:#f7c948; font-size:13px; text-transform:uppercase;
+      letter-spacing:.5px; margin-bottom:14px; }
+    .breakdown-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 6px 0; border-bottom: 1px solid #1e3a5f;
+    }
+    .breakdown-row:last-child { border-bottom:none; }
+    .breakdown-row .br-label { color:#8eb4d8; font-size:13px; }
+    .breakdown-row .br-val   { font-size:13px; font-weight:600; }
+    .br-correct { color:#4ade80; }
+    .br-wrong   { color:#f87171; }
+    .results-message { color:#c5d0dc; font-size:14px; line-height:1.75; margin-bottom:20px; }
+    .btn-retry {
+      background: transparent; border: 1px solid #f7c948;
+      color: #f7c948; border-radius: 8px; padding: 10px 24px;
+      font-size: 13px; font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-retry:hover { background:#f7c948; color:#0d1b2a; }
   </style>
 </head>
 <body>
@@ -164,6 +385,7 @@
           <a href="#criterio2">02 · Análisis Individual de las 8 Plataformas</a>
           <a href="#criterio3">03 · Tabla Técnica Comparativa</a>
           <a href="#criterio4">04 · Análisis Crítico y Conclusiones</a>
+          <a href="#phishing-quiz">05 · Phishing Quiz — Simulación Interactiva</a>
         </div>
 
         <!-- Descripción -->
@@ -417,6 +639,86 @@
 
        
 
+        <!-- ══════════════════════════════════════════════════════
+             PHISHING QUIZ — SIMULACIÓN INTERACTIVA
+        ══════════════════════════════════════════════════════ -->
+        <div class="card-section" id="phishing-quiz">
+          <h2><i class="fas fa-fish me-2"></i>Phishing Quiz — Simulación Interactiva</h2>
+          <p style="color:#8eb4d8; font-size:14px; margin-bottom:24px;">10 escenarios realistas de ingeniería social. Identifica si cada situación es un ataque de phishing o legítima y recibe retroalimentación formativa por cada respuesta. Ingresa tu nombre para registrar tu participación.</p>
+
+          <!-- LOGIN SCREEN -->
+          <div id="quiz-login-screen">
+            <div class="quiz-login">
+              <div class="shield-icon"><i class="fas fa-user-shield"></i></div>
+              <h3>Acceder al Quiz</h3>
+              <p>Ingresa tu nombre para comenzar la simulación de phishing.<br>Tus resultados serán completamente confidenciales.</p>
+              <input type="text" id="quiz-username-input" placeholder="Ej. Brian Espinoza" maxlength="50" autocomplete="off">
+              <div class="error-msg" id="quiz-name-error">Por favor ingresa tu nombre antes de comenzar.</div>
+              <button class="btn-start-quiz" onclick="startQuiz()">
+                <i class="fas fa-play me-2"></i>Comenzar Simulación
+              </button>
+              <p class="disclaimer">
+                <i class="fas fa-lock" style="color:#f7c948; margin-right:4px;"></i>
+                Simulación educativa — no captura credenciales reales.<br>
+                Inspirado en <a href="https://phishingquiz.withgoogle.com/" target="_blank" style="color:#f7c948;">phishingquiz.withgoogle.com</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- QUIZ SCREEN -->
+          <div id="quiz-main-screen" class="quiz-wrap">
+            <div class="quiz-meta">
+              <span class="q-counter" id="q-counter">Pregunta 1 de 10</span>
+              <span class="q-score" id="q-score-display">&#127942; 0 / 0</span>
+            </div>
+            <div class="quiz-progress-bar">
+              <div class="quiz-progress-fill" id="q-progress-fill" style="width:0%"></div>
+            </div>
+
+            <!-- Dynamic question will be injected here -->
+            <div id="quiz-question-area"></div>
+
+            <button class="btn-next-q" id="btn-next" onclick="nextQuestion()">
+              Siguiente <i class="fas fa-arrow-right ms-1"></i>
+            </button>
+          </div>
+
+          <!-- RESULTS SCREEN -->
+          <div id="quiz-results-screen" class="quiz-results">
+            <div class="results-avatar"><i class="fas fa-user-secret"></i></div>
+            <div class="results-username" id="results-name"></div>
+            <div class="results-subtitle">Resultado de tu simulación de phishing</div>
+            <div class="score-circle" id="score-circle">
+              <span class="score-num" id="final-score-num">0</span>
+              <span class="score-denom">de 10</span>
+            </div>
+            <div class="risk-level-badge" id="risk-badge"></div>
+            <div class="results-message" id="results-message"></div>
+            <div class="results-breakdown">
+              <h4><i class="fas fa-chart-bar me-2"></i>Desglose de resultados</h4>
+              <div class="breakdown-row">
+                <span class="br-label">Respuestas correctas</span>
+                <span class="br-val br-correct" id="br-correct">0</span>
+              </div>
+              <div class="breakdown-row">
+                <span class="br-label">Respuestas incorrectas</span>
+                <span class="br-val br-wrong" id="br-wrong">0</span>
+              </div>
+              <div class="breakdown-row">
+                <span class="br-label">Porcentaje de acierto</span>
+                <span class="br-val" id="br-pct" style="color:#f7c948;">0%</span>
+              </div>
+              <div class="breakdown-row">
+                <span class="br-label">Nivel de riesgo</span>
+                <span class="br-val" id="br-risk"></span>
+              </div>
+            </div>
+            <button class="btn-retry" onclick="retryQuiz()">
+              <i class="fas fa-redo me-2"></i>Intentar de nuevo
+            </button>
+          </div>
+        </div>
+
       </div><!-- /col-lg-9 -->
 
       <!-- ── Sidebar ── -->
@@ -477,6 +779,460 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/custom.js"></script>
+<script>
 
+<!--Inicio del cuestionario-->
+const QUESTIONS = [
+  {
+    type: 'email',
+    typeName: 'Correo Electrónico',
+    typeClass: 'type-email',
+    title: 'Escenario 1 — Alerta de seguridad bancaria',
+    from: 'seguridad@banamex-alertas.com',
+    subject: 'URGENTE: Actividad sospechosa en su cuenta — Verifique ahora',
+    body: `Su cuenta ha registrado un acceso no autorizado desde México, CDMX el día de hoy a las 03:17 AM. Por su seguridad, hemos bloqueado temporalmente su cuenta. Para restablecer el acceso y evitar el cierre definitivo de su cuenta, debe verificar su identidad en las próximas <strong>2 horas</strong>.<br><br><a style="color:#f7c948;">→ Haga clic aquí para verificar su identidad</a>`,
+    question: '¿Este correo es legítimo o es un intento de phishing?',
+    options: [
+      { letter: 'A', text: 'Es legítimo — parece una alerta real de mi banco' },
+      { letter: 'B', text: 'Es phishing — el dominio no es oficial de Banamex' },
+      { letter: 'C', text: 'No estoy seguro, pero haría clic en el enlace' },
+      { letter: 'D', text: 'Llamaría al número del correo para verificar' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! El dominio "banamex-alertas.com" no es el dominio oficial de Banamex. Los bancos reales siempre usan sus dominios verificados y nunca solicitan verificación por correo con urgencia extrema.',
+      wrong: 'Este es un correo de phishing. El dominio "banamex-alertas.com" es falso — el dominio oficial sería "banamex.com". Los atacantes crean dominios similares para engañar a las víctimas.'
+    },
+    redFlags: [
+      'Dominio sospechoso: "banamex-alertas.com" en lugar de "banamex.com"',
+      'Lenguaje de urgencia extrema: "2 horas" para actuar',
+      'Solicita hacer clic en un enlace para "verificar identidad"',
+      'Hora inusual del supuesto acceso (3:17 AM) para generar pánico'
+    ]
+  },
+  {
+    type: 'sms',
+    typeName: 'SMS / WhatsApp',
+    typeClass: 'type-sms',
+    title: 'Escenario 2 — Paquete de envío retenido',
+    from: 'DHL Express +52 55 8823-XXXX',
+    subject: '',
+    body: `📦 DHL: Su paquete #MX28471930 está RETENIDO en aduana. Pago de arancel pendiente: $78 MXN. Libérelo aquí: <a style="color:#7ec8e3;">dhl-entrega-mx.link/pagar</a><br><br>Válido solo hasta hoy 11:59 PM. Si no paga, el paquete será devuelto.`,
+    question: '¿Qué harías al recibir este mensaje?',
+    options: [
+      { letter: 'A', text: 'Pago los $78 MXN — es un monto pequeño y mi paquete es importante' },
+      { letter: 'B', text: 'Ignoro el mensaje y verifico directamente en el sitio oficial de DHL' },
+      { letter: 'C', text: 'Reenvío el enlace a mis contactos por si ellos también tienen paquetes' },
+      { letter: 'D', text: 'Llamo al número del SMS para confirmar el cobro' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! La estrategia segura es siempre verificar directamente en el sitio oficial (dhl.com.mx) sin usar los enlaces del mensaje. Los atacantes usan montos pequeños precisamente porque parecen inofensivos.',
+      wrong: 'Este es un SMS de smishing (phishing por SMS). El dominio "dhl-entrega-mx.link" no es oficial de DHL. Los atacantes usan montos pequeños porque saben que la gente los paga sin cuestionar.'
+    },
+    redFlags: [
+      'URL sospechosa: "dhl-entrega-mx.link" en lugar de "dhl.com.mx"',
+      'Número de teléfono desconocido — DHL no contacta por números móviles genéricos',
+      'Urgencia artificial: "válido solo hasta hoy 11:59 PM"',
+      'Solicita pago por enlace externo, no por su plataforma oficial'
+    ]
+  },
+  {
+    type: 'email',
+    typeName: 'Correo Electrónico',
+    typeClass: 'type-email',
+    title: 'Escenario 3 — Actualización de Microsoft 365',
+    from: 'noreply@microsoft.com',
+    subject: 'Action Required: Update your Microsoft 365 payment method',
+    body: `Dear valued customer,<br><br>Your Microsoft 365 subscription payment could not be processed. To avoid service interruption, please update your payment information within <strong>48 hours</strong>.<br><br>Your account: brian.espinoza@outlook.com<br>Plan: Microsoft 365 Personal<br>Amount due: $1,699 MXN<br><br><a style="color:#f7c948;">→ Update Payment Method</a><br><br>If you have questions, visit microsoft.com/support`,
+    question: '¿Este correo de Microsoft es legítimo?',
+    options: [
+      { letter: 'A', text: 'Sí, el dominio @microsoft.com es oficial, es seguro hacer clic' },
+      { letter: 'B', text: 'Verifico entrando directamente a microsoft.com, no usando el enlace del correo' },
+      { letter: 'C', text: 'Actualizo el pago porque necesito Microsoft 365' },
+      { letter: 'D', text: 'Es falso porque Microsoft nunca manda correos en inglés a México' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! Aunque el dominio @microsoft.com parece real, la mejor práctica es siempre verificar entrando manualmente al portal oficial. Los atacantes pueden falsificar el campo "De:" del correo (email spoofing).',
+      wrong: 'Aunque el dominio parece oficial, el email spoofing permite falsificar la dirección del remitente. La práctica correcta es SIEMPRE verificar directamente en el portal de Microsoft, sin usar enlaces de correos.'
+    },
+    redFlags: [
+      'El remitente puede ser falsificado mediante email spoofing',
+      'Urgencia: "48 horas para actualizar"',
+      'No personaliza con tu nombre real, solo con el email',
+      'La acción segura siempre es ir directamente al sitio, no seguir el enlace'
+    ]
+  },
+  {
+    type: 'web',
+    typeName: 'Sitio Web',
+    typeClass: 'type-web',
+    title: 'Escenario 4 — Página de inicio de sesión de Google',
+    from: 'URL visible en el navegador',
+    subject: '',
+    body: `Estás intentando iniciar sesión en tu cuenta de Google y el navegador te lleva a la siguiente página:<br><br><div style="background:#1a2a4a;border-radius:6px;padding:12px 16px;margin:10px 0;font-family:monospace;font-size:12.5px;color:#7ec8e3;">https://accounts.g00gle.com/signin?redirect=gmail</div><br>La página se ve idéntica a la de Google: mismo logo, mismo diseño, mismo formulario de correo y contraseña. Solo aparece un pequeño candado en la barra del navegador.`,
+    question: '¿Qué harías en este escenario?',
+    options: [
+      { letter: 'A', text: 'Inicio sesión normalmente — tiene candado de seguridad HTTPS' },
+      { letter: 'B', text: 'Cierro la página — "g00gle.com" con ceros no es el dominio oficial de Google' },
+      { letter: 'C', text: 'Ingreso solo mi correo, no la contraseña, para ver qué pasa' },
+      { letter: 'D', text: 'Como el diseño es igual al de Google, es seguro' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Excelente! Detectaste el ataque de typosquatting. "g00gle.com" usa ceros en lugar de la letra "o". El candado HTTPS solo significa que la conexión está cifrada, NO que el sitio sea legítimo.',
+      wrong: 'Este es un ataque de typosquatting. "g00gle.com" usa dos ceros en lugar de letras "o". El candado HTTPS NO garantiza que el sitio sea legítimo, solo que la conexión está cifrada. ¡El sitio falso puede tener HTTPS!'
+    },
+    redFlags: [
+      '"g00gle.com" usa ceros (0) en lugar de la letra "o" — URL falsa',
+      'El HTTPS y el candado NO garantizan que el sitio sea legítimo',
+      'El diseño idéntico es una técnica de clonación visual (UI cloning)',
+      'Verificar siempre la URL completa antes de ingresar credenciales'
+    ]
+  },
+  {
+    type: 'llamada',
+    typeName: 'Llamada Telefónica',
+    typeClass: 'type-llamada',
+    title: 'Escenario 5 — Soporte técnico de Microsoft',
+    from: 'Llamada entrante: +52 800 123 4567',
+    subject: '',
+    body: `Recibes una llamada de un hombre que se identifica como "Carlos Mendoza, técnico certificado de Microsoft":<br><br><em style="color:#c5d0dc;font-style:italic;">"Buenos días, le llamamos porque hemos detectado que su computadora está enviando virus a la red de Microsoft. Si no lo corregimos hoy, su Windows será desactivado permanentemente. Necesito que descargue un programa de acceso remoto para que pueda solucionar el problema ahora mismo. ¿Tiene su computadora frente a usted?"</em>`,
+    question: '¿Cómo respondes a esta llamada?',
+    options: [
+      { letter: 'A', text: 'Descargo el programa — no quiero perder mi Windows' },
+      { letter: 'B', text: 'Cuelgo inmediatamente — Microsoft nunca llama de forma no solicitada' },
+      { letter: 'C', text: 'Pido el número de soporte oficial para llamarles yo' },
+      { letter: 'D', text: 'Les doy acceso remoto solo por 5 minutos para que lo revisen' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! Este es un ataque de vishing (voice phishing). Microsoft NUNCA llama de forma proactiva a usuarios. Si descargas el programa de acceso remoto, el atacante toma control total de tu computadora.',
+      wrong: 'Este es vishing (phishing por voz). Microsoft NO monitorea computadoras individuales ni llama a usuarios de forma proactiva. Si instalas el "programa de soporte", el atacante toma control total de tu equipo y puede robar toda tu información.'
+    },
+    redFlags: [
+      'Microsoft y empresas tech NUNCA llaman de forma no solicitada',
+      'Urgencia extrema: "desactivación permanente de Windows"',
+      'Solicita acceso remoto a tu computadora — señal de alarma máxima',
+      'Presión psicológica para actuar inmediatamente sin tiempo de pensar'
+    ]
+  },
+  {
+    type: 'redes',
+    typeName: 'Redes Sociales',
+    typeClass: 'type-redes',
+    title: 'Escenario 6 — Premio en Instagram',
+    from: '@coca_cola_mx_oficial2 en Instagram',
+    subject: '',
+    body: `Recibes un DM en Instagram de una cuenta con logo de Coca-Cola y 12,400 seguidores:<br><br><em style="color:#c5d0dc;">"¡Felicidades! Has sido seleccionado como ganador de nuestra campaña #CocaColaConecta. Tu premio: iPhone 15 Pro + $5,000 MXN. Para reclamar tu premio debes: 1) Seguir esta cuenta 2) Compartir la publicación 3) Ingresar tus datos en: coca-cola-premios-mx.com/reclamar<br><br>Solo tienes 24 horas para reclamar. ¡No lo pierdas!"</em>`,
+    question: '¿Qué haces con este mensaje?',
+    options: [
+      { letter: 'A', text: 'Ingreso mis datos — la cuenta tiene foto de Coca-Cola y muchos seguidores' },
+      { letter: 'B', text: 'Lo reporto y elimino — es una cuenta falsa con dominio sospechoso' },
+      { letter: 'C', text: 'Lo comparto con amigos — si es falso al menos no pierdo nada' },
+      { letter: 'D', text: 'Ingreso solo mi nombre, no datos bancarios' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! La cuenta "@coca_cola_mx_oficial2" no es la cuenta oficial. Las marcas reales tienen verificación (✓ azul) y no envían premios por DM con plazos de 24 horas. El dominio "coca-cola-premios-mx.com" es falso.',
+      wrong: 'Este es un fraude de redes sociales. La cuenta falsa imita a Coca-Cola. Las señales: nombre de usuario con "2" al final, sin verificación oficial, dominio externo falso y urgencia de 24 horas. Nunca ingreses datos en sitios de "premios" no solicitados.'
+    },
+    redFlags: [
+      'Nombre de cuenta sospechoso: "@coca_cola_mx_oficial2" sin verificación ✓',
+      'Dominio falso: "coca-cola-premios-mx.com" no es official de Coca-Cola',
+      'Premio no solicitado + urgencia de 24 horas = señal clásica de fraude',
+      'Solicita seguir/compartir antes de reclamar — amplifica el engaño'
+    ]
+  },
+  {
+    type: 'email',
+    typeName: 'Correo Electrónico',
+    typeClass: 'type-email',
+    title: 'Escenario 7 — Factura de Netflix',
+    from: 'billing@netflix.com',
+    subject: 'Tu factura de Netflix: $219 MXN — Ciclo Enero 2026',
+    body: `Hola Brian,<br><br>Gracias por ser suscriptor de Netflix. Te informamos que el cobro de tu suscripción estándar ha sido procesado exitosamente.<br><br><strong>Monto:</strong> $219.00 MXN<br><strong>Fecha:</strong> 1 de enero de 2026<br><strong>Método de pago:</strong> •••• •••• •••• 4821<br><br>Si tienes preguntas sobre tu factura, visita <a style="color:#f7c948;">help.netflix.com</a><br><br>El equipo de Netflix`,
+    question: '¿Este correo de factura de Netflix es un phishing?',
+    options: [
+      { letter: 'A', text: 'Sí es phishing — cualquier correo de empresas es sospechoso' },
+      { letter: 'B', text: 'No es phishing — es un correo informativo sin links sospechosos ni urgencia' },
+      { letter: 'C', text: 'No estoy seguro — verifico en Netflix directamente' },
+      { letter: 'D', text: 'Sí es phishing — menciona mis últimos 4 dígitos de tarjeta' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! Este es un correo legítimo. No solicita que hagas clic en nada urgente, no pide que "verifiques" datos, y solo informa sobre un cobro ya procesado. Reconocer correos legítimos es tan importante como detectar los falsos.',
+      wrong: 'En este caso el correo ES legítimo. No todos los correos corporativos son phishing. Este solo informa un cobro procesado, no solicita ninguna acción urgente ni pide datos. Saber reconocer lo legítimo es tan valioso como detectar el phishing.'
+    },
+    redFlags: [
+      '✅ Sin urgencia ni amenazas — solo información',
+      '✅ No solicita clics en enlaces para "verificar" datos',
+      '✅ No pide credenciales ni datos de pago nuevos',
+      '✅ El enlace apunta a help.netflix.com — dominio oficial'
+    ]
+  },
+  {
+    type: 'email',
+    typeName: 'Correo Electrónico',
+    typeClass: 'type-email',
+    title: 'Escenario 8 — Compartido en Google Drive',
+    from: 'drive-shares-noreply@google.com',
+    subject: 'María López ha compartido "Reporte Financiero Q4 2025.xlsx" contigo',
+    body: `<span class="from-line"><i class="fas fa-envelope" style="color:#4a6a8a;"></i> drive-shares-noreply@google.com</span><strong class="msg-subject">María López ha compartido un archivo contigo</strong><br><br>María López (maria.lopez@tuempresa.com) ha compartido el siguiente elemento:<br><br>📄 <strong>Reporte Financiero Q4 2025.xlsx</strong><br><br><a style="color:#f7c948;">→ Abrir en Google Drive</a><br><br>Google Drive — Almacenamiento seguro en la nube`,
+    question: '¿Abres el archivo directamente desde el correo?',
+    options: [
+      { letter: 'A', text: 'Sí, hago clic — el correo viene de google.com y conozco a María' },
+      { letter: 'B', text: 'Verifico con María por otro canal si realmente me envió algo antes de abrir' },
+      { letter: 'C', text: 'Descargo el archivo sin abrirlo para analizarlo después' },
+      { letter: 'D', text: 'Lo abro — el icono de Excel es inofensivo' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! La mejor práctica es siempre confirmar por otro canal (mensaje directo, llamada) antes de abrir archivos compartidos inesperados. El email spoofing puede falsificar el remitente, incluso "google.com". Esta técnica se llama Business Email Compromise (BEC).',
+      wrong: 'Aunque el dominio parece legítimo, el email spoofing y las cuentas comprometidas son vectores reales. Confirmar por otro canal (llamar o escribir directamente a María) antes de abrir archivos inesperados es la práctica segura.'
+    },
+    redFlags: [
+      'Archivo no solicitado — ¿María te avisó que te enviaría algo?',
+      'El email spoofing puede falsificar incluso dominios de Google',
+      'La cuenta de María podría estar comprometida (BEC)',
+      'Verificar siempre por canal independiente ante archivos no esperados'
+    ]
+  },
+  {
+    type: 'sms',
+    typeName: 'SMS',
+    typeClass: 'type-sms',
+    title: 'Escenario 9 — Oferta de trabajo en WhatsApp',
+    from: 'Número desconocido de India (+91)',
+    subject: '',
+    body: `📱 Mensaje de WhatsApp desde +91-983-XXX-XXXX:<br><br><em style="color:#c5d0dc;">"Hola! Vi tu perfil en LinkedIn y quiero ofrecerte trabajo desde casa: 4 horas diarias, $800 USD semanales. Solo necesitas un teléfono. Proceso 100% remoto. Para registrarte y empezar HOY, envía tu nombre completo, CURP y foto de tu INE al siguiente enlace: job-hiring-latam.top/register. Responde antes de las 6 PM para asegurar tu lugar."</em>`,
+    question: '¿Cómo respondes a esta oferta de trabajo?',
+    options: [
+      { letter: 'A', text: 'Envío mis datos — $800 USD semanales es una oportunidad real' },
+      { letter: 'B', text: 'Ignoro y bloqueo — es un intento de robo de identidad' },
+      { letter: 'C', text: 'Envío solo mi nombre para ver si el trabajo es real' },
+      { letter: 'D', text: 'Busco la empresa en Google antes de enviar mis documentos' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Correcto! Este es un intento de robo de identidad. Solicitar CURP e INE por WhatsApp desde un número extranjero para una "oferta de trabajo" no solicitada es una señal clara de fraude. Tus documentos podrían usarse para cometer delitos a tu nombre.',
+      wrong: 'Este es un fraude de robo de identidad. Nunca envíes CURP, INE u otros documentos oficiales a desconocidos por WhatsApp. Con tu CURP e INE los atacantes pueden: abrir créditos a tu nombre, clonar tu identidad digital, cometer fraudes fiscales.'
+    },
+    redFlags: [
+      'Número extranjero de India (+91) ofreciendo trabajo en México',
+      'Solicita CURP e INE — documentos para robo de identidad',
+      'Dominio "job-hiring-latam.top" — extensión .top, no oficial',
+      '$800 USD semanales sin entrevista = oferta irreal, señal de fraude',
+      'Urgencia: "responde antes de las 6 PM"'
+    ]
+  },
+  {
+    type: 'web',
+    typeName: 'Sitio Web',
+    typeClass: 'type-web',
+    title: 'Escenario 10 — Trampa del CEO (Spear Phishing)',
+    from: 'director.general@empresa-corporativo.net',
+    subject: 'Transferencia urgente y confidencial — Solo para ti',
+    body: `Estimado colaborador:<br><br>Soy el Director General de la empresa. Me encuentro en una reunión confidencial y necesito que realices una transferencia urgente de $45,000 MXN a nuestra cuenta proveedora antes de las 3 PM de hoy. Es un asunto delicado y no debe comentarse con nadie más del equipo.<br><br>Datos de transferencia:<br>Banco: BBVA<br>Cuenta: 012 180 0051 234 5<br>CLABE: 012180005123456789<br>Beneficiario: Proveedor Estratégico SA de CV<br><br>Confirma por este mismo correo cuando esté hecha la transferencia.<br><br>Lic. Ramón Gutiérrez<br>Director General`,
+    question: '¿Qué haces ante este correo?',
+    options: [
+      { letter: 'A', text: 'Realizo la transferencia — es una orden del Director General' },
+      { letter: 'B', text: 'Verifico llamando directamente al Director por su teléfono corporativo oficial' },
+      { letter: 'C', text: 'Respondo el correo pidiendo más confirmación antes de transferir' },
+      { letter: 'D', text: 'Transfiero la mitad para mostrar buena voluntad mientras verifico' }
+    ],
+    correct: 1,
+    feedback: {
+      correct: '¡Excelente! Detectaste un ataque CEO Fraud / BEC (Business Email Compromise). La verificación telefónica directa por el canal corporativo oficial es el único método seguro. Nunca realices transferencias basadas únicamente en correos, sin importar quién dice ser el remitente.',
+      wrong: 'Este es un ataque de CEO Fraud (Business Email Compromise). El dominio "empresa-corporativo.net" no es el dominio oficial de la empresa. Las señales: secretismo extremo, urgencia, orden de transferencia. SIEMPRE verifica por teléfono corporativo ante solicitudes de transferencia.'
+    },
+    redFlags: [
+      'Dominio sospechoso: ".net" en lugar del dominio corporativo oficial',
+      'Solicitud de secreto total — nadie legítimo pide eso en una empresa',
+      'Transferencia urgente sin proceso de autorización normal',
+      'Responder al correo no verifica la identidad — podría ser el atacante',
+      'CEO Fraud es responsable de miles de millones en pérdidas globales'
+    ]
+  }
+];
+
+/* ── State ── */
+let currentQ = 0;
+let score = 0;
+let answered = 0;
+let userName = '';
+let answers = [];
+
+/* ── Start ── */
+function startQuiz() {
+  const input = document.getElementById('quiz-username-input');
+  const errorMsg = document.getElementById('quiz-name-error');
+  const name = input.value.trim();
+  if (!name) {
+    errorMsg.style.display = 'block';
+    input.focus();
+    return;
+  }
+  errorMsg.style.display = 'none';
+  userName = name;
+  currentQ = 0; score = 0; answered = 0; answers = [];
+
+  document.getElementById('quiz-login-screen').style.display = 'none';
+  document.getElementById('quiz-main-screen').style.display = 'block';
+  document.getElementById('quiz-results-screen').style.display = 'none';
+  renderQuestion();
+}
+
+/* ── Render question ── */
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const total = QUESTIONS.length;
+
+  // Update meta
+  document.getElementById('q-counter').textContent = `Pregunta ${currentQ + 1} de ${total}`;
+  document.getElementById('q-score-display').textContent = `🏆 ${score} / ${answered}`;
+  document.getElementById('q-progress-fill').style.width = `${(currentQ / total) * 100}%`;
+  document.getElementById('btn-next').style.display = 'none';
+
+  const letters = ['A','B','C','D'];
+  const opts = q.options.map((o,i) => `
+    <button class="option-btn" id="opt-${i}" onclick="selectAnswer(${i})">
+      <span class="opt-letter">${letters[i]}</span>
+      <span>${o.text}</span>
+    </button>`).join('');
+
+  document.getElementById('quiz-question-area').innerHTML = `
+    <div class="scenario-card">
+      <span class="scenario-type-badge ${q.typeClass}">
+        <i class="fas fa-${iconForType(q.type)} me-1"></i>${q.typeName}
+      </span>
+      <div class="scenario-title">${q.title}</div>
+      <div class="scenario-body">
+        ${q.from ? `<div class="from-line"><i class="fas fa-${q.type==='sms'?'mobile-alt':'envelope'}" style="color:#4a6a8a;"></i> ${q.from}</div>` : ''}
+        ${q.subject ? `<div class="msg-subject">${q.subject}</div>` : ''}
+        <p>${q.body}</p>
+      </div>
+      ${q.hint ? `<p class="scenario-hint"><i class="fas fa-lightbulb me-1" style="color:#f7c948;"></i>${q.hint}</p>` : ''}
+    </div>
+    <div class="quiz-question">${q.question}</div>
+    <div class="options-grid">${opts}</div>
+    <div class="feedback-box" id="feedback-box"></div>
+  `;
+}
+
+function iconForType(t) {
+  return {email:'envelope',sms:'mobile-alt',web:'globe',llamada:'phone',redes:'hashtag'}[t] || 'question';
+}
+
+/* ── Select answer ── */
+function selectAnswer(idx) {
+  const q = QUESTIONS[currentQ];
+  const correct = q.correct;
+  const isCorrect = idx === correct;
+  answered++;
+  if (isCorrect) score++;
+  answers.push({ q: currentQ, selected: idx, correct: correct, ok: isCorrect });
+
+  // Disable all buttons, style them
+  for (let i = 0; i < 4; i++) {
+    const btn = document.getElementById('opt-' + i);
+    if (!btn) continue;
+    btn.disabled = true;
+    if (i === correct) btn.classList.add(isCorrect ? 'correct' : 'reveal');
+    if (i === idx && !isCorrect) btn.classList.add('wrong');
+  }
+
+  // Show feedback
+  const fb = document.getElementById('feedback-box');
+  fb.style.display = 'block';
+  fb.className = 'feedback-box' + (isCorrect ? '' : ' wrong-feedback');
+
+  const flagsHTML = q.redFlags && q.redFlags.length
+    ? `<div class="red-flags"><strong>⚑ Señales de alerta en este escenario:</strong><ul>${q.redFlags.map(f=>`<li>${f}</li>`).join('')}</ul></div>`
+    : '';
+
+  fb.innerHTML = `
+    <div class="fb-header">
+      <span class="fb-icon">${isCorrect ? '✅' : '❌'}</span>
+      <span class="fb-title">${isCorrect ? '¡Respuesta correcta!' : 'Respuesta incorrecta'}</span>
+    </div>
+    <p>${isCorrect ? q.feedback.correct : q.feedback.wrong}</p>
+    ${flagsHTML}
+  `;
+
+  // Update score display
+  document.getElementById('q-score-display').textContent = `🏆 ${score} / ${answered}`;
+
+  // Show next button
+  const btnNext = document.getElementById('btn-next');
+  btnNext.style.display = 'inline-block';
+  btnNext.textContent = currentQ < QUESTIONS.length - 1 ? 'Siguiente →' : 'Ver resultados →';
+}
+
+/* ── Next question ── */
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= QUESTIONS.length) {
+    showResults();
+  } else {
+    renderQuestion();
+    document.getElementById('quiz-question-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* ── Results ── */
+function showResults() {
+  document.getElementById('quiz-main-screen').style.display = 'none';
+  const rs = document.getElementById('quiz-results-screen');
+  rs.style.display = 'block';
+
+  const pct = Math.round((score / QUESTIONS.length) * 100);
+
+  document.getElementById('results-name').textContent = userName;
+  document.getElementById('final-score-num').textContent = score;
+  document.getElementById('br-correct').textContent = score;
+  document.getElementById('br-wrong').textContent = QUESTIONS.length - score;
+  document.getElementById('br-pct').textContent = pct + '%';
+
+  let riskLabel, riskClass, riskMsg, riskColor;
+  if (score <= 3) {
+    riskLabel = '🔴 Riesgo Alto'; riskClass = 'risk-alto'; riskColor = '#f87171';
+    riskMsg = `${userName}, tu perfil indica alta vulnerabilidad ante ataques de phishing. Es fundamental tomar un curso de concientización en ciberseguridad. Los atacantes explotan exactamente las situaciones donde fallaste. Recuerda: el 91% de los ciberataques exitosos comienzan con phishing.`;
+  } else if (score <= 6) {
+    riskLabel = '🟠 Riesgo Medio'; riskClass = 'risk-medio'; riskColor = '#fb923c';
+    riskMsg = `${userName}, tienes conocimiento básico sobre phishing pero aún existen vulnerabilidades importantes. Revisa los escenarios donde fallaste y practica identificar las señales de alerta. Con entrenamiento regular puedes reducir significativamente tu riesgo.`;
+  } else if (score <= 8) {
+    riskLabel = '🟢 Riesgo Bajo'; riskClass = 'risk-bajo'; riskColor = '#4ade80';
+    riskMsg = `¡Bien hecho, ${userName}! Tu capacidad de detección es buena. Demostraste conocer las tácticas comunes de ingeniería social. Mantén tu formación actualizada ya que los atacantes evolucionan constantemente sus técnicas.`;
+  } else {
+    riskLabel = '🟣 Nivel Experto'; riskClass = 'risk-experto'; riskColor = '#a78bfa';
+    riskMsg = `¡Excelente, ${userName}! Demostraste un nivel de conciencia de seguridad excepcional. Puedes identificar correctamente casi todos los intentos de phishing. Comparte este conocimiento con tu entorno para fortalecer la cultura de ciberseguridad.`;
+  }
+
+  document.getElementById('risk-badge').textContent = riskLabel;
+  document.getElementById('risk-badge').className = 'risk-level-badge ' + riskClass;
+  document.getElementById('br-risk').textContent = riskLabel.replace(/^[^\s]+\s/, '');
+  document.getElementById('br-risk').style.color = riskColor;
+  document.getElementById('results-message').textContent = riskMsg;
+
+  // Color score circle border
+  document.getElementById('score-circle').style.borderColor = riskColor;
+  document.getElementById('final-score-num').style.color = riskColor;
+
+  document.getElementById('q-progress-fill').style.width = '100%';
+  rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ── Retry ── */
+function retryQuiz() {
+  currentQ = 0; score = 0; answered = 0; answers = [];
+  document.getElementById('quiz-results-screen').style.display = 'none';
+  document.getElementById('quiz-login-screen').style.display = 'block';
+  document.getElementById('quiz-username-input').value = '';
+  document.getElementById('q-progress-fill').style.width = '0%';
+  document.getElementById('phishing-quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
 </body>
 </html>
