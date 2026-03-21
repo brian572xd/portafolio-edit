@@ -644,16 +644,16 @@
         ══════════════════════════════════════════════════════ -->
         <div class="card-section" id="phishing-quiz">
           <h2><i class="fas fa-fish me-2"></i>Phishing Quiz — Simulación Interactiva</h2>
-          <p style="color:#8eb4d8; font-size:14px; margin-bottom:24px;">10 escenarios realistas de ingeniería social. Identifica si cada situación es un ataque de phishing o legítima y recibe retroalimentación formativa por cada respuesta. Ingresa tu nombre para registrar tu participación.</p>
+          <p style="color:#8eb4d8; font-size:14px; margin-bottom:24px;">10 escenarios realistas de ingeniería social. Identifica si cada situación es un ataque de phishing o legítima y recibe retroalimentación formativa por cada respuesta. Ingresa un alias para registrar tu participación.</p>
 
           <!-- LOGIN SCREEN -->
           <div id="quiz-login-screen">
             <div class="quiz-login">
               <div class="shield-icon"><i class="fas fa-user-shield"></i></div>
               <h3>Acceder al Quiz</h3>
-              <p>Ingresa tu nombre para comenzar la simulación de phishing.<br>Tus resultados serán completamente confidenciales.</p>
-              <input type="text" id="quiz-username-input" placeholder="Ej. Brian Espinoza" maxlength="50" autocomplete="off">
-              <div class="error-msg" id="quiz-name-error">Por favor ingresa tu nombre antes de comenzar.</div>
+              <p>Ingresa un alias para comenzar la simulación de phishing.<br>Tus resultados serán completamente confidenciales.</p>
+              <input type="text" id="quiz-username-input" placeholder="Ej. shadow123" maxlength="50" autocomplete="off">
+              <div class="error-msg" id="quiz-name-error">Por favor ingrasa un alias antes de comenzar.</div>
               <button class="btn-start-quiz" onclick="startQuiz()">
                 <i class="fas fa-play me-2"></i>Comenzar Simulación
               </button>
@@ -779,280 +779,262 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/custom.js"></script>
-<script>
 
-<!--Inicio del cuestionario-->
+<script>
+/* ══════════════════════════════════════════════════
+   PHISHING QUIZ — ENGINE
+   10 escenarios de ingeniería social
+══════════════════════════════════════════════════ */
+
 const QUESTIONS = [
+  // ── Q1 — correct: A ──────────────────────────────────────
   {
-    type: 'email',
-    typeName: 'Correo Electrónico',
-    typeClass: 'type-email',
+    type: 'email', typeName: 'Correo Electrónico', typeClass: 'type-email',
     title: 'Escenario 1 — Alerta de seguridad bancaria',
     from: 'seguridad@banamex-alertas.com',
     subject: 'URGENTE: Actividad sospechosa en su cuenta — Verifique ahora',
-    body: `Su cuenta ha registrado un acceso no autorizado desde México, CDMX el día de hoy a las 03:17 AM. Por su seguridad, hemos bloqueado temporalmente su cuenta. Para restablecer el acceso y evitar el cierre definitivo de su cuenta, debe verificar su identidad en las próximas <strong>2 horas</strong>.<br><br><a style="color:#f7c948;">→ Haga clic aquí para verificar su identidad</a>`,
-    question: '¿Este correo es legítimo o es un intento de phishing?',
+    body: `Su cuenta ha registrado un acceso no autorizado desde México, CDMX el día de hoy a las 03:17 AM. Para restablecer el acceso y evitar el cierre definitivo, debe verificar su identidad en las próximas <strong>2 horas</strong>.<br><br><a style="color:#f7c948;">→ Haga clic aquí para verificar su identidad</a>`,
+    question: '¿Este correo es phishing o legítimo?',
     options: [
-      { letter: 'A', text: 'Es legítimo — parece una alerta real de mi banco' },
-      { letter: 'B', text: 'Es phishing — el dominio no es oficial de Banamex' },
-      { letter: 'C', text: 'No estoy seguro, pero haría clic en el enlace' },
-      { letter: 'D', text: 'Llamaría al número del correo para verificar' }
+      { letter: 'A', text: 'Es phishing — el dominio "banamex-alertas.com" no es oficial' },
+      { letter: 'B', text: 'Es legítimo — parece una alerta real de mi banco' },
+      { letter: 'C', text: 'No estoy seguro, haría clic en el enlace para verificar' },
+      { letter: 'D', text: 'Llamaría al número que aparece en el correo' }
     ],
-    correct: 1,
+    correct: 0,
     feedback: {
-      correct: '¡Correcto! El dominio "banamex-alertas.com" no es el dominio oficial de Banamex. Los bancos reales siempre usan sus dominios verificados y nunca solicitan verificación por correo con urgencia extrema.',
-      wrong: 'Este es un correo de phishing. El dominio "banamex-alertas.com" es falso — el dominio oficial sería "banamex.com". Los atacantes crean dominios similares para engañar a las víctimas.'
+      correct: '¡Correcto! El dominio real de Banamex es "banamex.com", no "banamex-alertas.com". Los bancos nunca te piden verificar datos por correo con plazos de 2 horas.',
+      wrong: 'Es phishing. El dominio "banamex-alertas.com" es falso — el real sería "banamex.com". La urgencia extrema y el enlace de "verificación" son señales clásicas.'
     },
     redFlags: [
-      'Dominio sospechoso: "banamex-alertas.com" en lugar de "banamex.com"',
-      'Lenguaje de urgencia extrema: "2 horas" para actuar',
-      'Solicita hacer clic en un enlace para "verificar identidad"',
-      'Hora inusual del supuesto acceso (3:17 AM) para generar pánico'
+      'Dominio falso: "banamex-alertas.com" en lugar de "banamex.com"',
+      'Urgencia de 2 horas para presionar a actuar sin pensar',
+      'Solicita clic en enlace para "verificar identidad"'
     ]
   },
+  // ── Q2 — correct: C ──────────────────────────────────────
   {
-    type: 'sms',
-    typeName: 'SMS / WhatsApp',
-    typeClass: 'type-sms',
+    type: 'sms', typeName: 'SMS / WhatsApp', typeClass: 'type-sms',
     title: 'Escenario 2 — Paquete de envío retenido',
     from: 'DHL Express +52 55 8823-XXXX',
     subject: '',
-    body: `📦 DHL: Su paquete #MX28471930 está RETENIDO en aduana. Pago de arancel pendiente: $78 MXN. Libérelo aquí: <a style="color:#7ec8e3;">dhl-entrega-mx.link/pagar</a><br><br>Válido solo hasta hoy 11:59 PM. Si no paga, el paquete será devuelto.`,
+    body: `📦 DHL: Su paquete #MX28471930 está RETENIDO en aduana. Pago pendiente: $78 MXN. Libérelo: <a style="color:#7ec8e3;">dhl-entrega-mx.link/pagar</a><br><br>Válido solo hasta hoy 11:59 PM. Si no paga, el paquete será devuelto.`,
     question: '¿Qué harías al recibir este mensaje?',
     options: [
-      { letter: 'A', text: 'Pago los $78 MXN — es un monto pequeño y mi paquete es importante' },
-      { letter: 'B', text: 'Ignoro el mensaje y verifico directamente en el sitio oficial de DHL' },
-      { letter: 'C', text: 'Reenvío el enlace a mis contactos por si ellos también tienen paquetes' },
-      { letter: 'D', text: 'Llamo al número del SMS para confirmar el cobro' }
+      { letter: 'A', text: 'Pago los $78 MXN — es poco dinero y mi paquete es importante' },
+      { letter: 'B', text: 'Llamo al número del SMS para confirmar antes de pagar' },
+      { letter: 'C', text: 'Ignoro el enlace y verifico directamente en dhl.com.mx' },
+      { letter: 'D', text: 'Reenvío el mensaje a mis contactos por si también tienen paquetes' }
     ],
-    correct: 1,
+    correct: 2,
     feedback: {
-      correct: '¡Correcto! La estrategia segura es siempre verificar directamente en el sitio oficial (dhl.com.mx) sin usar los enlaces del mensaje. Los atacantes usan montos pequeños precisamente porque parecen inofensivos.',
-      wrong: 'Este es un SMS de smishing (phishing por SMS). El dominio "dhl-entrega-mx.link" no es oficial de DHL. Los atacantes usan montos pequeños porque saben que la gente los paga sin cuestionar.'
+      correct: '¡Correcto! Siempre verifica en el sitio oficial (dhl.com.mx) sin usar los enlaces del mensaje. El dominio "dhl-entrega-mx.link" no es oficial de DHL.',
+      wrong: 'Es smishing (phishing por SMS). El dominio "dhl-entrega-mx.link" es falso. La acción segura es ir directamente a dhl.com.mx, nunca usar el enlace del mensaje.'
     },
     redFlags: [
-      'URL sospechosa: "dhl-entrega-mx.link" en lugar de "dhl.com.mx"',
-      'Número de teléfono desconocido — DHL no contacta por números móviles genéricos',
-      'Urgencia artificial: "válido solo hasta hoy 11:59 PM"',
-      'Solicita pago por enlace externo, no por su plataforma oficial'
+      'URL falsa: "dhl-entrega-mx.link" no es dhl.com.mx',
+      'Número de teléfono desconocido — DHL no cobra por SMS a móviles genéricos',
+      'Urgencia artificial: "válido solo hasta hoy 11:59 PM"'
     ]
   },
+  // ── Q3 — correct: D ──────────────────────────────────────
   {
-    type: 'email',
-    typeName: 'Correo Electrónico',
-    typeClass: 'type-email',
+    type: 'email', typeName: 'Correo Electrónico', typeClass: 'type-email',
     title: 'Escenario 3 — Actualización de Microsoft 365',
     from: 'noreply@microsoft.com',
     subject: 'Action Required: Update your Microsoft 365 payment method',
-    body: `Dear valued customer,<br><br>Your Microsoft 365 subscription payment could not be processed. To avoid service interruption, please update your payment information within <strong>48 hours</strong>.<br><br>Your account: brian.espinoza@outlook.com<br>Plan: Microsoft 365 Personal<br>Amount due: $1,699 MXN<br><br><a style="color:#f7c948;">→ Update Payment Method</a><br><br>If you have questions, visit microsoft.com/support`,
-    question: '¿Este correo de Microsoft es legítimo?',
+    body: `Dear valued customer,<br><br>Your Microsoft 365 payment could not be processed. To avoid service interruption, update your payment information within <strong>48 hours</strong>.<br><br>Account: brian.espinoza@outlook.com &nbsp;|&nbsp; Amount due: $1,699 MXN<br><br><a style="color:#f7c948;">→ Update Payment Method</a>`,
+    question: '¿Cómo manejas este correo de Microsoft?',
     options: [
-      { letter: 'A', text: 'Sí, el dominio @microsoft.com es oficial, es seguro hacer clic' },
-      { letter: 'B', text: 'Verifico entrando directamente a microsoft.com, no usando el enlace del correo' },
-      { letter: 'C', text: 'Actualizo el pago porque necesito Microsoft 365' },
-      { letter: 'D', text: 'Es falso porque Microsoft nunca manda correos en inglés a México' }
+      { letter: 'A', text: 'Hago clic en el enlace — el dominio @microsoft.com es oficial' },
+      { letter: 'B', text: 'Lo ignoro — Microsoft siempre cobra automáticamente, no manda correos' },
+      { letter: 'C', text: 'Actualizo el pago desde el enlace — no quiero perder mi suscripción' },
+      { letter: 'D', text: 'Entro directamente a microsoft.com sin usar el enlace del correo' }
     ],
-    correct: 1,
+    correct: 3,
     feedback: {
-      correct: '¡Correcto! Aunque el dominio @microsoft.com parece real, la mejor práctica es siempre verificar entrando manualmente al portal oficial. Los atacantes pueden falsificar el campo "De:" del correo (email spoofing).',
-      wrong: 'Aunque el dominio parece oficial, el email spoofing permite falsificar la dirección del remitente. La práctica correcta es SIEMPRE verificar directamente en el portal de Microsoft, sin usar enlaces de correos.'
+      correct: '¡Correcto! Aunque el remitente parezca real, los atacantes pueden falsificarlo (email spoofing). La regla de oro: entra siempre manualmente al sitio oficial, nunca uses el enlace del correo.',
+      wrong: 'El email spoofing permite falsificar la dirección del remitente, incluso "@microsoft.com". La práctica segura es siempre ir directo a microsoft.com, nunca seguir el enlace del correo.'
     },
     redFlags: [
-      'El remitente puede ser falsificado mediante email spoofing',
-      'Urgencia: "48 horas para actualizar"',
-      'No personaliza con tu nombre real, solo con el email',
-      'La acción segura siempre es ir directamente al sitio, no seguir el enlace'
+      'El campo "De:" puede ser falsificado con email spoofing',
+      'Urgencia de 48 horas para que actúes sin verificar',
+      'No te llama por tu nombre — solo usa el email'
     ]
   },
+  // ── Q4 — correct: A ──────────────────────────────────────
   {
-    type: 'web',
-    typeName: 'Sitio Web',
-    typeClass: 'type-web',
+    type: 'web', typeName: 'Sitio Web', typeClass: 'type-web',
     title: 'Escenario 4 — Página de inicio de sesión de Google',
     from: 'URL visible en el navegador',
     subject: '',
-    body: `Estás intentando iniciar sesión en tu cuenta de Google y el navegador te lleva a la siguiente página:<br><br><div style="background:#1a2a4a;border-radius:6px;padding:12px 16px;margin:10px 0;font-family:monospace;font-size:12.5px;color:#7ec8e3;">https://accounts.g00gle.com/signin?redirect=gmail</div><br>La página se ve idéntica a la de Google: mismo logo, mismo diseño, mismo formulario de correo y contraseña. Solo aparece un pequeño candado en la barra del navegador.`,
-    question: '¿Qué harías en este escenario?',
+    body: `Intentas entrar a tu Gmail y el navegador te muestra esta URL:<br><br><div style="background:#1a2a4a;border-radius:6px;padding:12px 16px;margin:10px 0;font-family:monospace;font-size:12.5px;color:#7ec8e3;">https://accounts.g00gle.com/signin?redirect=gmail</div><br>La página es idéntica a la de Google: mismo logo, mismo diseño, candado de seguridad visible.`,
+    question: '¿Qué haces?',
     options: [
-      { letter: 'A', text: 'Inicio sesión normalmente — tiene candado de seguridad HTTPS' },
-      { letter: 'B', text: 'Cierro la página — "g00gle.com" con ceros no es el dominio oficial de Google' },
-      { letter: 'C', text: 'Ingreso solo mi correo, no la contraseña, para ver qué pasa' },
-      { letter: 'D', text: 'Como el diseño es igual al de Google, es seguro' }
+      { letter: 'A', text: 'Cierro la página — "g00gle.com" con ceros es un dominio falso' },
+      { letter: 'B', text: 'Inicio sesión — tiene candado HTTPS, es seguro' },
+      { letter: 'C', text: 'Ingreso solo mi correo para ver si la página reacciona normal' },
+      { letter: 'D', text: 'Como el diseño es idéntico al de Google, es el sitio real' }
     ],
-    correct: 1,
+    correct: 0,
     feedback: {
-      correct: '¡Excelente! Detectaste el ataque de typosquatting. "g00gle.com" usa ceros en lugar de la letra "o". El candado HTTPS solo significa que la conexión está cifrada, NO que el sitio sea legítimo.',
-      wrong: 'Este es un ataque de typosquatting. "g00gle.com" usa dos ceros en lugar de letras "o". El candado HTTPS NO garantiza que el sitio sea legítimo, solo que la conexión está cifrada. ¡El sitio falso puede tener HTTPS!'
+      correct: '¡Excelente! Detectaste typosquatting: "g00gle.com" usa ceros en lugar de la letra "o". El candado HTTPS solo cifra la conexión, no garantiza que el sitio sea legítimo.',
+      wrong: 'Es typosquatting: "g00gle.com" reemplaza las "o" con ceros. El candado HTTPS y el diseño idéntico no significan que el sitio sea real. Siempre revisa la URL completa antes de ingresar credenciales.'
     },
     redFlags: [
-      '"g00gle.com" usa ceros (0) en lugar de la letra "o" — URL falsa',
-      'El HTTPS y el candado NO garantizan que el sitio sea legítimo',
-      'El diseño idéntico es una técnica de clonación visual (UI cloning)',
-      'Verificar siempre la URL completa antes de ingresar credenciales'
+      '"g00gle.com" usa ceros en lugar de letras "o"',
+      'El candado HTTPS no garantiza que el sitio sea legítimo',
+      'El diseño clonado es una técnica de phishing visual'
     ]
   },
+  // ── Q5 — correct: C ──────────────────────────────────────
   {
-    type: 'llamada',
-    typeName: 'Llamada Telefónica',
-    typeClass: 'type-llamada',
+    type: 'llamada', typeName: 'Llamada Telefónica', typeClass: 'type-llamada',
     title: 'Escenario 5 — Soporte técnico de Microsoft',
     from: 'Llamada entrante: +52 800 123 4567',
     subject: '',
-    body: `Recibes una llamada de un hombre que se identifica como "Carlos Mendoza, técnico certificado de Microsoft":<br><br><em style="color:#c5d0dc;font-style:italic;">"Buenos días, le llamamos porque hemos detectado que su computadora está enviando virus a la red de Microsoft. Si no lo corregimos hoy, su Windows será desactivado permanentemente. Necesito que descargue un programa de acceso remoto para que pueda solucionar el problema ahora mismo. ¿Tiene su computadora frente a usted?"</em>`,
-    question: '¿Cómo respondes a esta llamada?',
+    body: `Un hombre se identifica como "Carlos Mendoza, técnico de Microsoft":<br><br><em style="color:#c5d0dc;font-style:italic;">"Detectamos que su computadora está enviando virus a nuestra red. Si no lo corregimos hoy, su Windows será desactivado permanentemente. Descargue ahora este programa de acceso remoto para que pueda solucionarlo."</em>`,
+    question: '¿Cómo respondes?',
     options: [
-      { letter: 'A', text: 'Descargo el programa — no quiero perder mi Windows' },
-      { letter: 'B', text: 'Cuelgo inmediatamente — Microsoft nunca llama de forma no solicitada' },
-      { letter: 'C', text: 'Pido el número de soporte oficial para llamarles yo' },
-      { letter: 'D', text: 'Les doy acceso remoto solo por 5 minutos para que lo revisen' }
+      { letter: 'A', text: 'Descargo el programa — no quiero que desactiven mi Windows' },
+      { letter: 'B', text: 'Le pido su número para llamarle yo después' },
+      { letter: 'C', text: 'Cuelgo — Microsoft no llama de forma no solicitada' },
+      { letter: 'D', text: 'Le doy acceso remoto solo 5 minutos para que revise' }
     ],
-    correct: 1,
+    correct: 2,
     feedback: {
-      correct: '¡Correcto! Este es un ataque de vishing (voice phishing). Microsoft NUNCA llama de forma proactiva a usuarios. Si descargas el programa de acceso remoto, el atacante toma control total de tu computadora.',
-      wrong: 'Este es vishing (phishing por voz). Microsoft NO monitorea computadoras individuales ni llama a usuarios de forma proactiva. Si instalas el "programa de soporte", el atacante toma control total de tu equipo y puede robar toda tu información.'
+      correct: '¡Correcto! Es vishing (phishing por voz). Microsoft jamás llama proactivamente a usuarios para reportar virus. Si instalas el programa de acceso remoto, el atacante toma control total de tu equipo.',
+      wrong: 'Es vishing. Microsoft no monitorea computadoras individuales ni llama de forma no solicitada. Descargar el "programa de soporte" le daría al atacante control total de tu computadora.'
     },
     redFlags: [
-      'Microsoft y empresas tech NUNCA llaman de forma no solicitada',
-      'Urgencia extrema: "desactivación permanente de Windows"',
-      'Solicita acceso remoto a tu computadora — señal de alarma máxima',
-      'Presión psicológica para actuar inmediatamente sin tiempo de pensar'
+      'Microsoft nunca llama de forma no solicitada a usuarios',
+      'Solicita acceso remoto — señal de alarma máxima',
+      'Amenaza de desactivar Windows para crear pánico'
     ]
   },
+  // ── Q6 — correct: D ──────────────────────────────────────
   {
-    type: 'redes',
-    typeName: 'Redes Sociales',
-    typeClass: 'type-redes',
+    type: 'redes', typeName: 'Redes Sociales', typeClass: 'type-redes',
     title: 'Escenario 6 — Premio en Instagram',
     from: '@coca_cola_mx_oficial2 en Instagram',
     subject: '',
-    body: `Recibes un DM en Instagram de una cuenta con logo de Coca-Cola y 12,400 seguidores:<br><br><em style="color:#c5d0dc;">"¡Felicidades! Has sido seleccionado como ganador de nuestra campaña #CocaColaConecta. Tu premio: iPhone 15 Pro + $5,000 MXN. Para reclamar tu premio debes: 1) Seguir esta cuenta 2) Compartir la publicación 3) Ingresar tus datos en: coca-cola-premios-mx.com/reclamar<br><br>Solo tienes 24 horas para reclamar. ¡No lo pierdas!"</em>`,
+    body: `Recibes un DM de una cuenta con logo de Coca-Cola y 12,400 seguidores:<br><br><em style="color:#c5d0dc;">"¡Felicidades! Ganaste un iPhone 15 Pro + $5,000 MXN en #CocaColaConecta. Para reclamar: sigue esta cuenta, comparte la publicación e ingresa tus datos en coca-cola-premios-mx.com/reclamar. Solo tienes 24 horas."</em>`,
     question: '¿Qué haces con este mensaje?',
     options: [
-      { letter: 'A', text: 'Ingreso mis datos — la cuenta tiene foto de Coca-Cola y muchos seguidores' },
-      { letter: 'B', text: 'Lo reporto y elimino — es una cuenta falsa con dominio sospechoso' },
-      { letter: 'C', text: 'Lo comparto con amigos — si es falso al menos no pierdo nada' },
-      { letter: 'D', text: 'Ingreso solo mi nombre, no datos bancarios' }
+      { letter: 'A', text: 'Ingreso mis datos — tiene foto de Coca-Cola y muchos seguidores' },
+      { letter: 'B', text: 'Comparto el mensaje — si es falso al menos no pierdo nada' },
+      { letter: 'C', text: 'Ingreso solo mi nombre, sin datos bancarios' },
+      { letter: 'D', text: 'Lo reporto y elimino — cuenta falsa y dominio sospechoso' }
     ],
-    correct: 1,
+    correct: 3,
     feedback: {
-      correct: '¡Correcto! La cuenta "@coca_cola_mx_oficial2" no es la cuenta oficial. Las marcas reales tienen verificación (✓ azul) y no envían premios por DM con plazos de 24 horas. El dominio "coca-cola-premios-mx.com" es falso.',
-      wrong: 'Este es un fraude de redes sociales. La cuenta falsa imita a Coca-Cola. Las señales: nombre de usuario con "2" al final, sin verificación oficial, dominio externo falso y urgencia de 24 horas. Nunca ingreses datos en sitios de "premios" no solicitados.'
+      correct: '¡Correcto! "@coca_cola_mx_oficial2" no tiene verificación ✓ azul y el dominio "coca-cola-premios-mx.com" es falso. Ninguna marca real envía premios por DM con 24 horas de plazo.',
+      wrong: 'Es fraude en redes sociales. La cuenta no tiene verificación oficial ✓, el nombre lleva "2" al final y el dominio externo es falso. Los premios no solicitados con urgencia siempre son una trampa.'
     },
     redFlags: [
-      'Nombre de cuenta sospechoso: "@coca_cola_mx_oficial2" sin verificación ✓',
-      'Dominio falso: "coca-cola-premios-mx.com" no es official de Coca-Cola',
-      'Premio no solicitado + urgencia de 24 horas = señal clásica de fraude',
-      'Solicita seguir/compartir antes de reclamar — amplifica el engaño'
+      '"@coca_cola_mx_oficial2" sin verificación ✓ azul',
+      'Dominio falso: "coca-cola-premios-mx.com"',
+      'Premio no solicitado con urgencia de 24 horas'
     ]
   },
+  // ── Q7 — correct: A ──────────────────────────────────────
   {
-    type: 'email',
-    typeName: 'Correo Electrónico',
-    typeClass: 'type-email',
+    type: 'email', typeName: 'Correo Electrónico', typeClass: 'type-email',
     title: 'Escenario 7 — Factura de Netflix',
     from: 'billing@netflix.com',
     subject: 'Tu factura de Netflix: $219 MXN — Ciclo Enero 2026',
-    body: `Hola Brian,<br><br>Gracias por ser suscriptor de Netflix. Te informamos que el cobro de tu suscripción estándar ha sido procesado exitosamente.<br><br><strong>Monto:</strong> $219.00 MXN<br><strong>Fecha:</strong> 1 de enero de 2026<br><strong>Método de pago:</strong> •••• •••• •••• 4821<br><br>Si tienes preguntas sobre tu factura, visita <a style="color:#f7c948;">help.netflix.com</a><br><br>El equipo de Netflix`,
-    question: '¿Este correo de factura de Netflix es un phishing?',
+    body: `Hola Brian,<br><br>Gracias por ser suscriptor. Tu cobro de $219.00 MXN ha sido procesado exitosamente el 1 de enero de 2026.<br>Método de pago: •••• •••• •••• 4821<br><br>¿Preguntas? Visita <a style="color:#f7c948;">help.netflix.com</a><br><br>El equipo de Netflix`,
+    question: '¿Este correo de factura es phishing?',
     options: [
-      { letter: 'A', text: 'Sí es phishing — cualquier correo de empresas es sospechoso' },
-      { letter: 'B', text: 'No es phishing — es un correo informativo sin links sospechosos ni urgencia' },
-      { letter: 'C', text: 'No estoy seguro — verifico en Netflix directamente' },
-      { letter: 'D', text: 'Sí es phishing — menciona mis últimos 4 dígitos de tarjeta' }
+      { letter: 'A', text: 'No es phishing — solo informa un cobro, no pide ninguna acción' },
+      { letter: 'B', text: 'Sí es phishing — cualquier correo corporativo es sospechoso' },
+      { letter: 'C', text: 'Sí es phishing — menciona los últimos 4 dígitos de mi tarjeta' },
+      { letter: 'D', text: 'No estoy seguro — entro a Netflix a verificar el cobro' }
     ],
-    correct: 1,
+    correct: 0,
     feedback: {
-      correct: '¡Correcto! Este es un correo legítimo. No solicita que hagas clic en nada urgente, no pide que "verifiques" datos, y solo informa sobre un cobro ya procesado. Reconocer correos legítimos es tan importante como detectar los falsos.',
-      wrong: 'En este caso el correo ES legítimo. No todos los correos corporativos son phishing. Este solo informa un cobro procesado, no solicita ninguna acción urgente ni pide datos. Saber reconocer lo legítimo es tan valioso como detectar el phishing.'
+      correct: '¡Correcto! Este correo es legítimo: solo informa un pago ya procesado, sin pedirte que hagas clic en nada urgente ni que ingreses datos. Saber reconocer lo legítimo es tan valioso como detectar el phishing.',
+      wrong: 'Este correo ES legítimo. No te pide verificar datos ni tiene urgencia. Solo informa un cobro procesado. No todos los correos corporativos son phishing — aprender a distinguirlos es clave.'
     },
     redFlags: [
-      '✅ Sin urgencia ni amenazas — solo información',
-      '✅ No solicita clics en enlaces para "verificar" datos',
-      '✅ No pide credenciales ni datos de pago nuevos',
+      '✅ Sin urgencia ni amenazas',
+      '✅ No solicita clics para "verificar" datos',
       '✅ El enlace apunta a help.netflix.com — dominio oficial'
     ]
   },
+  // ── Q8 — correct: D ──────────────────────────────────────
   {
-    type: 'email',
-    typeName: 'Correo Electrónico',
-    typeClass: 'type-email',
-    title: 'Escenario 8 — Compartido en Google Drive',
+    type: 'email', typeName: 'Correo Electrónico', typeClass: 'type-email',
+    title: 'Escenario 8 — Archivo compartido en Google Drive',
     from: 'drive-shares-noreply@google.com',
     subject: 'María López ha compartido "Reporte Financiero Q4 2025.xlsx" contigo',
-    body: `<span class="from-line"><i class="fas fa-envelope" style="color:#4a6a8a;"></i> drive-shares-noreply@google.com</span><strong class="msg-subject">María López ha compartido un archivo contigo</strong><br><br>María López (maria.lopez@tuempresa.com) ha compartido el siguiente elemento:<br><br>📄 <strong>Reporte Financiero Q4 2025.xlsx</strong><br><br><a style="color:#f7c948;">→ Abrir en Google Drive</a><br><br>Google Drive — Almacenamiento seguro en la nube`,
+    body: `María López (maria.lopez@tuempresa.com) compartió este archivo contigo:<br><br>📄 <strong>Reporte Financiero Q4 2025.xlsx</strong><br><br><a style="color:#f7c948;">→ Abrir en Google Drive</a>`,
     question: '¿Abres el archivo directamente desde el correo?',
     options: [
-      { letter: 'A', text: 'Sí, hago clic — el correo viene de google.com y conozco a María' },
-      { letter: 'B', text: 'Verifico con María por otro canal si realmente me envió algo antes de abrir' },
-      { letter: 'C', text: 'Descargo el archivo sin abrirlo para analizarlo después' },
-      { letter: 'D', text: 'Lo abro — el icono de Excel es inofensivo' }
+      { letter: 'A', text: 'Sí — el correo viene de google.com y conozco a María' },
+      { letter: 'B', text: 'Lo descargo sin abrir para analizarlo después' },
+      { letter: 'C', text: 'Lo abro — el icono de Excel parece inofensivo' },
+      { letter: 'D', text: 'Primero confirmo con María por WhatsApp o llamada si realmente lo envió' }
     ],
-    correct: 1,
+    correct: 3,
     feedback: {
-      correct: '¡Correcto! La mejor práctica es siempre confirmar por otro canal (mensaje directo, llamada) antes de abrir archivos compartidos inesperados. El email spoofing puede falsificar el remitente, incluso "google.com". Esta técnica se llama Business Email Compromise (BEC).',
-      wrong: 'Aunque el dominio parece legítimo, el email spoofing y las cuentas comprometidas son vectores reales. Confirmar por otro canal (llamar o escribir directamente a María) antes de abrir archivos inesperados es la práctica segura.'
+      correct: '¡Correcto! Antes de abrir archivos inesperados, confirma siempre por otro canal. El email spoofing puede falsificar incluso dominios de Google, y la cuenta de María podría estar comprometida.',
+      wrong: 'Aunque el remitente parece oficial, el email spoofing puede falsificarlo. Además, la cuenta de María podría estar comprometida. Confirmar por WhatsApp o llamada antes de abrir es siempre lo más seguro.'
     },
     redFlags: [
-      'Archivo no solicitado — ¿María te avisó que te enviaría algo?',
-      'El email spoofing puede falsificar incluso dominios de Google',
-      'La cuenta de María podría estar comprometida (BEC)',
-      'Verificar siempre por canal independiente ante archivos no esperados'
+      'Archivo no solicitado — ¿te avisó María?',
+      'El email spoofing puede falsificar dominios de Google',
+      'La cuenta del remitente podría estar comprometida'
     ]
   },
+  // ── Q9 — correct: C ──────────────────────────────────────
   {
-    type: 'sms',
-    typeName: 'SMS',
-    typeClass: 'type-sms',
-    title: 'Escenario 9 — Oferta de trabajo en WhatsApp',
+    type: 'sms', typeName: 'SMS / WhatsApp', typeClass: 'type-sms',
+    title: 'Escenario 9 — Oferta de trabajo por WhatsApp',
     from: 'Número desconocido de India (+91)',
     subject: '',
-    body: `📱 Mensaje de WhatsApp desde +91-983-XXX-XXXX:<br><br><em style="color:#c5d0dc;">"Hola! Vi tu perfil en LinkedIn y quiero ofrecerte trabajo desde casa: 4 horas diarias, $800 USD semanales. Solo necesitas un teléfono. Proceso 100% remoto. Para registrarte y empezar HOY, envía tu nombre completo, CURP y foto de tu INE al siguiente enlace: job-hiring-latam.top/register. Responde antes de las 6 PM para asegurar tu lugar."</em>`,
-    question: '¿Cómo respondes a esta oferta de trabajo?',
+    body: `📱 WhatsApp desde +91-983-XXX-XXXX:<br><br><em style="color:#c5d0dc;">"Hola! Vi tu LinkedIn. Ofrecemos trabajo desde casa: 4 hrs/día, $800 USD semanales. Para registrarte hoy, envía tu nombre, CURP y foto de INE a: job-hiring-latam.top/register. Responde antes de las 6 PM."</em>`,
+    question: '¿Cómo respondes a esta oferta?',
     options: [
       { letter: 'A', text: 'Envío mis datos — $800 USD semanales es una oportunidad real' },
-      { letter: 'B', text: 'Ignoro y bloqueo — es un intento de robo de identidad' },
-      { letter: 'C', text: 'Envío solo mi nombre para ver si el trabajo es real' },
-      { letter: 'D', text: 'Busco la empresa en Google antes de enviar mis documentos' }
+      { letter: 'B', text: 'Busco la empresa en Google para verificar que existe' },
+      { letter: 'C', text: 'Bloqueo y elimino — es un intento de robo de identidad' },
+      { letter: 'D', text: 'Envío solo mi nombre para probar si el trabajo es serio' }
     ],
-    correct: 1,
+    correct: 2,
     feedback: {
-      correct: '¡Correcto! Este es un intento de robo de identidad. Solicitar CURP e INE por WhatsApp desde un número extranjero para una "oferta de trabajo" no solicitada es una señal clara de fraude. Tus documentos podrían usarse para cometer delitos a tu nombre.',
-      wrong: 'Este es un fraude de robo de identidad. Nunca envíes CURP, INE u otros documentos oficiales a desconocidos por WhatsApp. Con tu CURP e INE los atacantes pueden: abrir créditos a tu nombre, clonar tu identidad digital, cometer fraudes fiscales.'
+      correct: '¡Correcto! Solicitar CURP e INE por WhatsApp desde un número extranjero es robo de identidad. Con esos documentos pueden abrir créditos o cometer delitos a tu nombre.',
+      wrong: 'Es un fraude de robo de identidad. Nunca envíes CURP ni INE a desconocidos por WhatsApp. Con esos datos pueden abrir créditos, clonar tu identidad y cometer delitos a tu nombre.'
     },
     redFlags: [
-      'Número extranjero de India (+91) ofreciendo trabajo en México',
-      'Solicita CURP e INE — documentos para robo de identidad',
-      'Dominio "job-hiring-latam.top" — extensión .top, no oficial',
-      '$800 USD semanales sin entrevista = oferta irreal, señal de fraude',
-      'Urgencia: "responde antes de las 6 PM"'
+      'Número extranjero de India ofreciendo trabajo en México',
+      'Solicita CURP e INE — documentos de identidad sensibles',
+      '$800 USD semanales sin entrevista = señal de fraude'
     ]
   },
+  // ── Q10 — correct: B ──────────────────────────────────────
   {
-    type: 'web',
-    typeName: 'Sitio Web',
-    typeClass: 'type-web',
-    title: 'Escenario 10 — Trampa del CEO (Spear Phishing)',
+    type: 'email', typeName: 'Correo Electrónico', typeClass: 'type-email',
+    title: 'Escenario 10 — CEO Fraud (Spear Phishing)',
     from: 'director.general@empresa-corporativo.net',
     subject: 'Transferencia urgente y confidencial — Solo para ti',
-    body: `Estimado colaborador:<br><br>Soy el Director General de la empresa. Me encuentro en una reunión confidencial y necesito que realices una transferencia urgente de $45,000 MXN a nuestra cuenta proveedora antes de las 3 PM de hoy. Es un asunto delicado y no debe comentarse con nadie más del equipo.<br><br>Datos de transferencia:<br>Banco: BBVA<br>Cuenta: 012 180 0051 234 5<br>CLABE: 012180005123456789<br>Beneficiario: Proveedor Estratégico SA de CV<br><br>Confirma por este mismo correo cuando esté hecha la transferencia.<br><br>Lic. Ramón Gutiérrez<br>Director General`,
+    body: `Estimado colaborador:<br><br>Soy el Director General. Estoy en una reunión confidencial y necesito que hagas una transferencia de <strong>$45,000 MXN</strong> antes de las 3 PM. No lo comentes con nadie del equipo.<br><br>Banco BBVA &nbsp;|&nbsp; CLABE: 012180005123456789 &nbsp;|&nbsp; Proveedor Estratégico SA<br><br>Confirma por este mismo correo cuando esté hecha.<br>— Lic. Ramón Gutiérrez, Director General`,
     question: '¿Qué haces ante este correo?',
     options: [
-      { letter: 'A', text: 'Realizo la transferencia — es una orden del Director General' },
-      { letter: 'B', text: 'Verifico llamando directamente al Director por su teléfono corporativo oficial' },
+      { letter: 'A', text: 'Transfiero — es una orden del Director General' },
+      { letter: 'B', text: 'Llamo directamente al Director por su teléfono corporativo para verificar' },
       { letter: 'C', text: 'Respondo el correo pidiendo más confirmación antes de transferir' },
-      { letter: 'D', text: 'Transfiero la mitad para mostrar buena voluntad mientras verifico' }
+      { letter: 'D', text: 'Transfiero la mitad para mostrar buena voluntad' }
     ],
     correct: 1,
     feedback: {
-      correct: '¡Excelente! Detectaste un ataque CEO Fraud / BEC (Business Email Compromise). La verificación telefónica directa por el canal corporativo oficial es el único método seguro. Nunca realices transferencias basadas únicamente en correos, sin importar quién dice ser el remitente.',
-      wrong: 'Este es un ataque de CEO Fraud (Business Email Compromise). El dominio "empresa-corporativo.net" no es el dominio oficial de la empresa. Las señales: secretismo extremo, urgencia, orden de transferencia. SIEMPRE verifica por teléfono corporativo ante solicitudes de transferencia.'
+      correct: '¡Correcto! Es CEO Fraud. El dominio "empresa-corporativo.net" no es el corporativo real. La única verificación válida es llamar directamente al Director por el canal oficial — responder el correo no sirve, podrías estar hablando con el atacante.',
+      wrong: 'Es CEO Fraud (Business Email Compromise). El dominio ".net" no es el oficial de la empresa. Nunca hagas transferencias basadas solo en un correo. Llama siempre al Director por su teléfono corporativo para confirmar.'
     },
     redFlags: [
       'Dominio sospechoso: ".net" en lugar del dominio corporativo oficial',
-      'Solicitud de secreto total — nadie legítimo pide eso en una empresa',
-      'Transferencia urgente sin proceso de autorización normal',
-      'Responder al correo no verifica la identidad — podría ser el atacante',
-      'CEO Fraud es responsable de miles de millones en pérdidas globales'
+      'Instrucción de secreto total — nadie legítimo pide eso',
+      'Responder el correo no verifica identidad — puede ser el atacante'
     ]
   }
 ];
@@ -1198,16 +1180,16 @@ function showResults() {
   let riskLabel, riskClass, riskMsg, riskColor;
   if (score <= 3) {
     riskLabel = '🔴 Riesgo Alto'; riskClass = 'risk-alto'; riskColor = '#f87171';
-    riskMsg = `${userName}, tu perfil indica alta vulnerabilidad ante ataques de phishing. Es fundamental tomar un curso de concientización en ciberseguridad. Los atacantes explotan exactamente las situaciones donde fallaste. Recuerda: el 91% de los ciberataques exitosos comienzan con phishing.`;
+    riskMsg = `${userName}, tu perfil indica alta vulnerabilidad ante ataques de phishing.`;
   } else if (score <= 6) {
     riskLabel = '🟠 Riesgo Medio'; riskClass = 'risk-medio'; riskColor = '#fb923c';
-    riskMsg = `${userName}, tienes conocimiento básico sobre phishing pero aún existen vulnerabilidades importantes. Revisa los escenarios donde fallaste y practica identificar las señales de alerta. Con entrenamiento regular puedes reducir significativamente tu riesgo.`;
+    riskMsg = `${userName}, tienes conocimiento básico sobre phishing pero aún existen vulnerabilidades importantes.`;
   } else if (score <= 8) {
     riskLabel = '🟢 Riesgo Bajo'; riskClass = 'risk-bajo'; riskColor = '#4ade80';
-    riskMsg = `¡Bien hecho, ${userName}! Tu capacidad de detección es buena. Demostraste conocer las tácticas comunes de ingeniería social. Mantén tu formación actualizada ya que los atacantes evolucionan constantemente sus técnicas.`;
+    riskMsg = `¡Bien hecho, ${userName}! Tu capacidad de detección es buena.`;
   } else {
     riskLabel = '🟣 Nivel Experto'; riskClass = 'risk-experto'; riskColor = '#a78bfa';
-    riskMsg = `¡Excelente, ${userName}! Demostraste un nivel de conciencia de seguridad excepcional. Puedes identificar correctamente casi todos los intentos de phishing. Comparte este conocimiento con tu entorno para fortalecer la cultura de ciberseguridad.`;
+    riskMsg = `¡Excelente, ${userName}! Demostraste un nivel de conciencia de seguridad excepcional.`;
   }
 
   document.getElementById('risk-badge').textContent = riskLabel;
