@@ -308,6 +308,118 @@
       cursor: pointer; transition: all .2s;
     }
     .btn-retry:hover { background:#f7c948; color:#0d1b2a; }
+
+    /* ══ RANKING GLOBAL ══════════════════════════════════════ */
+    .ranking-section {
+      margin-top: 28px; text-align: left;
+    }
+    .ranking-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .ranking-header h4 {
+      color: #f7c948; font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px; margin: 0;
+    }
+    .ranking-count {
+      color: #3a5a7a; font-size: 11px;
+    }
+    .ranking-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .ranking-table th {
+      background: #071828; color: #3a5a7a;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      padding: 8px 12px; text-align: left;
+      border-bottom: 1px solid #1e3a5f;
+    }
+    .ranking-table th:last-child { text-align: right; }
+    .ranking-table td {
+      padding: 10px 12px; font-size: 13px;
+      border-bottom: 1px solid rgba(30,58,95,.5);
+      vertical-align: middle;
+    }
+    .ranking-table tr:last-child td { border-bottom: none; }
+    .ranking-table tr.is-me td { background: rgba(247,201,72,.04); }
+    .ranking-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    .rank-pos {
+      font-weight: 800; font-size: 13px;
+      min-width: 28px; display: inline-block; text-align: center;
+    }
+    .rank-1 { color: #f7c948; }
+    .rank-2 { color: #94a3b8; }
+    .rank-3 { color: #b45309; }
+    .rank-n { color: #3a5a7a; }
+
+    .rank-medal { font-size: 15px; }
+
+    .rank-name { color: #c5d0dc; font-weight: 500; }
+    .rank-name .you-tag {
+      display: inline-block; background: #1a3050;
+      color: #60a5fa; font-size: 10px; font-weight: 700;
+      padding: 1px 7px; border-radius: 10px; margin-left: 6px;
+      vertical-align: middle;
+    }
+    .rank-score-bar-wrap {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .rank-score-bar {
+      flex: 1; height: 5px; background: #0d1b2a;
+      border-radius: 10px; overflow: hidden; max-width: 80px;
+    }
+    .rank-score-bar-fill {
+      height: 100%; border-radius: 10px;
+      background: linear-gradient(90deg, #1e3a5f, #f7c948);
+      transition: width .6s ease;
+    }
+    .rank-score-val {
+      color: #f7c948; font-weight: 700; font-size: 13px;
+      min-width: 32px; text-align: right;
+    }
+    .rank-risk {
+      font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 10px; white-space: nowrap;
+    }
+    .rank-risk.risk-alto    { background:#2a0a0a; color:#f87171; }
+    .rank-risk.risk-medio   { background:#2a1a0a; color:#fb923c; }
+    .rank-risk.risk-bajo    { background:#0d2a1a; color:#4ade80; }
+    .rank-risk.risk-experto { background:#1a1a2e; color:#a78bfa; }
+    .rank-date { color: #3a5a7a; font-size: 11px; }
+
+    .ranking-empty {
+      text-align: center; padding: 28px;
+      color: #3a5a7a; font-size: 13px;
+    }
+    .ranking-loading {
+      text-align: center; padding: 20px;
+      color: #3a5a7a; font-size: 13px;
+    }
+    .ranking-loading i { animation: spin .8s linear infinite; margin-right: 6px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Stats bar below ranking */
+    .ranking-stats {
+      display: flex; gap: 10px; margin-top: 14px;
+    }
+    .ranking-stat {
+      flex: 1; background: #071828; border: 1px solid #1e3a5f;
+      border-radius: 8px; padding: 10px 14px; text-align: center;
+    }
+    .ranking-stat .stat-val { color: #f7c948; font-size: 1.1rem; font-weight: 800; }
+    .ranking-stat .stat-lbl { color: #3a5a7a; font-size: 10px; text-transform: uppercase;
+      letter-spacing: .4px; margin-top: 2px; }
+
+    .btn-see-ranking {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; border: 1px solid #1e3a5f;
+      color: #8eb4d8; border-radius: 8px; padding: 8px 18px;
+      font-size: 12px; font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer; transition: all .2s; margin-top: 10px;
+    }
+    .btn-see-ranking:hover { border-color: #f7c948; color: #f7c948; }
   </style>
 </head>
 <body>
@@ -716,8 +828,44 @@
             <button class="btn-retry" onclick="retryQuiz()">
               <i class="fas fa-redo me-2"></i>Intentar de nuevo
             </button>
+
+            <!-- Ranking en pantalla de resultados -->
+            <div class="ranking-section" id="ranking-inline">
+              <div class="ranking-header">
+                <h4><i class="fas fa-trophy me-2"></i>Ranking Global</h4>
+                <span class="ranking-count" id="ranking-count-inline"></span>
+              </div>
+              <div id="ranking-inline-body">
+                <div class="ranking-loading"><i class="fas fa-circle-notch"></i>Cargando ranking…</div>
+              </div>
+            </div>
           </div>
-        </div>
+
+          <!-- ── Ranking global independiente (siempre visible) ── -->
+          <div class="card-section" id="ranking-global-section" style="margin-top:0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+              <h2 style="margin:0;"><i class="fas fa-ranking-star me-2"></i>Ranking Global de Participantes</h2>
+              <button class="btn-see-ranking" onclick="loadGlobalRanking()">
+                <i class="fas fa-sync-alt"></i>Actualizar
+              </button>
+            </div>
+            <p style="color:#6b8cae;font-size:13px;margin-bottom:20px;">
+              Resultados acumulados de todos los participantes que han completado el quiz. Los datos se comparten entre sesiones.
+            </p>
+
+            <!-- Stats -->
+            <div class="ranking-stats" id="global-stats">
+              <div class="ranking-stat"><div class="stat-val" id="stat-total">—</div><div class="stat-lbl">Participantes</div></div>
+              <div class="ranking-stat"><div class="stat-val" id="stat-avg">—</div><div class="stat-lbl">Promedio</div></div>
+              <div class="ranking-stat"><div class="stat-val" id="stat-top">—</div><div class="stat-lbl">Mejor score</div></div>
+              <div class="ranking-stat"><div class="stat-val" id="stat-expert">—</div><div class="stat-lbl">Expertos</div></div>
+            </div>
+
+            <!-- Table -->
+            <div id="global-ranking-body" style="margin-top:16px;">
+              <div class="ranking-loading"><i class="fas fa-circle-notch"></i>Cargando ranking…</div>
+            </div>
+          </div>
 
       </div><!-- /col-lg-9 -->
 
@@ -1177,18 +1325,18 @@ function showResults() {
   document.getElementById('br-wrong').textContent = QUESTIONS.length - score;
   document.getElementById('br-pct').textContent = pct + '%';
 
-  let riskLabel, riskClass, riskMsg, riskColor;
+  let riskLabel, riskClass, riskMsg, riskColor, riskKey;
   if (score <= 3) {
-    riskLabel = '🔴 Riesgo Alto'; riskClass = 'risk-alto'; riskColor = '#f87171';
+    riskLabel = '🔴 Riesgo Alto'; riskClass = 'risk-alto'; riskColor = '#f87171'; riskKey = 'Alto';
     riskMsg = `${userName}, tu perfil indica alta vulnerabilidad ante ataques de phishing.`;
   } else if (score <= 6) {
-    riskLabel = '🟠 Riesgo Medio'; riskClass = 'risk-medio'; riskColor = '#fb923c';
+    riskLabel = '🟠 Riesgo Medio'; riskClass = 'risk-medio'; riskColor = '#fb923c'; riskKey = 'Medio';
     riskMsg = `${userName}, tienes conocimiento básico sobre phishing pero aún existen vulnerabilidades importantes.`;
   } else if (score <= 8) {
-    riskLabel = '🟢 Riesgo Bajo'; riskClass = 'risk-bajo'; riskColor = '#4ade80';
+    riskLabel = '🟢 Riesgo Bajo'; riskClass = 'risk-bajo'; riskColor = '#4ade80'; riskKey = 'Bajo';
     riskMsg = `¡Bien hecho, ${userName}! Tu capacidad de detección es buena.`;
   } else {
-    riskLabel = '🟣 Nivel Experto'; riskClass = 'risk-experto'; riskColor = '#a78bfa';
+    riskLabel = '🟣 Nivel Experto'; riskClass = 'risk-experto'; riskColor = '#a78bfa'; riskKey = 'Experto';
     riskMsg = `¡Excelente, ${userName}! Demostraste un nivel de conciencia de seguridad excepcional.`;
   }
 
@@ -1197,13 +1345,144 @@ function showResults() {
   document.getElementById('br-risk').textContent = riskLabel.replace(/^[^\s]+\s/, '');
   document.getElementById('br-risk').style.color = riskColor;
   document.getElementById('results-message').textContent = riskMsg;
-
-  // Color score circle border
   document.getElementById('score-circle').style.borderColor = riskColor;
   document.getElementById('final-score-num').style.color = riskColor;
-
   document.getElementById('q-progress-fill').style.width = '100%';
+
+  // Save to shared ranking
+  saveToRanking(userName, score, pct, riskKey, riskClass);
+
   rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ── Save entry to shared storage ── */
+async function saveToRanking(name, sc, pct, riskKey, riskClass) {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
+  const entry = { name, score: sc, pct, riskKey, riskClass, date: dateStr, ts: Date.now() };
+
+  try {
+    // Load existing list
+    let entries = [];
+    try {
+      const res = await window.storage.get('quiz-ranking', true);
+      if (res && res.value) entries = JSON.parse(res.value);
+    } catch(e) { entries = []; }
+
+    // Add new entry (allow duplicates — same person can retry)
+    entries.push(entry);
+
+    // Keep max 200
+    if (entries.length > 200) entries = entries.slice(-200);
+
+    await window.storage.set('quiz-ranking', JSON.stringify(entries), true);
+  } catch(e) { console.warn('Storage not available:', e); }
+
+  // Render inline ranking
+  loadInlineRanking(name);
+  loadGlobalRanking();
+}
+
+/* ── Build ranking rows HTML ── */
+function buildRankingHTML(entries, highlightName) {
+  if (!entries || entries.length === 0) {
+    return `<div class="ranking-empty"><i class="fas fa-ghost" style="font-size:24px;margin-bottom:8px;display:block;"></i>Aún no hay participantes.<br>¡Sé el primero en completar el quiz!</div>`;
+  }
+
+  // Sort by score desc, then by ts asc (earlier = better tiebreak)
+  const sorted = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts);
+
+  const medals = ['🥇','🥈','🥉'];
+
+  const rows = sorted.map((e, i) => {
+    const pos = i + 1;
+    const isMe = e.name === highlightName && e.ts === Math.max(...entries.filter(x=>x.name===highlightName).map(x=>x.ts));
+    const posHTML = pos <= 3
+      ? `<span class="rank-medal">${medals[i]}</span>`
+      : `<span class="rank-pos rank-n">${pos}</span>`;
+    const barW = Math.round((e.score / 10) * 100);
+    const youTag = isMe ? `<span class="you-tag">Tú</span>` : '';
+
+    return `<tr class="${isMe ? 'is-me' : ''}">
+      <td style="width:40px;">${posHTML}</td>
+      <td><span class="rank-name">${e.name}${youTag}</span></td>
+      <td><span class="rank-risk ${e.riskClass}">${e.riskKey}</span></td>
+      <td>
+        <div class="rank-score-bar-wrap">
+          <div class="rank-score-bar"><div class="rank-score-bar-fill" style="width:${barW}%"></div></div>
+          <span class="rank-score-val">${e.score}/10</span>
+        </div>
+      </td>
+      <td class="rank-date">${e.date || ''}</td>
+    </tr>`;
+  }).join('');
+
+  return `<table class="ranking-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Participante</th>
+        <th>Nivel</th>
+        <th>Score</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+/* ── Load inline ranking (results screen) ── */
+async function loadInlineRanking(myName) {
+  const el = document.getElementById('ranking-inline-body');
+  const countEl = document.getElementById('ranking-count-inline');
+  if (!el) return;
+  try {
+    let entries = [];
+    try {
+      const res = await window.storage.get('quiz-ranking', true);
+      if (res && res.value) entries = JSON.parse(res.value);
+    } catch(e) {}
+    countEl.textContent = entries.length + ' participante' + (entries.length !== 1 ? 's' : '');
+    // Show top 8 inline
+    const top = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts).slice(0, 8);
+    el.innerHTML = buildRankingHTML(top, myName);
+  } catch(e) {
+    el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`;
+  }
+}
+
+/* ── Load global ranking (standalone section) ── */
+async function loadGlobalRanking() {
+  const el = document.getElementById('global-ranking-body');
+  if (!el) return;
+  el.innerHTML = `<div class="ranking-loading"><i class="fas fa-circle-notch"></i>Cargando…</div>`;
+
+  try {
+    let entries = [];
+    try {
+      const res = await window.storage.get('quiz-ranking', true);
+      if (res && res.value) entries = JSON.parse(res.value);
+    } catch(e) {}
+
+    // Update stats
+    if (entries.length > 0) {
+      const avg = (entries.reduce((s,e) => s + e.score, 0) / entries.length).toFixed(1);
+      const top = Math.max(...entries.map(e => e.score));
+      const experts = entries.filter(e => e.score >= 9).length;
+      document.getElementById('stat-total').textContent = entries.length;
+      document.getElementById('stat-avg').textContent = avg + '/10';
+      document.getElementById('stat-top').textContent = top + '/10';
+      document.getElementById('stat-expert').textContent = experts;
+    } else {
+      ['stat-total','stat-avg','stat-top','stat-expert'].forEach(id => {
+        document.getElementById(id).textContent = '—';
+      });
+    }
+
+    el.innerHTML = buildRankingHTML(entries, userName);
+  } catch(e) {
+    el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`;
+  }
 }
 
 /* ── Retry ── */
@@ -1215,6 +1494,9 @@ function retryQuiz() {
   document.getElementById('q-progress-fill').style.width = '0%';
   document.getElementById('phishing-quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// Load global ranking on page load
+window.addEventListener('load', () => loadGlobalRanking());
 </script>
 </body>
 </html>
