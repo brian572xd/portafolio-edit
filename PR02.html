@@ -69,7 +69,23 @@
     .btn-download:hover { background:#e6b830; color:#0d1b2a; }
     .sidebar-info {
       background:#112240; border-radius:12px; padding:28px;
-      border:1px solid #1e3a5f; position:sticky; top:90px;
+      border:1px solid #1e3a5f;
+      position:fixed;
+      top:90px;
+      right:calc((100vw - 1140px) / 2);
+      width:270px;
+      z-index:100;
+    }
+    @media(max-width:1200px){
+      .sidebar-info { right: 15px; }
+    }
+    @media(max-width:991px){
+      .sidebar-info {
+        position:static; width:100%;
+        margin-bottom:28px;
+      }
+      .col-lg-12[style] { padding-right:15px !important; }
+      .row[style*="padding-right:310px"] { padding-right:0 !important; }
     }
     .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
     .sidebar-info .meta-item { margin-bottom:14px; }
@@ -482,10 +498,10 @@
 <!-- ===== CONTENT ===== -->
 <div class="content-area">
   <div class="container">
-    <div class="row align-items-start">
+    <div class="row">
 
       <!-- ── Main content ── -->
-      <div class="col-lg-9">
+      <div class="col-lg-12" style="padding-right:310px;">
 
         <!-- TOC -->
         <div class="toc-box">
@@ -842,48 +858,12 @@
           </div>
           <br>
 
-      </div><!-- /col-lg-9 -->
-
-      <!-- ── Sidebar ── -->
-      <div class="col-lg-3" style="position:sticky; top:90px; align-self:start;">
-        <div class="sidebar-info" style="position:static;">
-          <h5><i class="fas fa-info-circle me-2"></i>Información</h5>
-          <div class="meta-item">
-            <div class="meta-label">Tipo</div>
-            <div class="meta-value">Proyecto</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Tema</div>
-            <div class="meta-value">Ingeniería social</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Enfoque</div>
-            <div class="meta-value">Simulación de phishing</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Herramientas</div>
-            <div class="meta-value">
-              <span class="badge-tech">Hoxhunt</span>
-              <span class="badge-tech">KnowBe4</span>
-              <span class="badge-tech">Cofense</span>
-              <span class="badge-tech">Proofpoint</span>
-              <span class="badge-tech">Phished</span>
-              <span class="badge-tech">NINJIO</span>
-              <span class="badge-tech">Mimecast</span>
-              <span class="badge-tech">Infosec IQ</span>
-            </div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Periodo</div>
-            <div class="meta-value">Enero–Junio 2026</div>
-          </div>
-        </div>
-      </div><!-- /col-lg-3 -->
+      </div><!-- /col-lg-12 -->
 
     </div><!-- /row -->
 
-    <!-- Ranking Global — ancho completo debajo del layout -->
-    <div class="row" style="margin-top:32px;">
+    <!-- Ranking Global — ancho completo -->
+    <div class="row" style="margin-top:32px; padding-right:310px;">
       <div class="col-12">
         <div class="card-section" id="ranking-global-section">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
@@ -906,11 +886,44 @@
           </div>
         </div>
       </div>
-    </div><!-- /row ranking -->
+    </div>
 
   </div><!-- /container -->
 </div><!-- /content-area -->
 
+<!-- Sidebar fijo — derecha -->
+<div class="sidebar-info">
+  <h5><i class="fas fa-info-circle me-2"></i>Información</h5>
+  <div class="meta-item">
+    <div class="meta-label">Tipo</div>
+    <div class="meta-value">Proyecto</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Tema</div>
+    <div class="meta-value">Ingeniería social</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Enfoque</div>
+    <div class="meta-value">Simulación de phishing</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Herramientas</div>
+    <div class="meta-value">
+      <span class="badge-tech">Hoxhunt</span>
+      <span class="badge-tech">KnowBe4</span>
+      <span class="badge-tech">Cofense</span>
+      <span class="badge-tech">Proofpoint</span>
+      <span class="badge-tech">Phished</span>
+      <span class="badge-tech">NINJIO</span>
+      <span class="badge-tech">Mimecast</span>
+      <span class="badge-tech">Infosec IQ</span>
+    </div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Periodo</div>
+    <div class="meta-value">Enero–Junio 2026</div>
+  </div>
+</div>
 
 <footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
   <div class="container">
@@ -1358,146 +1371,114 @@ function showResults() {
 }
 
 /* ── Save entry to shared storage ── */
+/* ── JSONBin.io ── */
+const JSONBIN_ID  = '69c0d587c3097a1dd54e66ab';
+const JSONBIN_KEY = '$2a$10$RXUBzSDmX6oAu8ok1ICA2.zO7IX2EiYxF.YVISYXw1RWm5LFWf.Ue';
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}`;
+const JB_HEADERS  = { 'Content-Type':'application/json', 'X-Master-Key':JSONBIN_KEY, 'X-Bin-Versioning':'false' };
+
+async function dbRead() {
+  const r = await fetch(JSONBIN_URL + '/latest', { headers:{ 'X-Master-Key':JSONBIN_KEY } });
+  if (!r.ok) throw new Error('read ' + r.status);
+  return (await r.json()).record.entries || [];
+}
+
+async function dbWrite(entries) {
+  const r = await fetch(JSONBIN_URL, { method:'PUT', headers:JB_HEADERS, body:JSON.stringify({ entries }) });
+  if (!r.ok) throw new Error('write ' + r.status);
+}
+
+/* ── Guardar resultado ── */
 async function saveToRanking(name, sc, pct, riskKey, riskClass) {
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
-  const entry = { name, score: sc, pct, riskKey, riskClass, date: dateStr, ts: Date.now() };
-
+  const dateStr = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
+  const entry   = { name, score:sc, pct, riskKey, riskClass, date:dateStr, ts:Date.now() };
   try {
-    // Load existing list
-    let entries = [];
-    try {
-      const res = await window.storage.get('quiz-ranking', true);
-      if (res && res.value) entries = JSON.parse(res.value);
-    } catch(e) { entries = []; }
-
-    // Add new entry (allow duplicates — same person can retry)
+    let entries = await dbRead();
     entries.push(entry);
-
-    // Keep max 200
-    if (entries.length > 200) entries = entries.slice(-200);
-
-    await window.storage.set('quiz-ranking', JSON.stringify(entries), true);
-  } catch(e) { console.warn('Storage not available:', e); }
-
-  // Render inline ranking
+    if (entries.length > 300) entries = entries.slice(-300);
+    await dbWrite(entries);
+  } catch(e) { console.error('JSONBin save error:', e); }
   loadInlineRanking(name);
   loadGlobalRanking();
 }
 
-/* ── Build ranking rows HTML ── */
-function buildRankingHTML(entries, highlightName) {
+/* ── Tabla HTML ── */
+function buildRankingHTML(entries) {
   if (!entries || entries.length === 0) {
     return `<div class="ranking-empty"><i class="fas fa-ghost" style="font-size:24px;margin-bottom:8px;display:block;"></i>Aún no hay participantes.<br>¡Sé el primero en completar el quiz!</div>`;
   }
-
-  // Sort by score desc, then by ts asc (earlier = better tiebreak)
   const sorted = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts);
-
   const medals = ['🥇','🥈','🥉'];
-
-  const rows = sorted.map((e, i) => {
-    const pos = i + 1;
-    const isMe = e.name === highlightName && e.ts === Math.max(...entries.filter(x=>x.name===highlightName).map(x=>x.ts));
-    const posHTML = pos <= 3
+  const rows = sorted.map((e,i) => {
+    const posHTML = i < 3
       ? `<span class="rank-medal">${medals[i]}</span>`
-      : `<span class="rank-pos rank-n">${pos}</span>`;
-    const barW = Math.round((e.score / 10) * 100);
-    const youTag = isMe ? `<span class="you-tag">Tú</span>` : '';
-
-    return `<tr class="${isMe ? 'is-me' : ''}">
+      : `<span class="rank-pos rank-n">${i+1}</span>`;
+    const barW = Math.round((e.score/10)*100);
+    return `<tr>
       <td style="width:40px;">${posHTML}</td>
-      <td><span class="rank-name">${e.name}${youTag}</span></td>
+      <td><span class="rank-name">${e.name}</span></td>
       <td><span class="rank-risk ${e.riskClass}">${e.riskKey}</span></td>
-      <td>
-        <div class="rank-score-bar-wrap">
-          <div class="rank-score-bar"><div class="rank-score-bar-fill" style="width:${barW}%"></div></div>
-          <span class="rank-score-val">${e.score}/10</span>
-        </div>
-      </td>
-      <td class="rank-date">${e.date || ''}</td>
+      <td><div class="rank-score-bar-wrap">
+        <div class="rank-score-bar"><div class="rank-score-bar-fill" style="width:${barW}%"></div></div>
+        <span class="rank-score-val">${e.score}/10</span>
+      </div></td>
+      <td class="rank-date">${e.date||''}</td>
     </tr>`;
   }).join('');
-
   return `<table class="ranking-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Participante</th>
-        <th>Nivel</th>
-        <th>Score</th>
-        <th>Fecha</th>
-      </tr>
-    </thead>
+    <thead><tr><th>#</th><th>Participante</th><th>Nivel</th><th>Score</th><th>Fecha</th></tr></thead>
     <tbody>${rows}</tbody>
   </table>`;
 }
 
-/* ── Load inline ranking (results screen) ── */
+function updateStats(entries) {
+  if (entries.length > 0) {
+    document.getElementById('stat-total').textContent  = entries.length;
+    document.getElementById('stat-avg').textContent    = (entries.reduce((s,e)=>s+e.score,0)/entries.length).toFixed(1)+'/10';
+    document.getElementById('stat-top').textContent    = Math.max(...entries.map(e=>e.score))+'/10';
+    document.getElementById('stat-expert').textContent = entries.filter(e=>e.score>=9).length;
+  } else {
+    ['stat-total','stat-avg','stat-top','stat-expert'].forEach(id=>{ document.getElementById(id).textContent='—'; });
+  }
+}
+
+/* ── Ranking en resultados ── */
 async function loadInlineRanking(myName) {
   const el = document.getElementById('ranking-inline-body');
   const countEl = document.getElementById('ranking-count-inline');
   if (!el) return;
   try {
-    let entries = [];
-    try {
-      const res = await window.storage.get('quiz-ranking', true);
-      if (res && res.value) entries = JSON.parse(res.value);
-    } catch(e) {}
-    countEl.textContent = entries.length + ' participante' + (entries.length !== 1 ? 's' : '');
-    // Show top 8 inline
-    const top = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts).slice(0, 8);
-    el.innerHTML = buildRankingHTML(top, myName);
-  } catch(e) {
-    el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`;
-  }
+    const entries = await dbRead();
+    countEl.textContent = entries.length + ' participante' + (entries.length!==1?'s':'');
+    el.innerHTML = buildRankingHTML([...entries].sort((a,b)=>b.score-a.score||a.ts-b.ts).slice(0,8));
+  } catch(e) { el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`; }
 }
 
-/* ── Load global ranking (standalone section) ── */
+/* ── Ranking global ── */
 async function loadGlobalRanking() {
   const el = document.getElementById('global-ranking-body');
   if (!el) return;
   el.innerHTML = `<div class="ranking-loading"><i class="fas fa-circle-notch"></i>Cargando…</div>`;
-
   try {
-    let entries = [];
-    try {
-      const res = await window.storage.get('quiz-ranking', true);
-      if (res && res.value) entries = JSON.parse(res.value);
-    } catch(e) {}
-
-    // Update stats
-    if (entries.length > 0) {
-      const avg = (entries.reduce((s,e) => s + e.score, 0) / entries.length).toFixed(1);
-      const top = Math.max(...entries.map(e => e.score));
-      const experts = entries.filter(e => e.score >= 9).length;
-      document.getElementById('stat-total').textContent = entries.length;
-      document.getElementById('stat-avg').textContent = avg + '/10';
-      document.getElementById('stat-top').textContent = top + '/10';
-      document.getElementById('stat-expert').textContent = experts;
-    } else {
-      ['stat-total','stat-avg','stat-top','stat-expert'].forEach(id => {
-        document.getElementById(id).textContent = '—';
-      });
-    }
-
-    el.innerHTML = buildRankingHTML(entries, userName);
+    const entries = await dbRead();
+    updateStats(entries);
+    el.innerHTML = buildRankingHTML(entries);
   } catch(e) {
-    el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`;
+    el.innerHTML = `<div class="ranking-empty">No se pudo conectar con la base de datos.</div>`;
+    ['stat-total','stat-avg','stat-top','stat-expert'].forEach(id=>{ document.getElementById(id).textContent='—'; });
   }
 }
 
-/* ── Retry ── */
+/* ── Reintentar ── */
 function retryQuiz() {
   currentQ = 0; score = 0; answered = 0; answers = [];
   document.getElementById('quiz-results-screen').style.display = 'none';
   document.getElementById('quiz-login-screen').style.display = 'block';
   document.getElementById('quiz-username-input').value = '';
   document.getElementById('q-progress-fill').style.width = '0%';
-  document.getElementById('phishing-quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('phishing-quiz').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-// Load global ranking on page load
 window.addEventListener('load', () => loadGlobalRanking());
 </script>
 </body>
