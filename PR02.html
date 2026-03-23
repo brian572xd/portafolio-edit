@@ -840,7 +840,8 @@
               </div>
             </div>
           </div>
-
+          <br>
+          <br>
           <!-- ── Ranking global independiente (siempre visible) ── -->
           <div class="card-section" id="ranking-global-section" style="margin-top:0;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
@@ -1355,52 +1356,92 @@ function showResults() {
   rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/* ── Save entry to shared storage ── */
+/* ════════════════════════════════════════════════════════
+   RANKING — JSONBin.io
+   1. Ve a https://jsonbin.io y crea una cuenta gratuita
+   2. Crea un nuevo Bin con este contenido inicial: {"entries":[]}
+   3. Copia el BIN ID y tu API KEY y pégalos abajo
+   ════════════════════════════════════════════════════════ */
+const JSONBIN_ID  = '69c0d587c3097a1dd54e66ab';       // Ej: 6634f2e3acd3cb34a83e1234
+const JSONBIN_KEY = '$2a$10$RXUBzSDmX6oAu8ok1ICA2.zO7IX2EiYxF.YVISYXw1RWm5LFWf.Ue';       // Ej: $2a$10$...
+
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}`;
+const HEADERS = {
+  'Content-Type': 'application/json',
+  'X-Master-Key': JSONBIN_KEY,
+  'X-Bin-Versioning': 'false'   // Siempre sobreescribe sin crear versiones
+};
+
+/* ── Leer todos los datos del Bin ── */
+async function dbRead() {
+  const res = await fetch(JSONBIN_URL + '/latest', {
+    headers: { 'X-Master-Key': JSONBIN_KEY }
+  });
+  if (!res.ok) throw new Error('Error leyendo JSONBin: ' + res.status);
+  const json = await res.json();
+  return json.record.entries || [];
+}
+
+/* ── Guardar lista actualizada en el Bin ── */
+async function dbWrite(entries) {
+  const res = await fetch(JSONBIN_URL, {
+    method: 'PUT',
+    headers: HEADERS,
+    body: JSON.stringify({ entries })
+  });
+  if (!res.ok) throw new Error('Error escribiendo JSONBin: ' + res.status);
+}
+
+/* ── Guardar nuevo resultado ── */
 async function saveToRanking(name, sc, pct, riskKey, riskClass) {
   const now = new Date();
   const dateStr = now.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
   const entry = { name, score: sc, pct, riskKey, riskClass, date: dateStr, ts: Date.now() };
 
-  try {
-    // Load existing list
-    let entries = [];
-    try {
-      const res = await window.storage.get('quiz-ranking', true);
-      if (res && res.value) entries = JSON.parse(res.value);
-    } catch(e) { entries = []; }
+  // Mostrar ranking de inmediato con datos en memoria mientras guarda
+  loadInlineRanking(name, [entry]);
+  loadGlobalRanking([entry]);
 
-    // Add new entry (allow duplicates — same person can retry)
-    entries.push(entry);
-
-    // Keep max 200
-    if (entries.length > 200) entries = entries.slice(-200);
-
-    await window.storage.set('quiz-ranking', JSON.stringify(entries), true);
-  } catch(e) { console.warn('Storage not available:', e); }
-
-  // Render inline ranking
-  loadInlineRanking(name);
-  loadGlobalRanking();
-}
-
-/* ── Build ranking rows HTML ── */
-function buildRankingHTML(entries, highlightName) {
-  if (!entries || entries.length === 0) {
-    return `<div class="ranking-empty"><i class="fas fa-ghost" style="font-size:24px;margin-bottom:8px;display:block;"></i>Aún no hay participantes.<br>¡Sé el primero en completar el quiz!</div>`;
+  if (JSONBIN_ID === '69c0d587c3097a1dd54e66ab') {
+    console.warn('⚠️ Configura JSONBIN_ID y JSONBIN_KEY para activar el ranking persistente.');
+    return;
   }
 
-  // Sort by score desc, then by ts asc (earlier = better tiebreak)
-  const sorted = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts);
+  try {
+    let entries = await dbRead();
+    entries.push(entry);
+    if (entries.length > 300) entries = entries.slice(-300);
+    await dbWrite(entries);
+    // Recargar con datos reales del servidor
+    loadInlineRanking(name);
+    loadGlobalRanking();
+  } catch(e) {
+    console.error('JSONBin error:', e);
+  }
+}
 
+/* ── Construir HTML de la tabla ── */
+function buildRankingHTML(entries, highlightName) {
+  if (!entries || entries.length === 0) {
+    return `<div class="ranking-empty">
+      <i class="fas fa-ghost" style="font-size:24px;margin-bottom:8px;display:block;"></i>
+      Aún no hay participantes.<br>¡Sé el primero en completar el quiz!
+    </div>`;
+  }
+
+  const sorted = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts);
   const medals = ['🥇','🥈','🥉'];
+  const myLatestTs = highlightName
+    ? Math.max(...entries.filter(x => x.name === highlightName).map(x => x.ts), 0)
+    : 0;
 
   const rows = sorted.map((e, i) => {
-    const pos = i + 1;
-    const isMe = e.name === highlightName && e.ts === Math.max(...entries.filter(x=>x.name===highlightName).map(x=>x.ts));
+    const pos   = i + 1;
+    const isMe  = e.name === highlightName && e.ts === myLatestTs;
     const posHTML = pos <= 3
       ? `<span class="rank-medal">${medals[i]}</span>`
       : `<span class="rank-pos rank-n">${pos}</span>`;
-    const barW = Math.round((e.score / 10) * 100);
+    const barW  = Math.round((e.score / 10) * 100);
     const youTag = isMe ? `<span class="you-tag">Tú</span>` : '';
 
     return `<tr class="${isMe ? 'is-me' : ''}">
@@ -1409,7 +1450,9 @@ function buildRankingHTML(entries, highlightName) {
       <td><span class="rank-risk ${e.riskClass}">${e.riskKey}</span></td>
       <td>
         <div class="rank-score-bar-wrap">
-          <div class="rank-score-bar"><div class="rank-score-bar-fill" style="width:${barW}%"></div></div>
+          <div class="rank-score-bar">
+            <div class="rank-score-bar-fill" style="width:${barW}%"></div>
+          </div>
           <span class="rank-score-val">${e.score}/10</span>
         </div>
       </td>
@@ -1419,73 +1462,70 @@ function buildRankingHTML(entries, highlightName) {
 
   return `<table class="ranking-table">
     <thead>
-      <tr>
-        <th>#</th>
-        <th>Participante</th>
-        <th>Nivel</th>
-        <th>Score</th>
-        <th>Fecha</th>
-      </tr>
+      <tr><th>#</th><th>Participante</th><th>Nivel</th><th>Score</th><th>Fecha</th></tr>
     </thead>
     <tbody>${rows}</tbody>
   </table>`;
 }
 
-/* ── Load inline ranking (results screen) ── */
-async function loadInlineRanking(myName) {
-  const el = document.getElementById('ranking-inline-body');
-  const countEl = document.getElementById('ranking-count-inline');
-  if (!el) return;
-  try {
-    let entries = [];
-    try {
-      const res = await window.storage.get('quiz-ranking', true);
-      if (res && res.value) entries = JSON.parse(res.value);
-    } catch(e) {}
-    countEl.textContent = entries.length + ' participante' + (entries.length !== 1 ? 's' : '');
-    // Show top 8 inline
-    const top = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts).slice(0, 8);
-    el.innerHTML = buildRankingHTML(top, myName);
-  } catch(e) {
-    el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`;
+/* ── Actualizar stats ── */
+function updateStats(entries) {
+  if (entries.length > 0) {
+    const avg     = (entries.reduce((s,e) => s + e.score, 0) / entries.length).toFixed(1);
+    const top     = Math.max(...entries.map(e => e.score));
+    const experts = entries.filter(e => e.score >= 9).length;
+    document.getElementById('stat-total').textContent  = entries.length;
+    document.getElementById('stat-avg').textContent    = avg + '/10';
+    document.getElementById('stat-top').textContent    = top + '/10';
+    document.getElementById('stat-expert').textContent = experts;
+  } else {
+    ['stat-total','stat-avg','stat-top','stat-expert'].forEach(id => {
+      document.getElementById(id).textContent = '—';
+    });
   }
 }
 
-/* ── Load global ranking (standalone section) ── */
-async function loadGlobalRanking() {
+/* ── Ranking inline (pantalla de resultados) ── */
+async function loadInlineRanking(myName, localExtra = []) {
+  const el      = document.getElementById('ranking-inline-body');
+  const countEl = document.getElementById('ranking-count-inline');
+  if (!el) return;
+
+  let entries = [...localExtra];
+
+  if (JSONBIN_ID !== '69c0d587c3097a1dd54e66ab') {
+    try { entries = await dbRead(); } catch(e) {}
+  }
+
+  countEl.textContent = entries.length + ' participante' + (entries.length !== 1 ? 's' : '');
+  const top8 = [...entries].sort((a,b) => b.score - a.score || a.ts - b.ts).slice(0, 8);
+  el.innerHTML = buildRankingHTML(top8, myName);
+}
+
+/* ── Ranking global (sección independiente) ── */
+async function loadGlobalRanking(localExtra = []) {
   const el = document.getElementById('global-ranking-body');
   if (!el) return;
   el.innerHTML = `<div class="ranking-loading"><i class="fas fa-circle-notch"></i>Cargando…</div>`;
 
-  try {
-    let entries = [];
-    try {
-      const res = await window.storage.get('quiz-ranking', true);
-      if (res && res.value) entries = JSON.parse(res.value);
-    } catch(e) {}
+  let entries = [...localExtra];
 
-    // Update stats
-    if (entries.length > 0) {
-      const avg = (entries.reduce((s,e) => s + e.score, 0) / entries.length).toFixed(1);
-      const top = Math.max(...entries.map(e => e.score));
-      const experts = entries.filter(e => e.score >= 9).length;
-      document.getElementById('stat-total').textContent = entries.length;
-      document.getElementById('stat-avg').textContent = avg + '/10';
-      document.getElementById('stat-top').textContent = top + '/10';
-      document.getElementById('stat-expert').textContent = experts;
-    } else {
-      ['stat-total','stat-avg','stat-top','stat-expert'].forEach(id => {
-        document.getElementById(id).textContent = '—';
-      });
+  if (JSONBIN_ID !== '69c0d587c3097a1dd54e66ab') {
+    try { entries = await dbRead(); } catch(e) {
+      el.innerHTML = `<div class="ranking-empty">
+        <i class="fas fa-exclamation-triangle" style="color:#fb923c;margin-bottom:8px;display:block;font-size:20px;"></i>
+        No se pudo conectar con la base de datos.<br>
+        <small style="color:#3a5a7a;">Verifica tu JSONBIN_ID y JSONBIN_KEY.</small>
+      </div>`;
+      return;
     }
-
-    el.innerHTML = buildRankingHTML(entries, userName);
-  } catch(e) {
-    el.innerHTML = `<div class="ranking-empty">No se pudo cargar el ranking.</div>`;
   }
+
+  updateStats(entries);
+  el.innerHTML = buildRankingHTML(entries, userName);
 }
 
-/* ── Retry ── */
+/* ── Reintentar quiz ── */
 function retryQuiz() {
   currentQ = 0; score = 0; answered = 0; answers = [];
   document.getElementById('quiz-results-screen').style.display = 'none';
@@ -1495,7 +1535,7 @@ function retryQuiz() {
   document.getElementById('phishing-quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Load global ranking on page load
+// Cargar ranking al abrir la página
 window.addEventListener('load', () => loadGlobalRanking());
 </script>
 </body>
