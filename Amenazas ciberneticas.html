@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Gestión de Amenazas Cibernéticas — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    body { background: #0d1b2a; }
+
+    /* ── Hero ── */
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt { color:#6b8cae; font-size:13px; margin-bottom:10px; }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+
+    /* ── Layout ── */
+    .content-area { padding: 60px 0 80px; }
+
+    /* ── Cards ── */
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.25rem; font-weight:700; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1rem; font-weight:600; margin:22px 0 10px; }
+    .card-section p  { color:#c5d0dc; font-size:14.5px; line-height:1.8; margin-bottom:10px; }
+    .card-section li { color:#c5d0dc; font-size:14.5px; line-height:1.8; }
+    .card-section ul, .card-section ol { padding-left:22px; margin-bottom:10px; }
+    .card-section img {
+      max-width:100%; border-radius:8px;
+      margin:16px 0; border:1px solid #1e3a5f;
+      display:block;
+    }
+
+    /* ── TOC ── */
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 {
+      color:#f7c948; font-size:13px; margin-bottom:12px;
+      text-transform:uppercase; letter-spacing:.5px;
+    }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+
+    /* ── Certificate hero card ── */
+    .cert-hero-card {
+      background: linear-gradient(135deg, #0a1628 0%, #112240 100%);
+      border: 1px solid #1e3a5f;
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .cert-badge-wrap {
+      flex-shrink: 0;
+      width: 96px; height: 96px;
+      border-radius: 16px;
+      background: #1a3050;
+      border: 2px solid #f7c948;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .cert-badge-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain; margin: 0; border: none;
+    }
+    .cert-badge-wrap .cert-badge-placeholder {
+      font-size: 36px; color: #f7c948;
+    }
+    .cert-hero-info { flex: 1; }
+    .cert-hero-info .cert-category {
+      color: #6b8cae; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px;
+    }
+    .cert-hero-info h2 {
+      color: #f7c948; font-size: 1.4rem; font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .cert-hero-info .cert-issuer {
+      color: #8eb4d8; font-size: 14px; margin-bottom: 12px;
+    }
+    .cert-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cert-tag {
+      background: #1a3050; color: #7ec8e3;
+      font-size: 11px; padding: 3px 12px;
+      border-radius: 20px; border: 1px solid #2a4060;
+    }
+    .cert-tag.gold { background: #1a2010; color: #f7c948; border-color: #3a4010; }
+
+    /* ── Reseña / descripción ── */
+    .resena-box {
+      background: #0a1628; border-left: 3px solid #8eb4d8;
+      border-radius: 8px; padding: 20px 24px; margin-bottom: 0;
+    }
+    .resena-box p { color:#c5d0dc; font-size:14.5px; line-height:1.85; margin:0; }
+
+    /* ── PDF viewer ── */
+    .pdf-section { }
+    .pdf-label {
+      display: flex; align-items: center; gap: 8px;
+      color: #6b8cae; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+    .pdf-label i { color: #f87171; font-size: 14px; }
+    .pdf-frame-wrap {
+      border: 1px solid #1e3a5f; border-radius: 10px;
+      overflow: hidden; background: #071121;
+    }
+    .pdf-frame-wrap iframe {
+      width: 100%; height: 520px;
+      border: none; display: block;
+    }
+    .pdf-fallback {
+      padding: 36px; text-align: center;
+    }
+    .pdf-fallback i { font-size: 32px; color: #f87171; margin-bottom:12px; display:block; }
+    .pdf-fallback p { color: #6b8cae; font-size: 13px; margin-bottom: 16px; }
+
+    /* ── Download button ── */
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #f7c948; color: #0d1b2a;
+      padding: 11px 26px; border-radius: 8px;
+      font-weight: 700; font-size: 14px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-download:hover { background: #e6b830; color: #0d1b2a; }
+
+    /* ── Badge digital ── */
+    .badge-digital-card {
+      background: #0a1628; border-radius: 12px;
+      border: 1px solid #1e3a5f; padding: 28px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .badge-img-wrap {
+      flex-shrink: 0; width: 110px; height: 110px;
+      border-radius: 12px; border: 2px solid #1e3a5f;
+      background: #112240; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .badge-img-wrap img {
+      width: 100%; height: 100%; object-fit: contain;
+      margin: 0; border: none; border-radius: 0;
+    }
+    .badge-img-wrap .badge-placeholder {
+      font-size: 40px;
+    }
+    .badge-info { flex: 1; }
+    .badge-info h3 { color: #f7c948; font-size: 1rem; font-weight:700; margin:0 0 6px; }
+    .badge-info p  { color: #8eb4d8; font-size: 13.5px; line-height:1.7; margin-bottom:14px; }
+    .btn-verify {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: 1px solid #f7c948;
+      color: #f7c948; border-radius: 8px; padding: 9px 20px;
+      font-size: 13px; font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none; transition: all .2s; cursor: pointer;
+    }
+    .btn-verify:hover { background: #f7c948; color: #0d1b2a; }
+
+    /* ── Sidebar ── */
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:20px;
+      border:1px solid #1e3a5f;
+      position:fixed; top:90px;
+      right:max(15px, calc((100vw - 1320px) / 2 + 15px));
+      width:220px; z-index:100;
+    }
+    @media(max-width:991px){
+      .sidebar-info { position:static; width:100%; margin-bottom:28px; }
+      .main-col { padding-right:15px !important; }
+    }
+    .sidebar-info h5 {
+      color:#f7c948; font-size:12px; margin-bottom:14px;
+      text-transform:uppercase; letter-spacing:.5px;
+    }
+    .sidebar-info .meta-item { margin-bottom:10px; }
+    .sidebar-info .meta-label {
+      color:#6b8cae; font-size:10px;
+      text-transform:uppercase; letter-spacing:.5px;
+    }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:13px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:10px; padding:2px 8px; border-radius:20px; margin:2px;
+    }
+
+    /* ── Info box ── */
+    .info-box {
+      background: rgba(247,201,72,.07); border:1px solid rgba(247,201,72,.2);
+      border-radius:8px; padding:14px 18px; margin-bottom:0;
+      display:flex; align-items:flex-start; gap:10px;
+    }
+    .info-box i { color:#f7c948; margin-top:2px; flex-shrink:0; }
+    .info-box p { color:#c5d0dc; font-size:13.5px; line-height:1.7; margin:0; }
+
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+          <ul class="nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Certificaciones</a>
+              <ul class="sub-menu">
+                <li><a href="CERT01_intro_ciberseguridad.html">Cert 1 — Intro Ciberseguridad</a></li>
+                <li><a href="CERT02_networking_basics.html">Cert 2 — Networking Basics</a></li>
+                <li><a href="CERT03_networking_devices.html">Cert 3 — Networking Devices</a></li>
+                <li><a href="CERT04_endpoint_security.html">Cert 4 — Endpoint Security</a></li>
+                <li><a href="CERT05_cyber_threat_management.html">Cert 5 — Cyber Threat Mgmt</a></li>
+                <!-- Agrega aquí las demás certificaciones -->
+              </ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <!-- BREADCRUMB: Cambia el número de pestaña -->
+    <div class="breadcrumb-txt">Certificaciones &rsaquo; Pestaña 5</div>
+    <!-- TÍTULO PRINCIPAL: Nombre corto de la certificación -->
+    <h1>Gestión de Amenazas Cibernéticas</h1>
+    <!-- SUBTÍTULO: Plataforma o institución emisora -->
+    <p class="subtitle">Universidad Politécnica de San Luis Potosí / Cisco Networking Academy &mdash; Cert ID: 53eff408-8c66-4ad2-938a-f610bcfe6c93</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Columna principal -->
+      <div class="col-lg-12 main-col" style="padding-right:250px;">
+
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+          <a href="#cert-info">Información del Certificado</a>
+          <a href="#resena">Reseña</a>
+          <a href="#evidencia">Evidencia (PDF)</a>
+          <a href="#badge">Badge Digital</a>
+        </div>
+
+        <!-- ══ 1. INFORMACIÓN DEL CERTIFICADO ══════════════════ -->
+        <div class="cert-hero-card" id="cert-info">
+          <!-- Badge / logo de la certificación -->
+          <div class="cert-badge-wrap">
+            <!--
+              OPCIÓN A — Si tienes imagen del badge:
+              <img src="img/cert-cisco.png" alt="Badge Cisco">
+
+              OPCIÓN B — Si no tienes imagen, deja el ícono:
+            -->
+            <span class="cert-badge-placeholder"><i class="fas fa-certificate"></i></span>
+          </div>
+
+          <div class="cert-hero-info">
+            <!-- Categoría / área temática -->
+            <div class="cert-category">
+              <i class="fas fa-bug me-1"></i>Gestión de Amenazas &mdash; Nivel Intermedio
+            </div>
+            <!-- Título completo del certificado -->
+            <h2>Cyber Threat Management</h2>
+            <!-- Institución emisora -->
+            <div class="cert-issuer">
+              <i class="fas fa-building me-1" style="color:#6b8cae;"></i>
+              UPSLP / Cisco Networking Academy &nbsp;|&nbsp;
+              <i class="fas fa-calendar-alt me-1" style="color:#6b8cae;"></i>
+              Fecha de obtención: <strong style="color:#c5d0dc;">19 de mayo de 2026</strong>
+            </div>
+            <!-- Tags / habilidades -->
+            <div class="cert-tags">
+              <span class="cert-tag gold"><i class="fas fa-star me-1"></i>Verificado</span>
+              <span class="cert-tag">Threat Intelligence</span>
+              <span class="cert-tag">Gestión de incidentes</span>
+              <span class="cert-tag">Análisis de riesgos</span>
+              <span class="cert-tag">Cisco</span>
+              <!-- Agrega o quita tags según la certificación -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ 2. RESEÑA ════════════════════════════════════════ -->
+        <div class="card-section" id="resena">
+          <h2><i class="fas fa-align-left me-2"></i>Reseña</h2>
+
+          <div class="resena-box">
+            <p>
+              <!-- RESEÑA: ~250 palabras describiendo el contenido del curso/certificación.
+                   Qué aprendiste, por qué es relevante, qué habilidades desarrollaste. -->
+              La certificación Cyber Threat Management aborda el ciclo completo de
+              gestión de amenazas cibernéticas, desde su identificación y análisis hasta
+              la respuesta, contención y recuperación ante incidentes de seguridad. El
+              curso cubre los fundamentos de la inteligencia de amenazas (Threat
+              Intelligence), incluyendo el uso de fuentes abiertas (OSINT), marcos de
+              referencia como MITRE ATT&amp;CK y el ciclo de vida de un ciberataque
+              a través del modelo Cyber Kill Chain.
+
+              A lo largo del programa se estudiaron temas como la clasificación y
+              priorización de vulnerabilidades, el análisis de riesgos organizacionales,
+              la implementación de controles preventivos y detectivos, y los procesos
+              de respuesta ante incidentes según estándares reconocidos como NIST y
+              ISO 27035. También se abordó el funcionamiento de los Centros de
+              Operaciones de Seguridad (SOC), el papel del analista de seguridad y
+              el uso de herramientas SIEM para la correlación de eventos.
+
+              Esta certificación representa un avance significativo en el perfil de
+              Seguridad Informática, ya que integra el conocimiento técnico de redes
+              y endpoints con la visión estratégica de la gestión de amenazas. Completar
+              este curso fortaleció la capacidad de identificar indicadores de
+              compromiso (IoC), interpretar alertas de seguridad, coordinar respuestas
+              ante incidentes y comunicar hallazgos de forma clara a equipos técnicos
+              y no técnicos dentro de una organización.
+            </p>
+          </div>
+        </div>
+
+        <!-- ══ 3. EVIDENCIA PDF ═════════════════════════════════ -->
+        <div class="card-section" id="evidencia">
+          <h2><i class="fas fa-file-pdf me-2"></i>Evidencia del Certificado</h2>
+
+          <div class="pdf-label">
+            <i class="fas fa-file-pdf"></i>
+            Documento oficial — visualización en línea
+          </div>
+
+          <div class="pdf-frame-wrap">
+            <!--
+              INSTRUCCIÓN: Cambia "cert_cyber_threat_management.pdf"
+              por la ruta real de tu PDF dentro del portafolio.
+            -->
+            <iframe
+              src="certificaciones/Cyber_Threat_Management_certificate_175031-upslp-edu-mx_53eff408-8c66-4ad2-938a-f610bcfe6c93.pdf"
+              title="Certificado — Introduction to Cybersecurity">
+            </iframe>
+          </div>
+
+          <!-- Mensaje si el navegador no soporta PDF inline -->
+          <div class="pdf-fallback" style="display:none;" id="pdf-fallback">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Tu navegador no puede mostrar el PDF directamente.</p>
+            <a href="certificaciones/Cyber_Threat_Management_certificate_175031-upslp-edu-mx_53eff408-8c66-4ad2-938a-f610bcfe6c93.pdf" download class="btn-download">
+              <i class="fas fa-download"></i> Descargar PDF
+            </a>
+          </div>
+
+          <!-- Botón de descarga siempre visible -->
+          <div style="margin-top:18px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <a href="certificaciones/Cyber_Threat_Management_certificate_175031-upslp-edu-mx_53eff408-8c66-4ad2-938a-f610bcfe6c93.pdf" download class="btn-download">
+              <i class="fas fa-download"></i> Descargar certificado
+            </a>
+            <span style="color:#3a5a7a; font-size:12px;">
+              <!-- Cambia el tamaño real del archivo -->
+              Archivo PDF &mdash; ~0.2 MB
+            </span>
+          </div>
+        </div>
+
+        <!-- ══ 4. BADGE DIGITAL ═════════════════════════════════ -->
+        <div class="card-section" id="badge">
+          <h2><i class="fas fa-medal me-2"></i>Badge Digital</h2>
+
+          <div class="badge-digital-card">
+            <!-- Imagen del badge -->
+            <div class="badge-img-wrap">
+              <!--
+                OPCIÓN A — Si tienes imagen del badge:
+                <img src="img/badge-cisco-intro.png" alt="Badge digital">
+
+                OPCIÓN B — Ícono de placeholder:
+              -->
+              <span class="badge-placeholder"><i class="fas fa-shield-alt" style="color:#f7c948;"></i></span>
+            </div>
+
+            <div class="badge-info">
+              <!-- Nombre del badge tal como aparece en la plataforma -->
+              <h3>Cyber Threat Management</h3>
+              <p>
+                El badge digital de esta certificación estará disponible próximamente en la plataforma Credly. Una vez emitido, podrá verificarse mediante el enlace oficial.
+              </p>
+              <!--
+                ENLACE DE VERIFICACIÓN:
+                Cambia "#" por la URL real del badge en Credly, Acclaim u otra plataforma.
+              -->
+              <span style="display:inline-flex;align-items:center;gap:8px;background:#1a3050;color:#6b8cae;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:600;">
+                <i class="fas fa-clock"></i> Badge pendiente de emisión
+              </span>
+            </div>
+          </div>
+
+          <!-- Info adicional -->
+          <div class="info-box" style="margin-top:18px;">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              Este badge puede compartirse en LinkedIn, Credly y otras plataformas
+              profesionales como evidencia verificable de la competencia obtenida.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /col-lg-12 -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+</div><!-- /content-area -->
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:#071121; padding:30px 0; margin-top:0; border-top:1px solid #1e3a5f;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <p style="margin:0; color:#6b8cae; font-size:13px;">
+          Brian Salvador Espinoza Aguilar &mdash; Universidad Politécnica de San Luis Potosí
+        </p>
+      </div>
+      <div class="col-lg-4 text-end">
+        <a href="https://github.com/" target="_blank">
+          <img src="img/Github_dark.svg" width="26" height="26" alt="GitHub">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+<script>
+  // Detectar si el iframe del PDF cargó correctamente
+  // Si el navegador no puede mostrarlo, muestra el fallback
+  const iframe = document.querySelector('.pdf-frame-wrap iframe');
+  const fallback = document.getElementById('pdf-fallback');
+  if (iframe) {
+    iframe.addEventListener('error', () => {
+      iframe.parentElement.style.display = 'none';
+      fallback.style.display = 'block';
+    });
+  }
+</script>
+</body>
+</html>
