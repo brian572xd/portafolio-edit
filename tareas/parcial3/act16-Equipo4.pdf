@@ -1,0 +1,163 @@
+
+
+REPORTE TÉCNICO: ANÁLISIS DE DILEMAS ÉTICOS EN 
+CIBERSEGURIDAD 
+ 
+P á g i n a 1 | 5 
+ 
+Contenido 
+I. INTRODUCCIÓN Y MARCO TEÓRICO ..........................................2 
+II. DESARROLLO DE ESCENARIOS .................................................2 
+ESCENARIO 01: ACCESO NO AUTORIZADO INTERNO.................2 
+ESCENARIO 02: VULNERABILIDAD CRÍTICA NO REPORTADA ....3 
+ESCENARIO 03: USO DE HERRAMIENTAS OSINT.........................4 
+III. CONCLUSIÓN Y PROPUESTAS DE MEJORA ............................5 
+ 
+  
+
+REPORTE TÉCNICO: ANÁLISIS DE DILEMAS ÉTICOS EN 
+CIBERSEGURIDAD 
+ 
+P á g i n a 2 | 5 
+ 
+ 
+El  ingeniero  en  tecnologías  de  la información  no  es  solo  un  operador 
+técnico, sino un custodio de la infraestructura crítica de la sociedad. La 
+ética en ciberseguridad trasciende el simple cumplimiento de normas; 
+implica la comprensión de que cada línea de código, cada auditoría y 
+cada acceso a datos impacta directamente en la vida, la privacidad y la 
+economía de las personas. Este reporte se fundamenta en tres pilares 
+• Privacidad: El derecho del individuo a controlar su información. 
+• Integridad: La garantía de que los datos no han sido alterados de 
+forma no autorizada. 
+• Responsabilidad  (Accountability):  La  capacidad  de  responder 
+por las acciones realizadas en el entorno digital. 
+ 
+ESCENARIO 01: ACCESO NO AUTORIZADO INTERNO 
+Enunciado: Durante una revisión de logs detectas que un compañero 
+accedió  a  correos  privados  del  director  general  sin  autorización, 
+argumentando   que   lo   hizo   para   "detectar   posibles   fugas   de 
+información". 
+1. ¿Cuál  es  el  dilema  ético? El  conflicto  radica  en  el  uso de  una 
+justificación noble (proteger a la empresa) para cometer un acto 
+de Amenaza  Interna  (Insider  Threat).  Se  cuestiona si  el  fin 
+justifica los medios cuando se vulnera la confianza institucional. 
+2. ¿Qué harías tú como especialista? Notificaría inmediatamente 
+el    hallazgo    mediante    un    reporte    formal    de    auditoría. 
+Técnicamente,  el  colega  realizó  una escalada  de  privilegios 
+lógica,  actuando  fuera  del Scope  of  Work  (SOW),  por  lo  que 
+debe aplicarse el régimen disciplinario. 
+I. INTRODUCCIÓN Y MARCO TEÓRICO 
+ 
+II. DESARROLLO DE ESCENARIOS 
+ 
+
+REPORTE TÉCNICO: ANÁLISIS DE DILEMAS ÉTICOS EN 
+CIBERSEGURIDAD 
+ 
+P á g i n a 3 | 5 
+ 
+ 
+3. Justificación Ética: 
+o A)  Ética  Utilitarista: Según  John  Stuart  Mill,  el  bienestar 
+general  se  ve  afectado  cuando  se  rompe  la  cadena  de 
+confianza;  un  analista  sin  control  representa  un  riesgo 
+mayor que la supuesta fuga que intenta prevenir. 
+o B)   Enfoque   de   derechos: Basado   en   el Imperativo 
+Categórico  de Kant,  si  todos  los  analistas  actuaran  por 
+cuenta propia, la privacidad dejaría de existir, destruyendo 
+la operatividad de la organización. 
+o C) Enfoque del bien común: La seguridad que se basa en 
+la  ilegalidad  es  espionaje.  El  bien  común  exige  que  la 
+vigilancia sea transparente y bajo mandato formal. 
+4. Mandamientos: Se  viola  el Mandamiento  4:  "No  usarás  una 
+computadora para leer los archivos ajenos". 
+5. Tipo de delito: Delito informático. En México, se tipifica bajo el 
+Código Penal Federal como "Acceso ilícito a sistemas y equipos 
+de informática". También contraviene la LFPDPPP por no cumplir 
+con el principio de lealtad. 
+ESCENARIO 02: VULNERABILIDAD CRÍTICA NO REPORTADA 
+Enunciado: Durante  un  pentest  encuentras  una  vulnerabilidad en  un 
+sistema  financiero  que  permite  extraer  dinero.  El  cliente  aún  no  ha 
+firmado  el  contrato  final  y  tú  sabes  que  podrías  explotarla  sin  ser 
+detectado. 
+1. ¿Cuál  es  el  dilema  ético? Se  enfrenta  la  oportunidad  de  un 
+beneficio económico ilícito ("Zero-Day") frente a la 
+responsabilidad profesional. La "tentación" técnica pone a prueba 
+la frontera entre ser un Ethical Hacker o un Cibercriminal. 
+2. ¿Qué  harías  tú  como  especialista? Ejecutaría  el  protocolo  de 
+Divulgación  Responsable  (Responsible  Disclosure) bajo  el 
+estándar ISO/IEC 29147. Esto incluye verificar el fallo y notificar 
+inmediatamente al contacto de seguridad del cliente, incluso sin 
+contrato, por deber de auxilio. 
+ 
+
+REPORTE TÉCNICO: ANÁLISIS DE DILEMAS ÉTICOS EN 
+CIBERSEGURIDAD 
+ 
+P á g i n a 4 | 5 
+ 
+3. Justificación Ética: 
+o A)  Ética  Utilitarista:  El  "mayor  bien"  se  logra  reportando; 
+evitar  la  explotación  previene  la  quiebra  de  la  institución, 
+pérdida de empleos y el colapso de la confianza bancaria. 
+o B)  Enfoque  de  derechos:  Los  usuarios  del  banco  tienen 
+derecho a la seguridad patrimonial. 
+o C) Enfoque del bien común: Reportar fortalece el sistema 
+financiero y consolida la carrera del ingeniero en un entorno 
+digital resiliente. 
+4. Mandamientos: Se  respeta  el Mandamiento  2:  "No  interferirás 
+con el trabajo de informática de otras personas", al evitar la caída 
+del sistema por explotación. 
+5. Tipo de delito: Delito asistido por computadora. La explotación 
+de este fallo para transferir fondos constituiría un fraude financiero 
+mediante medios tecnológicos. 
+ESCENARIO 03: USO DE HERRAMIENTAS OSINT 
+Enunciado: Investigas   a   una   persona   sospechosa   de   fraude. 
+Encuentras información personal (familia, hábitos) en fuentes abiertas. 
+Tu    superior    te    pide    usar    esa    información    para    presionarlo 
+psicológicamente. 
+1. ¿Cuál es el dilema ético? El uso de herramientas de inteligencia 
+legales (OSINT) para realizar Doxing Corporativo. El dilema es 
+si es ético utilizar la vulnerabilidad personal y familiar para obtener 
+una confesión. 
+2. ¿Qué harías tú como especialista? Negaría la petición por ser 
+una táctica de ingeniería social maliciosa. Además, advertiría que 
+esto arruina la validez de la investigación legal. 
+3. Justificación Ética: 
+o A)  Ética  Utilitarista:  Aplicando  la Teoría  del  Fruto del 
+Árbol   Envenenado,   cualquier   evidencia   obtenida   bajo 
+coacción   psicológica   es   inválida,   permitiendo   que   el 
+culpable quede libre por vicios procesales. 
+o B)  Enfoque  de  derechos:  Se  vulnera  el  derecho  a  la 
+dignidad  y  al  respeto de  la  vida  privada  del  individuo  y su 
+familia. 
+
+REPORTE TÉCNICO: ANÁLISIS DE DILEMAS ÉTICOS EN 
+CIBERSEGURIDAD 
+ 
+P á g i n a 5 | 5 
+ 
+o C)  Enfoque  del  bien  común:  La  técnica  debe  estar  al 
+servicio de la justicia, no de la tortura emocional. 
+4. Mandamientos: Se  vulnera  gravemente  el Mandamiento  10: 
+"Utilizarás   una   computadora   de   manera   que   asegure   la 
+consideración y el respeto de tus semejantes". 
+5. Tipo  de  delito: Delito  incidental.  La  tecnología  OSINT  es  el 
+medio incidental para cometer actos de hostigamiento o extorsión 
+psicológica. 
+ 
+ 
+La  integridad  es  el firewall  más  potente  que  un  profesional  puede 
+instalar  en  su  carrera.  Basado  en  este  análisis,  se  proponen  las 
+siguientes mejoras organizacionales: 
+• Segregación  de  Funciones:  Implementar  controles  para  que 
+ningún analista actúe de forma aislada (evita el Escenario 1). 
+• Cláusulas Éticas en Preventa: Establecer acuerdos legales que 
+protejan  los  hallazgos  técnicos  antes  de  la  firma  formal  del 
+contrato (evita el Escenario 2). 
+• Comités   de   Ética   Independientes:   Espacios   donde   los 
+empleados puedan denunciar órdenes poco éticas de superiores 
+sin temor a represalias (evita el Escenario 3). 
+III. CONCLUSIÓN Y PROPUESTAS DE MEJORA 
+ 

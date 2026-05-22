@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>P3 Actividad 16 — Dilemas Eticos en Ciberseguridad — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    /* ── Page overrides ── */
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt {
+      color:#6b8cae; font-size:13px; margin-bottom:10px;
+    }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px;
+      font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f; position:sticky; top:90px;
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+                    <ul class="nav">
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu">
+                <li><a href="P3ACT16.html">Actividad 16</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Road to hall of fame</a>
+              <ul class="sub-menu"><li><a href="SQLi.html">SQLi</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Certificaciones</a>
+              <ul class="sub-menu">
+                <li><a href="Introduccion a la ciberseguridad.html">Cert 1</a></li>
+                <li><a href="conceptos basicos de red.html">Cert 2</a></li>
+                <li><a href="configuracion inicial.html">Cert 3</a></li>
+                <li><a href="seguridad en terminales.html">Cert 4</a></li>
+                <li><a href="Amenazas ciberneticas.html">Cert 5</a></li>
+                <li><a href="Profesional.html">Cert 6</a></li>
+                <li><a href="hacker etico.html">Cert 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="breadcrumb-txt">Parcial 3 &rsaquo; Actividad 16</div>
+    <h1>Actividad 16</h1>
+    <p class="subtitle">Reporte Tecnico: Analisis de Dilemas Eticos en Ciberseguridad.</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+          <a href="#intro">Introduccion y Marco Teorico</a>
+          <a href="#escenario1">Escenario 01: Acceso No Autorizado Interno</a>
+          <a href="#escenario2">Escenario 02: Vulnerabilidad Critica No Reportada</a>
+          <a href="#escenario3">Escenario 03: Uso de Herramientas OSINT</a>
+          <a href="#conclusion">Conclusion y Propuestas de Mejora</a>
+        </div>
+
+        <!-- Content sections -->
+        <div class="card-section">
+          <h2 id="intro">I. Introduccion y Marco Teorico</h2>
+          <p>El ingeniero en tecnologias de la informacion no es solo un operador tecnico, sino un <strong>custodio de la infraestructura critica de la sociedad</strong>. La etica en ciberseguridad trasciende el simple cumplimiento de normas; implica la comprension de que cada linea de codigo, cada auditoria y cada acceso a datos impacta directamente en la vida, la privacidad y la economia de las personas.</p>
+          <p>Este reporte se fundamenta en tres pilares fundamentales:</p>
+          <ul>
+            <li><strong>Privacidad:</strong> El derecho del individuo a controlar su informacion.</li>
+            <li><strong>Integridad:</strong> La garantia de que los datos no han sido alterados de forma no autorizada.</li>
+            <li><strong>Responsabilidad (Accountability):</strong> La capacidad de responder por las acciones realizadas en el entorno digital.</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h2 id="escenario1">II. Desarrollo de Escenarios</h2>
+          <h3>Escenario 01: Acceso No Autorizado Interno</h3>
+          <h4>Enunciado</h4>
+          <p>Durante una revision de logs detectas que un companero accedio a correos privados del director general sin autorizacion, argumentando que lo hizo para "detectar posibles fugas de informacion".</p>
+          
+          <h4>1. Cual es el dilema etico?</h4>
+          <p>El conflicto radica en el uso de una justificacion noble (proteger a la empresa) para cometer un acto de <strong>Amenaza Interna (Insider Threat)</strong>. Se cuestiona si el fin justifica los medios cuando se vulnera la confianza institucional.</p>
+          
+          <h4>2. Que harias tu como especialista?</h4>
+          <p>Notificaria inmediatamente el hallazgo mediante un reporte formal de auditoria. Tecnicamente, el colega realizo una <strong>escalada de privilegios logica</strong>, actuando fuera del <strong>Scope of Work (SOW)</strong>, por lo que debe aplicarse el regimen disciplinario.</p>
+          
+          <h4>3. Justificacion Etica</h4>
+          <table>
+            <tr class="table-header"><th>Enfoque</th><th>Analisis</th></tr>
+            <tr>
+              <td><strong>A) Etica Utilitarista</strong></td>
+              <td>Segun John Stuart Mill, el bienestar general se ve afectado cuando se rompe la cadena de confianza; un analista sin control representa un riesgo mayor que la supuesta fuga que intenta prevenir.</td>
+            </tr>
+            <tr>
+              <td><strong>B) Enfoque de derechos</strong></td>
+              <td>Basado en el Imperativo Categorico de Kant, si todos los analistas actuaran por cuenta propia, la privacidad dejaria de existir, destruyendo la operatividad de la organizacion.</td>
+            </tr>
+            <tr>
+              <td><strong>C) Enfoque del bien comun</strong></td>
+              <td>La seguridad que se basa en la ilegalidad es espionaje. El bien comun exige que la vigilancia sea transparente y bajo mandato formal.</td>
+            </tr>
+          </table>
+          
+          <h4>4. Mandamientos Violados</h4>
+          <p>Se viola el <strong>Mandamiento 4:</strong> "No usaras una computadora para leer los archivos ajenos".</p>
+          
+          <h4>5. Tipo de Delito</h4>
+          <p><strong>Delito informatico.</strong> En Mexico, se tipifica bajo el Codigo Penal Federal como "Acceso ilicito a sistemas y equipos de informatica". Tambien contraviene la LFPDPPP por no cumplir con el principio de lealtad.</p>
+        </div>
+
+        <div class="card-section">
+          <h3 id="escenario2">Escenario 02: Vulnerabilidad Critica No Reportada</h3>
+          <h4>Enunciado</h4>
+          <p>Durante un pentest encuentras una vulnerabilidad en un sistema financiero que permite extraer dinero. El cliente aun no ha firmado el contrato final y tu sabes que podrias explotarla sin ser detectado.</p>
+          
+          <h4>1. Cual es el dilema etico?</h4>
+          <p>Se enfrenta la oportunidad de un beneficio economico ilicito ("Zero-Day") frente a la responsabilidad profesional. La "tentacion" tecnica pone a prueba la frontera entre ser un <strong>Ethical Hacker</strong> o un <strong>Cibercriminal</strong>.</p>
+          
+          <h4>2. Que harias tu como especialista?</h4>
+          <p>Ejecutaria el protocolo de <strong>Divulgacion Responsable (Responsible Disclosure)</strong> bajo el estandar <strong>ISO/IEC 29147</strong>. Esto incluye verificar el fallo y notificar inmediatamente al contacto de seguridad del cliente, incluso sin contrato, por deber de auxilio.</p>
+          
+          <h4>3. Justificacion Etica</h4>
+          <table>
+            <tr class="table-header"><th>Enfoque</th><th>Analisis</th></tr>
+            <tr>
+              <td><strong>A) Etica Utilitarista</strong></td>
+              <td>El "mayor bien" se logra reportando; evitar la explotacion previene la quiebra de la institucion, perdida de empleos y el colapso de la confianza bancaria.</td>
+            </tr>
+            <tr>
+              <td><strong>B) Enfoque de derechos</strong></td>
+              <td>Los usuarios del banco tienen derecho a la seguridad patrimonial.</td>
+            </tr>
+            <tr>
+              <td><strong>C) Enfoque del bien comun</strong></td>
+              <td>Reportar fortalece el sistema financiero y consolida la carrera del ingeniero en un entorno digital resiliente.</td>
+            </tr>
+          </table>
+          
+          <h4>4. Mandamientos Respetados</h4>
+          <p>Se respeta el <strong>Mandamiento 2:</strong> "No interferiras con el trabajo de informatica de otras personas", al evitar la caida del sistema por explotacion.</p>
+          
+          <h4>5. Tipo de Delito (Si se explota)</h4>
+          <p><strong>Delito asistido por computadora.</strong> La explotacion de este fallo para transferir fondos constituiria un fraude financiero mediante medios tecnologicos.</p>
+        </div>
+
+        <div class="card-section">
+          <h3 id="escenario3">Escenario 03: Uso de Herramientas OSINT</h3>
+          <h4>Enunciado</h4>
+          <p>Investigas a una persona sospechosa de fraude. Encuentras informacion personal (familia, habitos) en fuentes abiertas. Tu superior te pide usar esa informacion para presionarlo psicologicamente.</p>
+          
+          <h4>1. Cual es el dilema etico?</h4>
+          <p>El uso de herramientas de inteligencia legales (OSINT) para realizar <strong>Doxing Corporativo</strong>. El dilema es si es etico utilizar la vulnerabilidad personal y familiar para obtener una confesion.</p>
+          
+          <h4>2. Que harias tu como especialista?</h4>
+          <p>Negaria la peticion por ser una tactica de <strong>ingenieria social maliciosa</strong>. Ademas, advertiria que esto arruina la validez de la investigacion legal.</p>
+          
+          <h4>3. Justificacion Etica</h4>
+          <table>
+            <tr class="table-header"><th>Enfoque</th><th>Analisis</th></tr>
+            <tr>
+              <td><strong>A) Etica Utilitarista</strong></td>
+              <td>Aplicando la Teoria del Fruto del Arbol Envenenado, cualquier evidencia obtenida bajo coaccion psicologica es invalida, permitiendo que el culpable quede libre por vicios procesales.</td>
+            </tr>
+            <tr>
+              <td><strong>B) Enfoque de derechos</strong></td>
+              <td>Se vulnera el derecho a la dignidad y al respeto de la vida privada del individuo y su familia.</td>
+            </tr>
+            <tr>
+              <td><strong>C) Enfoque del bien comun</strong></td>
+              <td>La tecnica debe estar al servicio de la justicia, no de la tortura emocional.</td>
+            </tr>
+          </table>
+          
+          <h4>4. Mandamientos Vulnerados</h4>
+          <p>Se vulnera gravemente el <strong>Mandamiento 10:</strong> "Utilizaras una computadora de manera que asegure la consideracion y el respeto de tus semejantes".</p>
+          
+          <h4>5. Tipo de Delito</h4>
+          <p><strong>Delito incidental.</strong> La tecnologia OSINT es el medio incidental para cometer actos de hostigamiento o extorsion psicologica.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="conclusion">III. Conclusion y Propuestas de Mejora</h2>
+          <p>La <strong>integridad es el firewall mas potente</strong> que un profesional puede instalar en su carrera. Basado en este analisis, se proponen las siguientes mejoras organizacionales:</p>
+          
+          <h3>Propuestas de Mejora Organizacional</h3>
+          <table>
+            <tr class="table-header"><th>Propuesta</th><th>Descripcion</th><th>Escenario que previene</th></tr>
+            <tr>
+              <td><strong>Segregacion de Funciones</strong></td>
+              <td>Implementar controles para que ningun analista actue de forma aislada.</td>
+              <td>Escenario 1</td>
+            </tr>
+            <tr>
+              <td><strong>Clausulas Eticas en Preventa</strong></td>
+              <td>Establecer acuerdos legales que protejan los hallazgos tecnicos antes de la firma formal del contrato.</td>
+              <td>Escenario 2</td>
+            </tr>
+            <tr>
+              <td><strong>Comites de Etica Independientes</strong></td>
+              <td>Espacios donde los empleados puedan denunciar ordenes poco eticas de superiores sin temor a represalias.</td>
+              <td>Escenario 3</td>
+            </tr>
+          </table>
+
+          <h3>Resumen de Escenarios</h3>
+          <table>
+            <tr class="table-header"><th>Escenario</th><th>Dilema</th><th>Mandamiento</th><th>Tipo de Delito</th></tr>
+            <tr>
+              <td>01 - Acceso No Autorizado</td>
+              <td>Fin noble vs. medios ilicitos</td>
+              <td>Mandamiento 4 (violado)</td>
+              <td>Delito informatico</td>
+            </tr>
+            <tr>
+              <td>02 - Vulnerabilidad Critica</td>
+              <td>Beneficio personal vs. responsabilidad</td>
+              <td>Mandamiento 2 (respetado)</td>
+              <td>Delito asistido por computadora</td>
+            </tr>
+            <tr>
+              <td>03 - OSINT malicioso</td>
+              <td>Eficacia vs. dignidad humana</td>
+              <td>Mandamiento 10 (violado)</td>
+              <td>Delito incidental</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card-section" style="text-align:center;">
+          <h2>Descargar Actividad</h2>
+          <a href="tareas/parcial3/act16-Equipo4.pdf" download class="btn-download">
+            <i class="fas fa-file-pdf"></i> Descargar PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Informacion</h5>
+
+        <div class="meta-item">
+          <div class="meta-label">Parcial</div>
+          <div class="meta-value">3</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tema</div>
+          <div class="meta-value">Dilemas Eticos en Ciberseguridad</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Conceptos</div>
+          <div class="meta-value">Etica Profesional, OSINT, Insider Threat</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Periodo</div>
+          <div class="meta-value">Enero-Junio 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Etiquetas</div>
+          <div>
+            <span class="badge-tech">Etica</span>
+            <span class="badge-tech">Ciberseguridad</span>
+            <span class="badge-tech">OSINT</span>
+            <span class="badge-tech">Pentest</span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <p style="margin:0; color:#6b8cae; font-size:13px;">Brian Salvador Espinoza Aguilar &mdash; Universidad Politecnica de San Luis Potosi</p>
+      </div>
+      <div class="col-lg-4 text-end">
+        <a href="https://github.com/" target="_blank">
+          <img src="img/Github_dark.svg" width="26" height="26" alt="GitHub">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+</html>
