@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>P3 Actividad 18 — Analisis de Intrusiones con el Modelo Diamante — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    /* ── Page overrides ── */
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt {
+      color:#6b8cae; font-size:13px; margin-bottom:10px;
+    }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px;
+      font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f; position:sticky; top:90px;
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+    .diamond-box {
+      background:linear-gradient(135deg,#1a3050,#112240);
+      border-radius:12px; padding:24px; text-align:center;
+      border:2px solid #f7c948; margin:20px 0;
+    }
+    .diamond-box .diamond-title {
+      font-size:1.1rem; font-weight:700; color:#f7c948; margin-bottom:12px;
+    }
+    .diamond-box .diamond-items {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
+    }
+    .diamond-box .diamond-item {
+      background:#0a1628; padding:12px 20px; border-radius:8px;
+      border:1px solid #1e3a5f;
+    }
+    .diamond-box .diamond-item strong {
+      color:#7ec8e3; display:block; font-size:12px; text-transform:uppercase;
+    }
+    .diamond-box .diamond-item span {
+      color:#c5d0dc; font-size:13px;
+    }
+    .thread-box {
+      background:#0a1628; border-left:3px solid #7ec8e3;
+      border-radius:6px; padding:20px 24px; margin:16px 0;
+    }
+    .thread-box h4 { color:#7ec8e3; font-size:1rem; margin-bottom:12px; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+          <ul class="nav">
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu">
+                <li><a href="P3ACT16.html">Actividad 16</a></li>
+                <li><a href="P3ACT17.html">Actividad 17</a></li>
+                <li><a href="P3ACT18.html">Actividad 18</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Road to hall of fame</a>
+              <ul class="sub-menu"><li><a href="SQLi.html">SQLi</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Certificaciones</a>
+              <ul class="sub-menu">
+                <li><a href="Introduccion a la ciberseguridad.html">Cert 1</a></li>
+                <li><a href="conceptos basicos de red.html">Cert 2</a></li>
+                <li><a href="configuracion inicial.html">Cert 3</a></li>
+                <li><a href="seguridad en terminales.html">Cert 4</a></li>
+                <li><a href="Amenazas ciberneticas.html">Cert 5</a></li>
+                <li><a href="Profesional.html">Cert 6</a></li>
+                <li><a href="hacker etico.html">Cert 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="breadcrumb-txt">Parcial 3 &rsaquo; Actividad 18</div>
+    <h1>Actividad 18</h1>
+    <p class="subtitle">Analisis de Intrusiones con el Modelo Diamante</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+          <a href="#intro">1. Introduccion</a>
+          <a href="#comprension">2. Comprension del Modelo</a>
+          <a href="#analisis">3. Analisis de Evento</a>
+          <a href="#killchain">4. Relacion con la Kill Chain</a>
+          <a href="#hilos">5. Hilos de Actividad</a>
+          <a href="#conclusion">6. Conclusion</a>
+        </div>
+
+        <!-- Content sections -->
+        <div class="card-section">
+          <h2 id="intro">1. Introduccion</h2>
+          <p>En la actualidad, las organizaciones se enfrentan constantemente a amenazas ciberneticas que pueden comprometer la seguridad de sus sistemas y de la informacion. Por ello, es importante contar con metodologias que permitan identificar y analizar los ataques de manera estructurada.</p>
+          <p>En esta actividad se aplica el <strong>Modelo Diamante de Analisis de Intrusiones</strong>, el cual permite relacionar elementos clave como el adversario, la victima, la infraestructura y las capacidades utilizadas durante un incidente. Ademas, se complementa con la <strong>Cyber Kill Chain</strong> para comprender las diferentes etapas del ataque y detectar posibles patrones de comportamiento del atacante.</p>
+          <p>El proposito de este analisis es fortalecer la comprension de los eventos de ciberseguridad y desarrollar una vision mas clara sobre como se llevan a cabo las intrusiones dentro de una red informatica.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="comprension">2. Comprension del Modelo</h2>
+          <p>El Modelo Diamante establece cuatro vertices fundamentales que caracterizan cualquier evento de intrusion:</p>
+          
+          <div class="diamond-box">
+            <div class="diamond-title">Modelo Diamante de Intrusiones</div>
+            <div class="diamond-items">
+              <div class="diamond-item">
+                <strong>Adversario</strong>
+                <span>Actor responsable</span>
+              </div>
+              <div class="diamond-item">
+                <strong>Capacidad</strong>
+                <span>Herramientas y tecnicas</span>
+              </div>
+              <div class="diamond-item">
+                <strong>Infraestructura</strong>
+                <span>Medio de contacto</span>
+              </div>
+              <div class="diamond-item">
+                <strong>Victima</strong>
+                <span>Objetivo del ataque</span>
+              </div>
+            </div>
+          </div>
+          
+          <table>
+            <tr class="table-header">
+              <th>Elemento</th>
+              <th>Descripcion</th>
+              <th>Ejemplo Practico</th>
+            </tr>
+            <tr>
+              <td><strong>Adversario</strong></td>
+              <td>Es el actor o entidad responsable de utilizar una capacidad contra una victima.</td>
+              <td>Un grupo de ciberdelincuentes motivado por el beneficio economico que planea una campana de ransomware contra hospitales.</td>
+            </tr>
+            <tr>
+              <td><strong>Capacidad</strong></td>
+              <td>Se refiere a las herramientas, tecnicas y tacticas que el adversario utiliza para llevar a cabo el ataque.</td>
+              <td>El uso de un malware de tipo troyano disenado especificamente para evadir la deteccion de antivirus comerciales y cifrar archivos de manera ultra rapida.</td>
+            </tr>
+            <tr>
+              <td><strong>Infraestructura</strong></td>
+              <td>Es el medio fisico o logico que el adversario utiliza para establecer contacto con la victima o para entregar sus capacidades.</td>
+              <td>Un servidor de Comando y Control alquilado en la nube que el atacante usa para enviar ordenes al malware instalado en la computadora de la victima.</td>
+            </tr>
+            <tr>
+              <td><strong>Victima</strong></td>
+              <td>Es el objetivo del ataque. Puede ser una persona fisica, una organizacion, un sistema especifico o incluso un sector economico completo.</td>
+              <td>El departamento de finanzas de una empresa multinacional que recibe correos electronicos de phishing disenados para robar credenciales de acceso a las cuentas bancarias corporativas.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="analisis">3. Analisis de Evento</h2>
+          
+          <h3>Escenario</h3>
+          <p>Una organizacion detecta comportamiento anomalo en un equipo. El analisis revela:</p>
+          <ol>
+            <li>La victima detecta malware.</li>
+            <li>El malware contiene dominios de Comando y Control (C2).</li>
+            <li>Los dominios resuelven a direcciones IP externas.</li>
+            <li>Logs muestran multiples hosts conectandose a esas IP.</li>
+            <li>WHOIS/IP revela posible origen del atacante.</li>
+          </ol>
+          
+          <h3>Metacaracteristicas del Evento</h3>
+          <table>
+            <tr class="table-header">
+              <th>Metacaracteristica</th>
+              <th>Descripcion del Evento</th>
+            </tr>
+            <tr>
+              <td><strong>Marca de tiempo</strong></td>
+              <td>Momento exacto en que los sistemas de monitoreo (SIEM/EDR) disparan la alerta de trafico inusual hacia el exterior, correlacionado con los registros historicos de los logs de los hosts internos involucrados.</td>
+            </tr>
+            <tr>
+              <td><strong>Fase</strong></td>
+              <td>Comando y Control. El evento se situa en la etapa de post-explotacion, donde el malware ya residente busca establecer un canal de comunicacion persistente con la infraestructura del atacante para recibir instrucciones.</td>
+            </tr>
+            <tr>
+              <td><strong>Resultado</strong></td>
+              <td>Compromiso activo de red. El ataque ha sido exitoso en su comunicacion, la presencia de multiples hosts internos contactando las mismas IPs externas confirma que la amenaza ha logrado propagarse o que el canal de control esta plenamente operativo.</td>
+            </tr>
+            <tr>
+              <td><strong>Direccion</strong></td>
+              <td>Saliente. Se observa un flujo de datos que se origina dentro del perimetro de la organizacion y se dirige hacia activos externos remotos, evadiendo potencialmente filtros de seguridad perimetral basicos.</td>
+            </tr>
+            <tr>
+              <td><strong>Metodologia</strong></td>
+              <td>El malware emplea nombres de dominio especificos contenidos en su codigo para resolver IPs externas, una tecnica disenada para mantener la conexion incluso si el atacante cambia sus servidores fisicos.</td>
+            </tr>
+            <tr>
+              <td><strong>Recursos</strong></td>
+              <td>Codigo malicioso detectado, dominios de C2 identificados en el analisis forense, direcciones IPs externas vinculadas a los dominios y herramientas de inteligencia de amenazas como lo es WHOIS para rastrear al adversario.</td>
+            </tr>
+          </table>
+          
+          <h3>Preguntas de Analisis</h3>
+          
+          <h4>1. Quien es el adversario en este escenario?</h4>
+          <p>El analisis de WHOIS/IP revela el posible origen del atacante. Se define como el actor externo responsable de controlar el malware y los dominios de Comando y Control (C2) para comprometer la organizacion.</p>
+          
+          <h4>2. Cual es la capacidad utilizada?</h4>
+          <p>La capacidad principal es un <strong>malware</strong> que ha sido instalado en el equipo de la victima. Este software malicioso cuenta con la funcion especifica de contener y ejecutar consultas a dominios de Comando y Control (C2) para recibir instrucciones externas.</p>
+          
+          <h4>3. Que tipo de infraestructura se emplea?</h4>
+          <ul>
+            <li>Nombres de dominio especificos</li>
+            <li>Direcciones IP externas</li>
+            <li>Servidores remotos que actuan como puntos de Comando y Control</li>
+          </ul>
+          
+          <h4>4. Quien es la victima primaria?</h4>
+          <p>La victima primaria es el host inicial donde la organizacion detecto por primera vez el comportamiento anomalo y la presencia del malware. Aunque, la victima se puede considerar que tambien es la organizacion ya que la red ha sido penetrada.</p>
+          
+          <h4>5. Existe evidencia de movimiento lateral?</h4>
+          <p>Los logs muestran multiples hosts conectandose a esas mismas direcciones IP externas. Esto nos muestra que el compromiso se ha extendido desde el equipo inicial hacia otros dispositivos dentro de la misma red interna.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="killchain">4. Relacion con la Kill Chain</h2>
+          <p>La Cyber Kill Chain permite mapear los eventos del escenario a las fases del ciclo de ataque:</p>
+          
+          <table>
+            <tr class="table-header">
+              <th>Evento</th>
+              <th>Fase Kill Chain</th>
+            </tr>
+            <tr>
+              <td><strong>Deteccion de malware</strong></td>
+              <td><strong>Instalacion.</strong> El malware ya se encuentra dentro del sistema comprometido y ha sido identificado por las herramientas de seguridad.</td>
+            </tr>
+            <tr>
+              <td><strong>Envio de phishing</strong></td>
+              <td><strong>Entrega (Delivery).</strong> El atacante utiliza correos electronicos maliciosos para distribuir el malware hacia la victima.</td>
+            </tr>
+            <tr>
+              <td><strong>Conexion a C2</strong></td>
+              <td><strong>Comando y Control (C2).</strong> El malware establece comunicacion con servidores externos para recibir instrucciones del atacante.</td>
+            </tr>
+            <tr>
+              <td><strong>Ejecucion del malware</strong></td>
+              <td><strong>Explotacion / Ejecucion.</strong> El codigo malicioso se ejecuta dentro del host comprometido aprovechando vulnerabilidades o interaccion del usuario.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="hilos">5. Hilos de Actividad</h2>
+          <p>Del escenario tipo APT se identifican los siguientes pasos:</p>
+          <ul>
+            <li>Phishing dirigido a administrador</li>
+            <li>Ejecucion de malware</li>
+            <li>Conexion a C2</li>
+            <li>Uso del host comprometido como proxy</li>
+            <li>Ataque a segunda victima</li>
+          </ul>
+          
+          <div class="thread-box">
+            <h4>Hilo 1: Compromiso Inicial</h4>
+            <ol>
+              <li>El administrador recibe un correo de phishing.</li>
+              <li>El usuario abre el archivo o enlace malicioso.</li>
+              <li>El malware se ejecuta en el equipo.</li>
+              <li>El host comprometido establece conexion con el servidor C2.</li>
+              <li>El atacante obtiene acceso remoto y control parcial del sistema.</li>
+            </ol>
+          </div>
+          
+          <div class="thread-box">
+            <h4>Hilo 2: Movimiento Lateral</h4>
+            <ol>
+              <li>El atacante utiliza el equipo comprometido como proxy.</li>
+              <li>Desde el host inicial se realizan conexiones hacia otros dispositivos internos.</li>
+              <li>Un segundo equipo de la red es comprometido.</li>
+              <li>El segundo host comienza tambien a comunicarse con el C2.</li>
+              <li>Se amplia el alcance del ataque dentro de la organizacion.</li>
+            </ol>
+          </div>
+          
+          <h3>Relacion entre ambos hilos</h3>
+          <p>El atacante utiliza la primera victima como punto de apoyo para desplazarse lateralmente dentro de la red corporativa. Este proceso, conocido como <strong>pivoting</strong>, permite extender el ataque hacia otros sistemas internos utilizando conexiones legitimas desde el host comprometido inicialmente.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="conclusion">6. Conclusion</h2>
+          <p>La presente actividad permitio aplicar el <strong>Modelo Diamante de Analisis de Intrusiones</strong> como una metodologia efectiva para identificar y correlacionar los elementos involucrados en un incidente de ciberseguridad. A traves del analisis realizado, fue posible reconocer la relacion entre el adversario, las capacidades empleadas, la infraestructura utilizada y las victimas afectadas, proporcionando una vision mas clara sobre el comportamiento del ataque.</p>
+          <p>Asimismo, la integracion con la <strong>Cyber Kill Chain</strong> facilito la comprension de las distintas fases del incidente, desde el reconocimiento inicial hasta el establecimiento de comunicacion con servidores de Comando y Control (C2), permitiendo identificar evidencias de propagacion y movimiento lateral dentro de la red.</p>
+          <p>En conclusion, el uso de estos modelos fortalece el analisis forense y la respuesta ante incidentes, ya que permite estructurar la informacion de manera organizada, detectar patrones de amenaza y apoyar la toma de decisiones para mejorar las estrategias de prevencion, monitoreo y proteccion de la infraestructura tecnologica de una organizacion.</p>
+        </div>
+
+        <div class="card-section" style="text-align:center;">
+          <h2>Descargar Actividad</h2>
+          <a href="tareas/parcial3/act18_Equipo4.pdf" download class="btn-download">
+            <i class="fas fa-file-pdf"></i> Descargar PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Informacion</h5>
+
+        <div class="meta-item">
+          <div class="meta-label">Parcial</div>
+          <div class="meta-value">3</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tema</div>
+          <div class="meta-value">Analisis de Intrusiones con Modelo Diamante</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Conceptos</div>
+          <div class="meta-value">Modelo Diamante, Kill Chain, APT, C2</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Periodo</div>
+          <div class="meta-value">Enero-Junio 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Etiquetas</div>
+          <div>
+            <span class="badge-tech">Modelo Diamante</span>
+            <span class="badge-tech">Kill Chain</span>
+            <span class="badge-tech">APT</span>
+            <span class="badge-tech">Forense</span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
+  <div class="container text-center">
+    <p style="margin:0; font-size:13px;">&copy; 2026 Portafolio CNOV. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+</body>
+</html>
