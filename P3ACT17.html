@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>P3 Actividad 17 — Evaluacion de Vulnerabilidades con CVSS v3.1 — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    /* ── Page overrides ── */
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt {
+      color:#6b8cae; font-size:13px; margin-bottom:10px;
+    }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px;
+      font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f; position:sticky; top:90px;
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+    .vector-box {
+      background:#0a1628; border:2px solid #f7c948; border-radius:8px;
+      padding:16px 24px; text-align:center; margin:20px 0;
+    }
+    .vector-box code {
+      font-size:16px; color:#f7c948; background:transparent;
+    }
+    .score-box {
+      background:linear-gradient(135deg,#1a3050,#112240);
+      border-radius:12px; padding:24px; text-align:center;
+      border:1px solid #f7c948; margin:20px 0;
+    }
+    .score-box .score-value {
+      font-size:3rem; font-weight:700; color:#f7c948;
+    }
+    .score-box .score-label {
+      color:#8eb4d8; font-size:14px; margin-top:8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+                    <ul class="nav">
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu">
+                <li><a href="P3ACT16.html">Actividad 16</a></li>
+                <li><a href="P3ACT17.html">Actividad 17</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu"><li><a href="PR02.html">PR02</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Road to hall of fame</a>
+              <ul class="sub-menu"><li><a href="SQLi.html">SQLi</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Certificaciones</a>
+              <ul class="sub-menu">
+                <li><a href="Introduccion a la ciberseguridad.html">Cert 1</a></li>
+                <li><a href="conceptos basicos de red.html">Cert 2</a></li>
+                <li><a href="configuracion inicial.html">Cert 3</a></li>
+                <li><a href="seguridad en terminales.html">Cert 4</a></li>
+                <li><a href="Amenazas ciberneticas.html">Cert 5</a></li>
+                <li><a href="Profesional.html">Cert 6</a></li>
+                <li><a href="hacker etico.html">Cert 7</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero" id="top">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div class="breadcrumb-txt">Parcial 3 &rsaquo; Actividad 17</div>
+    <h1>Actividad 17</h1>
+    <p class="subtitle">Evaluacion de Vulnerabilidades con CVSS v3.1</p>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-area">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+          <a href="#intro">1. Introduccion</a>
+          <a href="#escenario">2. Escenario de Evaluacion</a>
+          <a href="#desarrollo">3. Desarrollo Tecnico</a>
+          <a href="#interpretacion">4. Interpretacion Tecnica</a>
+          <a href="#calculo">5. Calculo de Puntuacion</a>
+          <a href="#conclusion">6. Conclusion</a>
+        </div>
+
+        <!-- Content sections -->
+        <div class="card-section">
+          <h2 id="intro">1. Introduccion</h2>
+          <p>El objetivo de esta actividad es aplicar el estandar internacional <strong>CVSS v3.1 (Common Vulnerability Scoring System)</strong> para cuantificar la severidad de una vulnerabilidad detectada en un entorno web interno.</p>
+          <p>Este proceso permite a las organizaciones <strong>priorizar la mitigacion de riesgos</strong> basandose en datos tecnicos objetivos y medibles.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="escenario">2. Escenario de Evaluacion</h2>
+          <p>Se presenta el siguiente caso de estudio para su analisis y evaluacion tecnica:</p>
+          
+          <h3>Descripcion del Escenario</h3>
+          <p>Una organizacion detecta una vulnerabilidad en un sistema web interno con las siguientes caracteristicas:</p>
+          <ol>
+            <li>Puede explotarse a traves de la red.</li>
+            <li>La explotacion requiere baja complejidad.</li>
+            <li>Se necesitan privilegios elevados.</li>
+            <li>No requiere interaccion del usuario.</li>
+            <li>No cambia el alcance.</li>
+            <li>El impacto en Confidencialidad, Integridad y Disponibilidad es Bajo.</li>
+          </ol>
+        </div>
+
+        <div class="card-section">
+          <h2 id="desarrollo">3. Desarrollo Tecnico</h2>
+          
+          <h3>3.1 Construccion del Vector CVSS</h3>
+          <p>Basado en los parametros del escenario, se ha generado la siguiente cadena de vector, la cual resume de forma tecnica todas las metricas base:</p>
+          
+          <div class="vector-box">
+            <code>CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L</code>
+          </div>
+          
+          <h3>3.2 Justificacion de las Metricas</h3>
+          <table>
+            <tr class="table-header">
+              <th>Metrica</th>
+              <th>Valor</th>
+              <th>Sigla</th>
+              <th>Razon Tecnica</th>
+            </tr>
+            <tr>
+              <td><strong>Vector de ataque</strong></td>
+              <td>Red</td>
+              <td>AV:N</td>
+              <td>La vulnerabilidad se explota de forma remota sobre el protocolo de red.</td>
+            </tr>
+            <tr>
+              <td><strong>Complejidad</strong></td>
+              <td>Bajo</td>
+              <td>AC:L</td>
+              <td>No existen barreras de seguridad adicionales que dificulten el ataque.</td>
+            </tr>
+            <tr>
+              <td><strong>Privilegios req.</strong></td>
+              <td>Alto</td>
+              <td>PR:H</td>
+              <td>El atacante debe estar autenticado con permisos de administrador.</td>
+            </tr>
+            <tr>
+              <td><strong>Interaccion</strong></td>
+              <td>Ninguno</td>
+              <td>UI:N</td>
+              <td>La vulnerabilidad puede ejecutarse sin ayuda de terceros.</td>
+            </tr>
+            <tr>
+              <td><strong>Alcance</strong></td>
+              <td>Sin cambios</td>
+              <td>S:U</td>
+              <td>El impacto queda confinado estrictamente al sistema web afectado.</td>
+            </tr>
+            <tr>
+              <td><strong>Impacto CIA</strong></td>
+              <td>Bajo</td>
+              <td>C:L/I:L/A:L</td>
+              <td>La perdida de confidencialidad, integridad y disponibilidad es parcial.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="interpretacion">4. Interpretacion Tecnica</h2>
+          
+          <h3>Analisis Cualitativo</h3>
+          <p>A pesar de que el requisito de privilegios elevados (<code>PR:H</code>) actua como un control de seguridad inicial, la vulnerabilidad no pierde relevancia en una auditoria.</p>
+          
+          <p>En un entorno de produccion, un atacante que logre comprometer una cuenta administrativa a traves de otros vectores (como <strong>fuerza bruta</strong> o <strong>phishing</strong>) utilizaria este fallo para realizar <strong>movimientos laterales</strong> o alterar informacion interna del sistema sin dejar rastro de interaccion con el usuario.</p>
+          
+          <p>El perfil de atacante suele ser un <strong>insider</strong> (empleado deshonesto) o un <strong>actor externo persistente</strong>.</p>
+          
+          <p>Dado que el impacto es Bajo en las tres dimensiones de la seguridad, la explotacion no implica un desastre total de la infraestructura, pero si una <strong>degradacion de la confianza</strong> en los datos manejados por la aplicacion.</p>
+        </div>
+
+        <div class="card-section">
+          <h2 id="calculo">5. Calculo de Puntuacion</h2>
+          <p>Se utilizo la calculadora oficial del <strong>FIRST</strong> (Forum of Incident Response and Security Teams) para procesar el vector anterior.</p>
+          
+          <div class="score-box">
+            <div class="score-value">4.3</div>
+            <div class="score-label">Puntuacion Base CVSS v3.1</div>
+          </div>
+          
+          <table>
+            <tr class="table-header">
+              <th>Parametro</th>
+              <th>Valor</th>
+            </tr>
+            <tr>
+              <td><strong>Puntuacion Base</strong></td>
+              <td>4.3</td>
+            </tr>
+            <tr>
+              <td><strong>Clasificacion de Severidad</strong></td>
+              <td>Media (Rango 4.0 - 6.9)</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card-section">
+          <h2 id="conclusion">6. Conclusion</h2>
+          <p>La evaluacion mediante el modelo <strong>CVSS v3.1</strong> arroja un resultado de <strong>4.3</strong>, situando esta vulnerabilidad en una categoria de <strong>Severidad Media</strong>.</p>
+          
+          <p>Desde una perspectiva de gestion de riesgos, esta vulnerabilidad debe ser <strong>registrada en el inventario de seguridad</strong> de la organizacion y se recomienda su remediacion una vez que las vulnerabilidades "Criticas" (9.0+) y "Altas" (7.0+) hayan sido mitigadas.</p>
+          
+          <h3>Recomendaciones</h3>
+          <p>La principal medida preventiva para este caso especifico es:</p>
+          <ul>
+            <li>Fortalecimiento del <strong>control de acceso</strong></li>
+            <li>Monitoreo estricto de las <strong>cuentas con privilegios administrativos</strong></li>
+            <li>Prevencion de que esta brecha sea utilizada en ataques de mayor escala</li>
+          </ul>
+        </div>
+
+        <div class="card-section" style="text-align:center;">
+          <h2>Descargar Actividad</h2>
+          <a href="tareas/parcial3/act17-Equipo4.pdf" download class="btn-download">
+            <i class="fas fa-file-pdf"></i> Descargar PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Informacion</h5>
+
+        <div class="meta-item">
+          <div class="meta-label">Parcial</div>
+          <div class="meta-value">3</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Tema</div>
+          <div class="meta-value">Evaluacion de Vulnerabilidades CVSS v3.1</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Conceptos</div>
+          <div class="meta-value">CVSS, Metricas Base, Gestion de Riesgos</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Periodo</div>
+          <div class="meta-value">Enero-Junio 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Etiquetas</div>
+          <div>
+            <span class="badge-tech">CVSS</span>
+            <span class="badge-tech">Vulnerabilidades</span>
+            <span class="badge-tech">FIRST</span>
+            <span class="badge-tech">Riesgos</span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer style="background:#071121; padding:30px 0; margin-top:60px; border-top:1px solid #1e3a5f;">
+  <div class="container text-center">
+    <p style="margin:0; font-size:13px;">&copy; 2026 Portafolio CNOV. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+</body>
+</html>
