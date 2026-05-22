@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>PR03 — IS Application Service Delivery Organization — Portafolio CNOV</title>
+  <link rel="icon" href="img/padlock.png">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <style>
+    body { background: #0d1b2a; }
+    .page-hero {
+      background: linear-gradient(135deg,#0d1b2a 60%,#112240 100%);
+      padding: 140px 0 60px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .page-hero .breadcrumb-txt { color:#6b8cae; font-size:13px; margin-bottom:10px; }
+    .page-hero h1 { color:#f7c948; font-size:2rem; font-weight:700; }
+    .page-hero p.subtitle { color:#8eb4d8; font-size:15px; margin-top:8px; }
+    .content-area { padding: 60px 0 80px; }
+    .card-section {
+      background:#112240; border-radius:12px; padding:36px;
+      margin-bottom:32px; border:1px solid #1e3a5f;
+    }
+    .card-section h2 { color:#f7c948; font-size:1.3rem; margin-bottom:18px; }
+    .card-section h3 { color:#8eb4d8; font-size:1.1rem; margin:22px 0 10px; }
+    .card-section h4 { color:#a8c8e8; font-size:1rem; margin:18px 0 8px; }
+    .card-section p, .card-section li, .card-section td, .card-section th {
+      color:#c5d0dc; font-size:14.5px; line-height:1.75;
+    }
+    .card-section ul, .card-section ol { padding-left:22px; }
+    .card-section table { width:100%; border-collapse:collapse; margin:16px 0; }
+    .card-section table th, .card-section table td {
+      border:1px solid #1e3a5f; padding:10px 14px; vertical-align:top;
+    }
+    .card-section table thead tr, .card-section .table-header {
+      background:#1a3050; color:#f7c948 !important;
+    }
+    .card-section table tr:nth-child(even) { background:#0f1e30; }
+    .card-section code, .card-section pre {
+      background:#0a1628; color:#7ec8e3; padding:2px 6px; border-radius:4px; font-size:13px;
+    }
+    .card-section pre { display:block; padding:16px; overflow-x:auto; white-space:pre-wrap; }
+    .card-section img { max-width:100%; border-radius:8px; margin:16px 0; border:1px solid #1e3a5f; }
+    .toc-box {
+      background:#0a1628; border-left:3px solid #f7c948;
+      border-radius:6px; padding:20px 24px; margin-bottom:28px;
+    }
+    .toc-box h5 { color:#f7c948; font-size:14px; margin-bottom:12px; text-transform:uppercase; letter-spacing:.5px; }
+    .toc-box a {
+      display:block; color:#8eb4d8; font-size:13.5px;
+      padding:4px 0; text-decoration:none;
+    }
+    .toc-box a:hover { color:#f7c948; }
+    .btn-download {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#f7c948; color:#0d1b2a; padding:12px 28px;
+      border-radius:8px; font-weight:700; font-size:14px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:background .2s;
+    }
+    .btn-download:hover { background:#e6b830; color:#0d1b2a; }
+    .sidebar-info {
+      background:#112240; border-radius:12px; padding:28px;
+      border:1px solid #1e3a5f;
+      position:fixed;
+      top:325px;
+      right:max(100px, calc((100vw - 1140px) / 2));
+      width:270px;
+      z-index:100;
+    }
+    @media(max-width:991px){
+      .sidebar-info {
+        position:static; width:100%;
+        margin-bottom:28px;
+      }
+      .col-lg-12[style] { padding-right:15px !important; }
+      .row[style*="padding-right:310px"] { padding-right:0 !important; }
+    }
+    .sidebar-info h5 { color:#f7c948; font-size:14px; margin-bottom:16px; text-transform:uppercase; }
+    .sidebar-info .meta-item { margin-bottom:14px; }
+    .sidebar-info .meta-label { color:#6b8cae; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+    .sidebar-info .meta-value { color:#c5d0dc; font-size:14px; }
+    .badge-tech {
+      display:inline-block; background:#1a3050; color:#7ec8e3;
+      font-size:11px; padding:3px 10px; border-radius:20px; margin:2px;
+    }
+    a { color:#8eb4d8; }
+    a:hover { color:#f7c948; }
+    footer p { color:#6b8cae; }
+    .page-hero .hero-back {
+      color:#6b8cae; text-decoration:none; font-size:13px;
+      display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;
+    }
+    .page-hero .hero-back:hover { color:#f7c948; }
+    .risk-badge {
+      display:inline-block; padding:3px 10px; border-radius:4px;
+      font-size:11px; font-weight:700; text-transform:uppercase;
+    }
+    .risk-extremo { background:#5a1a1a; color:#f87171; }
+    .risk-muy-alto { background:#5a3a1a; color:#fb923c; }
+    .risk-alto { background:#3a3a1a; color:#fbbf24; }
+    .risk-medio { background:#1a3a3a; color:#22d3d1; }
+    .risk-bajo { background:#1a3a1a; color:#4ade80; }
+    .highlight-box {
+      background:#0a1628; border-left:4px solid #f7c948;
+      padding:16px 20px; border-radius:0 8px 8px 0; margin:16px 0;
+    }
+    .highlight-box p { margin:0; color:#c5d0dc; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="index.html" class="logo" style="font-size:18px;font-weight:700;color:#f7c948;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            <img src="img/padlock.png" alt="" style="width:32px;height:32px;"> CNOV
+          </a>
+          <ul class="nav">
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 1</a>
+              <ul class="sub-menu">
+                <li><a href="P1ACT1.html">Actividad 1</a></li>
+                <li><a href="P1ACT2.html">Actividad 2</a></li>
+                <li><a href="P1ACT3.html">Actividad 3</a></li>
+                <li><a href="P1ACT4.html">Actividad 4</a></li>
+                <li><a href="P1ACT5.html">Actividad 5</a></li>
+                <li><a href="P1ACT6.html">Actividad 6</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 2</a>
+              <ul class="sub-menu"><li><a href="#">Actividad 1</a></li></ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Parcial 3</a>
+              <ul class="sub-menu">
+                <li><a href="P3ACT16.html">Actividad 16</a></li>
+                <li><a href="P3ACT17.html">Actividad 17</a></li>
+                <li><a href="P3ACT18.html">Actividad 18</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Proyectos</a>
+              <ul class="sub-menu">
+                <li><a href="PR02.html">PR02</a></li>
+                <li><a href="PR03.html">PR03</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Road to hall of fame</a>
+              <ul class="sub-menu">
+                <li><a href="CERT01.html">CERT01</a></li>
+                <li><a href="CERT02.html">CERT02</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <div class="container">
+    <a href="index.html" class="hero-back"><i class="fa fa-arrow-left"></i> Volver al inicio</a>
+    <p class="breadcrumb-txt">Proyectos / PR03</p>
+    <h1><i class="fas fa-building me-2"></i> IS Application Service Delivery Organization</h1>
+    <p class="subtitle">Implementacion de SGSI basado en ISO 27001 para ABB — Division de Electrificacion</p>
+  </div>
+</section>
+
+<!-- ===== CONTENT ===== -->
+<section class="content-area">
+  <div class="container">
+    <div class="row" style="padding-right:310px;">
+      <div class="col-lg-12" style="padding-right:30px;">
+
+        <!-- Sidebar flotante -->
+        <aside class="sidebar-info">
+          <h5><i class="fas fa-info-circle me-2"></i>Informacion</h5>
+          <div class="meta-item">
+            <div class="meta-label">Proyecto</div>
+            <div class="meta-value">PR03 — SGSI ABB</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Cliente</div>
+            <div class="meta-value">UPSLP</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Fecha</div>
+            <div class="meta-value">28 Abril 2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Estado</div>
+            <div class="meta-value">Draft</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Normas</div>
+            <div class="meta-value">
+              <span class="badge-tech">ISO 27001</span>
+              <span class="badge-tech">ISO 27002</span>
+              <span class="badge-tech">ISO 27017</span>
+              <span class="badge-tech">ISO 27019</span>
+            </div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Equipo</div>
+            <div class="meta-value" style="font-size:12px; line-height:1.6;">
+              Cruz Juarez Francisco<br>
+              Alonso Castillo Omar<br>
+              Espinoza Aguilar Brian<br>
+              Martinez Lara Santiago<br>
+              Sanchez Ramirez Mayeli<br>
+              Sanchez Zavala Alan
+            </div>
+          </div>
+          <a href="tareas/parcial3/PR03-Equipo4.pdf" class="btn-download" download style="margin-top:16px; width:100%; justify-content:center;">
+            <i class="fas fa-download"></i> Descargar PDF
+          </a>
+        </aside>
+
+        <!-- TOC -->
+        <div class="toc-box">
+          <h5><i class="fas fa-list me-2"></i>Contenido</h5>
+          <a href="#contexto">1. Contexto de la Organizacion</a>
+          <a href="#alcance">2. Alcance</a>
+          <a href="#terminos">3. Terminos y Condiciones</a>
+          <a href="#inventario">4. Inventario de Activos</a>
+          <a href="#liderazgo">5. Liderazgo — Politicas de Seguridad</a>
+          <a href="#riesgos">6. Matriz de Riesgo de Seguridad</a>
+          <a href="#soporte">7. Soporte — Minuta de Avances</a>
+          <a href="#operacion">8. Operacion</a>
+          <a href="#evaluacion">9. Evaluacion del Desempeno</a>
+          <a href="#mejora">10. Mejora Continua</a>
+        </div>
+
+        <!-- Section 1: Contexto -->
+        <div class="card-section" id="contexto">
+          <h2><i class="fas fa-building me-2"></i>1. Contexto de la Organizacion</h2>
+          
+          <h3>1.1 Mision</h3>
+          <p>ABB tiene como mision principal impulsar la transformacion de la sociedad y la industria para lograr un futuro mas productivo y sostenible mediante la electrificacion y automatizacion.</p>
+          
+          <h3>1.2 Vision</h3>
+          <p>Consolidarse como el socio de servicio confiable que asegura que los activos electricos sean fiables, esten disponibles y preparados para el futuro frente a la obsolescencia tecnica.</p>
+          
+          <h3>1.3 Objetivos</h3>
+          <p>Implementar un marco solido basado en ISO 27001 para proteger la informacion, adaptandose a los riesgos especificos de la industria de la energia y automatizacion.</p>
+          
+          <h3>1.4 Fundacion</h3>
+          <p>ABB se formo mediante una fusion en 1988, pero un hito critico fue la adquisicion de GE Industrial Solutions en 2018, integrando marcas historicas como AEG, Agut y Vynckier.</p>
+          
+          <h3>1.5 Organigrama</h3>
+          <p>Estructura jerarquica por puestos y departamentos:</p>
+          <img src="img/pr03-organigrama.jpg" alt="Organigrama ABB IS Application Service Delivery">
+          
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Departamento</th>
+                <th>Puesto</th>
+                <th>Funcion en el SGSI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alta Direccion</td>
+                <td>Director Ejecutivo (CEO) / CISO</td>
+                <td>Establecer la direccion estrategica y la Politica de Seguridad (PSI)</td>
+              </tr>
+              <tr>
+                <td>Servicios de Electrificacion</td>
+                <td>Gerente de Producto de Ciclo de Vida</td>
+                <td>Gestionar la obsolescencia y el soporte de activos heredados</td>
+              </tr>
+              <tr>
+                <td>Ingenieria de Campo</td>
+                <td>Ingeniero de Soporte Tecnico Senior</td>
+                <td>Ejecutar tecnicas de mantenimiento y operacion segura en sitio</td>
+              </tr>
+              <tr>
+                <td>Manager Continental de Ciberseguridad</td>
+                <td>Director de seguridad digital</td>
+                <td>Definir la estrategia de ciberseguridad a nivel region, aprobar politicas</td>
+              </tr>
+              <tr>
+                <td>Administrador de Base de Datos</td>
+                <td>Gerente de BD para Norteamerica</td>
+                <td>Implementar controles de seguridad en BD, gestionar respaldos y cifrados</td>
+              </tr>
+              <tr>
+                <td>Auditoria y Cumplimiento</td>
+                <td>Auditor Interno de SGSI</td>
+                <td>Realizar evaluaciones de desempeno y auditorias internas periodicas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 2: Alcance -->
+        <div class="card-section" id="alcance">
+          <h2><i class="fas fa-crosshairs me-2"></i>2. Alcance</h2>
+          
+          <h3>2.1 Analisis del Area</h3>
+          <p>Departamento de Servicios de Electrificacion (Division de activos heredados GE).</p>
+          
+          <h3>2.2 Proceso elegido</h3>
+          <p>Gestion de Vulnerabilidades y Eliminacion de Informacion en servidores de control industrial retirados.</p>
+          
+          <h3>2.3 Activo elegido</h3>
+          <p><strong>Servidor de Almacenamiento de Datos de Configuracion (Main Controller Server)</strong></p>
+          
+          <h3>2.4 Limite del Alcance</h3>
+          <p>El proceso abarca desde la identificacion del activo obsoleto en la planta de San Luis Potosi hasta la validacion de la eliminacion total de datos sensitivos y configuraciones de red, excluyendo el desecho fisico del hardware.</p>
+          
+          <h3>2.5 Referencias Normativas</h3>
+          <ul>
+            <li><strong>ISO/IEC 27001:2022 (Clausula 8.10):</strong> Se aplica para garantizar que la eliminacion de informacion en los servidores de control sea definitiva.</li>
+            <li><strong>ISO/IEC 27002 (Control 8.11):</strong> Justificada para el enmascaramiento de datos en los reportes tecnicos generados durante la baja del servidor.</li>
+            <li><strong>ISO/IEC 27017:</strong> Aplicada para la seguridad de los servicios en la nube utilizados para el respaldo de las configuraciones.</li>
+            <li><strong>ISO/IEC 27019:</strong> Norma especifica para el sector energia que justifica los controles de seguridad en sistemas de control distribuido.</li>
+          </ul>
+        </div>
+
+        <!-- Section 3: Terminos -->
+        <div class="card-section" id="terminos">
+          <h2><i class="fas fa-book me-2"></i>3. Terminos y Condiciones</h2>
+          <p>ABB utiliza las 81 definiciones de la norma ISO 27000. A continuacion, se detallan las mas criticas:</p>
+          
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>#</th>
+                <th>Termino</th>
+                <th>Definicion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Activo de Informacion</td><td>Conocimientos o datos que tienen valor para ABB, como los planos de ingenieria</td></tr>
+              <tr><td>2</td><td>Confidencialidad</td><td>Garantia de que la informacion no sea accesible a personas no autorizadas</td></tr>
+              <tr><td>3</td><td>Integridad</td><td>Propiedad de salvaguardar la exactitud y completitud de los datos</td></tr>
+              <tr><td>4</td><td>Disponibilidad</td><td>Asegurar que los sistemas de electrificacion sean utilizables cuando se requieran</td></tr>
+              <tr><td>5</td><td>Riesgo</td><td>Efecto de la incertidumbre sobre los objetivos de productividad de ABB</td></tr>
+              <tr><td>6</td><td>Vulnerabilidad</td><td>Debilidad en un equipo que puede ser explotada</td></tr>
+              <tr><td>7</td><td>Amenaza</td><td>Causa potencial de un incidente, como un ciberataque a la red electrica</td></tr>
+              <tr><td>8</td><td>Control</td><td>Medida que modifica el riesgo de seguridad</td></tr>
+              <tr><td>9</td><td>SGSI</td><td>Sistema de Gestion de Seguridad de la Informacion</td></tr>
+              <tr><td>10</td><td>Resiliencia</td><td>Capacidad de la infraestructura para resistir y recuperarse de ataques</td></tr>
+              <tr><td>11</td><td>PII</td><td>Informacion de Identificacion Personal</td></tr>
+              <tr><td>12</td><td>Endpoint</td><td>Dispositivo fisico de diagnostico conectado a la red industrial</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 4: Inventario -->
+        <div class="card-section" id="inventario">
+          <h2><i class="fas fa-boxes me-2"></i>4. Inventario de Activos</h2>
+          
+          <h3>4.1 Contexto Interno (20 Activos)</h3>
+          <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin:16px 0;">
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">1.</span> <span style="color:#c5d0dc;">Codigo fuente</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">2.</span> <span style="color:#c5d0dc;">Configuraciones de red</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">3.</span> <span style="color:#c5d0dc;">Servidores DCS</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">4.</span> <span style="color:#c5d0dc;">Bases de datos PII</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">5.</span> <span style="color:#c5d0dc;">Planos de ingenieria</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">6.</span> <span style="color:#c5d0dc;">Politica de Seguridad (PSI)</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">7.</span> <span style="color:#c5d0dc;">Credenciales</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">8.</span> <span style="color:#c5d0dc;">Certificados digitales</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">9.</span> <span style="color:#c5d0dc;">Logs de auditoria</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #f7c948;">
+              <span style="color:#f7c948;">10.</span> <span style="color:#c5d0dc;">Manuales tecnicos</span>
+            </div>
+          </div>
+          
+          <h3>4.2 Contexto Externo (20 Activos)</h3>
+          <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin:16px 0;">
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">1.</span> <span style="color:#c5d0dc;">Servicios Cloud (Azure/AWS)</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">2.</span> <span style="color:#c5d0dc;">Repuestos OEM</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">3.</span> <span style="color:#c5d0dc;">Leyes de Privacidad (GDPR)</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">4.</span> <span style="color:#c5d0dc;">Inteligencia de Amenazas</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">5.</span> <span style="color:#c5d0dc;">Proveedores de Internet</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">6.</span> <span style="color:#c5d0dc;">Licencias de terceros</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">7.</span> <span style="color:#c5d0dc;">Suministro electrico</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">8.</span> <span style="color:#c5d0dc;">Auditores Externos (ISO)</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">9.</span> <span style="color:#c5d0dc;">Soporte TIC externo</span>
+            </div>
+            <div style="background:#0a1628; padding:12px; border-radius:6px; border-left:3px solid #8eb4d8;">
+              <span style="color:#8eb4d8;">10.</span> <span style="color:#c5d0dc;">Datos de Clientes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Liderazgo -->
+        <div class="card-section" id="liderazgo">
+          <h2><i class="fas fa-shield-alt me-2"></i>5. Liderazgo — Politicas de Seguridad</h2>
+          
+          <h3>5.1 Politicas para Activos Internos</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Politica</th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Control de Acceso</strong></td>
+                <td>Credenciales de Acceso</td>
+                <td>Uso obligatorio de MFA para acceso administrativo a servidores de control industrial</td>
+              </tr>
+              <tr>
+                <td><strong>Desarrollo Seguro</strong></td>
+                <td>Codigo fuente</td>
+                <td>Analisis estatico de seguridad antes de desplegar en produccion</td>
+              </tr>
+              <tr>
+                <td><strong>Gestion de Almacenamiento</strong></td>
+                <td>Servidores de Almacenamiento</td>
+                <td>Borrado logico irreversible antes de desincorporacion fisica</td>
+              </tr>
+              <tr>
+                <td><strong>Respaldo de Datos</strong></td>
+                <td>Backups locales</td>
+                <td>Copias de seguridad diarias de configuraciones criticas</td>
+              </tr>
+              <tr>
+                <td><strong>Monitoreo de Seguridad</strong></td>
+                <td>Logs de auditoria</td>
+                <td>Registro de intentos de acceso fallidos y cambios de privilegios</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3>5.2 Politicas para Activos Externos</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Politica</th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Seguridad en la Nube</strong></td>
+                <td>Servicios Cloud Azure/AWS</td>
+                <td>Proveedores deben acreditar cumplimiento con ISO/IEC 27017</td>
+              </tr>
+              <tr>
+                <td><strong>Gestion de Proveedores</strong></td>
+                <td>Soporte TIC externo</td>
+                <td>Contratos con clausulas de seguridad y acuerdos de confidencialidad</td>
+              </tr>
+              <tr>
+                <td><strong>Cumplimiento Regulatorio</strong></td>
+                <td>Leyes de Proteccion de Datos</td>
+                <td>Alineacion con leyes de privacidad como GDPR</td>
+              </tr>
+              <tr>
+                <td><strong>Integridad de Suministros</strong></td>
+                <td>Repuestos originales OEM</td>
+                <td>Solo repuestos originales verificados para equipos criticos</td>
+              </tr>
+              <tr>
+                <td><strong>Software de Terceros</strong></td>
+                <td>Licencias de software</td>
+                <td>Prohibicion de software sin licencias validas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 6: Matriz de Riesgo -->
+        <div class="card-section" id="riesgos">
+          <h2><i class="fas fa-exclamation-triangle me-2"></i>6. Matriz de Riesgo de Seguridad</h2>
+          
+          <img src="img/pr03-matriz-riesgo.jpg" alt="Matriz de Riesgo 5x5">
+          
+          <h3>6.1 Desglose de Evaluacion de los 20 Activos</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>ID</th>
+                <th>Activo Critico</th>
+                <th>Prob.</th>
+                <th>Imp.</th>
+                <th>Nivel de Riesgo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I9</td>
+                <td>Personal y Etica (Ingenieria Social)</td>
+                <td>04</td>
+                <td>05</td>
+                <td><span class="risk-badge risk-extremo">20 - EXTREMO</span></td>
+              </tr>
+              <tr>
+                <td>E9</td>
+                <td>Bibliotecas Codigo Abierto (Malware)</td>
+                <td>05</td>
+                <td>04</td>
+                <td><span class="risk-badge risk-extremo">20 - EXTREMO</span></td>
+              </tr>
+              <tr>
+                <td>I1</td>
+                <td>Credenciales de Acceso (Robo)</td>
+                <td>03</td>
+                <td>05</td>
+                <td><span class="risk-badge risk-muy-alto">15 - MUY ALTO</span></td>
+              </tr>
+              <tr>
+                <td>I3</td>
+                <td>Servidores Almacen (Fuga de datos)</td>
+                <td>03</td>
+                <td>05</td>
+                <td><span class="risk-badge risk-muy-alto">15 - MUY ALTO</span></td>
+              </tr>
+              <tr>
+                <td>E7</td>
+                <td>Suministro Energia Externa (Corte)</td>
+                <td>03</td>
+                <td>05</td>
+                <td><span class="risk-badge risk-muy-alto">15 - MUY ALTO</span></td>
+              </tr>
+              <tr>
+                <td>I5</td>
+                <td>Logs de Auditoria (Omision)</td>
+                <td>04</td>
+                <td>03</td>
+                <td><span class="risk-badge risk-alto">12 - ALTO</span></td>
+              </tr>
+              <tr>
+                <td>I8</td>
+                <td>Configuracion de Red (Error Humano)</td>
+                <td>03</td>
+                <td>04</td>
+                <td><span class="risk-badge risk-alto">12 - ALTO</span></td>
+              </tr>
+              <tr>
+                <td>E8</td>
+                <td>Datos Clientes (Intercepcion)</td>
+                <td>03</td>
+                <td>04</td>
+                <td><span class="risk-badge risk-alto">12 - ALTO</span></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3>6.2 Resumen Estadistico de Riesgos</h3>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin:16px 0;">
+            <div style="background:#0a1628; padding:16px; border-radius:8px; text-align:center;">
+              <div style="color:#f87171; font-size:24px; font-weight:700;">2</div>
+              <div style="color:#6b8cae; font-size:12px;">EXTREMO (20-25)</div>
+            </div>
+            <div style="background:#0a1628; padding:16px; border-radius:8px; text-align:center;">
+              <div style="color:#fb923c; font-size:24px; font-weight:700;">3</div>
+              <div style="color:#6b8cae; font-size:12px;">MUY ALTO (15-16)</div>
+            </div>
+            <div style="background:#0a1628; padding:16px; border-radius:8px; text-align:center;">
+              <div style="color:#fbbf24; font-size:24px; font-weight:700;">6</div>
+              <div style="color:#6b8cae; font-size:12px;">ALTO (10-12)</div>
+            </div>
+            <div style="background:#0a1628; padding:16px; border-radius:8px; text-align:center;">
+              <div style="color:#22d3d1; font-size:24px; font-weight:700;">5</div>
+              <div style="color:#6b8cae; font-size:12px;">MEDIO (05-09)</div>
+            </div>
+            <div style="background:#0a1628; padding:16px; border-radius:8px; text-align:center;">
+              <div style="color:#4ade80; font-size:24px; font-weight:700;">4</div>
+              <div style="color:#6b8cae; font-size:12px;">BAJO (03-04)</div>
+            </div>
+            <div style="background:#0a1628; padding:16px; border-radius:8px; text-align:center;">
+              <div style="color:#94a3b8; font-size:24px; font-weight:700;">0</div>
+              <div style="color:#6b8cae; font-size:12px;">MUY BAJO (01-02)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 7: Soporte -->
+        <div class="card-section" id="soporte">
+          <h2><i class="fas fa-users me-2"></i>7. Soporte — Minuta de Avances</h2>
+          
+          <div class="highlight-box">
+            <p><strong>Asignatura:</strong> CNO V: Seguridad Informatica | <strong>Institucion:</strong> Universidad Politecnica de San Luis Potosi (UPSLP)</p>
+            <p><strong>Caso de Estudio:</strong> Implementacion de SGSI en la empresa ABB (Division Electrificacion)</p>
+          </div>
+          
+          <h3>7.1 Integrantes del Equipo de Investigacion</h3>
+          <ul>
+            <li><strong>177622 — Cruz Juarez Francisco Javier</strong> (Coordinador / IS Application Service Delivery Manager)</li>
+            <li><strong>179033 — Alonso Castillo Omar Karim</strong> (Investigador de Seguridad)</li>
+            <li><strong>175031 — Espinoza Aguilar Brian Salvador</strong> (Investigador Tecnico)</li>
+            <li><strong>177685 — Martinez Lara Santiago de la Cruz</strong> (Investigador de Infraestructura)</li>
+            <li><strong>173030 — Sanchez Ramirez Mayeli</strong> (Investigadora de Cumplimiento Normativo)</li>
+            <li><strong>177263 — Sanchez Zavala Alan Gilberto</strong> (Investigador de Redes y Conectividad)</li>
+          </ul>
+          
+          <h3>7.2 Resumen de Avances</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Seccion</th>
+                <th>Entregables y Hallazgos</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>S1: Contexto</td>
+                <td>Analisis de mision y vision de ABB; estructuracion del organigrama funcional</td>
+                <td style="color:#4ade80;">Finalizado</td>
+              </tr>
+              <tr>
+                <td>S2: Referencias</td>
+                <td>Seleccion del marco normativo: ISO 27001, 27002, 27017, 27019</td>
+                <td style="color:#4ade80;">Finalizado</td>
+              </tr>
+              <tr>
+                <td>S3: Glosario</td>
+                <td>Compendio de 15 terminos fundamentales basados en ISO 27000</td>
+                <td style="color:#4ade80;">Finalizado</td>
+              </tr>
+              <tr>
+                <td>S4: Inventario</td>
+                <td>Clasificacion de 40 activos criticos (20 internos, 20 externos)</td>
+                <td style="color:#4ade80;">Finalizado</td>
+              </tr>
+              <tr>
+                <td>S5: Politicas</td>
+                <td>Diseno de 20 politicas funcionales siguiendo jerarquia de estandares</td>
+                <td style="color:#4ade80;">Finalizado</td>
+              </tr>
+              <tr>
+                <td>S6: Riesgos</td>
+                <td>Desarrollo de matriz de riesgo (Impacto x Probabilidad)</td>
+                <td style="color:#4ade80;">Finalizado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 8: Operacion -->
+        <div class="card-section" id="operacion">
+          <h2><i class="fas fa-cogs me-2"></i>8. Operacion</h2>
+          
+          <h3>8.1 Protocolo de Desincorporacion Segura (PDS)</h3>
+          <p>Para el Servidor de Almacenamiento de Datos de Configuracion (Main Controller Server), el equipo ha disenado el siguiente flujo operativo:</p>
+          
+          <img src="img/pr03-flujo-pds.jpg" alt="Flujo del Protocolo de Desincorporacion Segura">
+          
+          <h4>Fase A: Preparacion y Validacion</h4>
+          <ol>
+            <li><strong>Ticket de Baja:</strong> Apertura de orden de trabajo en el ERP de ABB justificando la obsolescencia tecnica</li>
+            <li><strong>Snapshot de Configuracion:</strong> Imagen de respaldo cifrada (AES-256) enviada a Azure cumpliendo ISO 27017</li>
+            <li><strong>Bloqueo de Puertos:</strong> Deshabilitacion de puertos USB y accesos remotos durante el proceso</li>
+          </ol>
+          
+          <h4>Fase B: Ejecucion Tecnica</h4>
+          <ul>
+            <li><strong>Metodo:</strong> Sobreescritura de Datos</li>
+            <li><strong>Herramienta:</strong> Blancco Drive Eraser (certificado grado industrial)</li>
+            <li><strong>Estandar:</strong> NIST 800-88 (Purge) — patrones de bits aleatorios en todas las direcciones logicas</li>
+          </ul>
+          
+          <h3>8.2 Tratamiento de Riesgos</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Riesgo</th>
+                <th>Nivel Inicial</th>
+                <th>Accion de Tratamiento</th>
+                <th>Nivel Residual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fuga de planos por borrado incompleto</td>
+                <td><span class="risk-badge risk-muy-alto">15</span></td>
+                <td>Verificacion bit a bit tras el borrado y certificado de destruccion</td>
+                <td><span class="risk-badge risk-bajo">04</span></td>
+              </tr>
+              <tr>
+                <td>Robo de credenciales administrativas</td>
+                <td><span class="risk-badge risk-muy-alto">15</span></td>
+                <td>Uso de Tokens Fisicos (MFA) para autorizar comando de destruccion</td>
+                <td><span class="risk-badge risk-medio">05</span></td>
+              </tr>
+              <tr>
+                <td>Vulnerabilidades en Software de Terceros</td>
+                <td><span class="risk-badge risk-extremo">20</span></td>
+                <td>Uso de herramientas en Entorno Limpio (Bootable externo)</td>
+                <td><span class="risk-badge risk-medio">08</span></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <h3>8.3 Checklist de Verificacion</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>Paso</th>
+                <th>Actividad</th>
+                <th>Responsable</th>
+                <th>Evidencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Inventario</td><td>Ing. Alan Gilberto</td><td>Etiqueta de "Activo en Proceso de Baja"</td></tr>
+              <tr><td>2</td><td>Aislamiento</td><td>Ing. Santiago Lara</td><td>Log de desconexion del switch de red</td></tr>
+              <tr><td>3</td><td>Sanitizacion</td><td>Ing. Brian Salvador</td><td>Reporte de software de borrado (Pass/Fail)</td></tr>
+              <tr><td>4</td><td>Auditoria</td><td>Ing. Mayeli Sanchez</td><td>Hash de verificacion del disco sanitizado</td></tr>
+              <tr><td>5</td><td>Validacion</td><td>Ing. Omar Karim</td><td>Certificado de Eliminacion de Informacion</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 9: Evaluacion -->
+        <div class="card-section" id="evaluacion">
+          <h2><i class="fas fa-chart-line me-2"></i>9. Evaluacion del Desempeno</h2>
+          
+          <h3>9.1 Indicadores Clave (KPIs)</h3>
+          <ul>
+            <li><strong>Eficacia de Sanitizacion:</strong> % de servidores con certificado de borrado exitoso (Meta: 100%)</li>
+            <li><strong>Control de Identidades:</strong> % de bajas de activos realizadas sin errores en los privilegios</li>
+            <li><strong>Cumplimiento de Capacitacion:</strong> % de ingenieros aprobados en el uso de herramientas IAM</li>
+          </ul>
+          
+          <h3>9.2 Auditoria Interna: Checklist de Cumplimiento</h3>
+          <table>
+            <thead>
+              <tr class="table-header">
+                <th>ID</th>
+                <th>Control / Requisito de Auditoria</th>
+                <th>Evidencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>01</td><td>Existe un registro formal del activo previo a su retiro</td><td>Inventario de activos (Seccion 4)</td></tr>
+              <tr><td>02</td><td>Se verifico la integridad del respaldo en la nube antes del borrado</td><td>Log de transferencia de Azure/AWS</td></tr>
+              <tr><td>03</td><td>El software de onboarding/offboarding cuenta con procedimientos estandar</td><td>Manual de procedimientos operativos</td></tr>
+              <tr><td>04</td><td>La gestion de identidades es manejada por Microsoft Entra IAM</td><td>Panel de administracion de Microsoft Entra</td></tr>
+              <tr><td>05</td><td>Se aplico el metodo de sobreescritura de 3 pasadas (NIST Purge)</td><td>Reporte tecnico de Blancco/DBAN</td></tr>
+              <tr><td>06</td><td>El personal cuenta con MFA activo para autorizar la baja</td><td>Logs de acceso de Microsoft Entra IAM</td></tr>
+              <tr><td>07</td><td>Existe un Certificado de Destruccion de Datos firmado y fechado</td><td>Formato de salida de activos</td></tr>
+            </tbody>
+          </table>
+          
+          <h3>9.3 Revision por la Direccion</h3>
+          <p>Los resultados se presentan al Application Service Delivery Manager para la toma de decisiones estrategicas:</p>
+          <ul>
+            <li><strong>Estado de las acciones:</strong> Se corrigieron las fallas en los procesos de onboarding/offboarding</li>
+            <li><strong>Eficacia de la Identidad:</strong> Microsoft Entra IAM efectivo para prevenir accesos no autorizados</li>
+            <li><strong>Retroalimentacion:</strong> Desempeno de proveedores externos evaluado</li>
+            <li><strong>Recursos:</strong> Presupuesto para automatizar el monitoreo de logs</li>
+          </ul>
+        </div>
+
+        <!-- Section 10: Mejora -->
+        <div class="card-section" id="mejora">
+          <h2><i class="fas fa-sync-alt me-2"></i>10. Mejora Continua</h2>
+          
+          <img src="img/pr03-ciclo-pdca.jpg" alt="Ciclo PDCA - Plan Do Check Act">
+          
+          <h3>10.1 Gestion de No Conformidades</h3>
+          <p>Cuando se identifica un incumplimiento de los controles establecidos, se ejecuta el siguiente procedimiento:</p>
+          <ol>
+            <li><strong>Reaccion Inmediata:</strong> Controlar y corregir la no conformidad para contener cualquier impacto</li>
+            <li><strong>Analisis de Causa Raiz (RCA):</strong> Metodologias de ingenieria (5 Porques) para determinar el origen del fallo</li>
+            <li><strong>Implementacion de Accion Correctiva:</strong> Modificar flujos logicos o tecnicos para evitar recurrencia</li>
+            <li><strong>Revision de Eficacia:</strong> Evaluar si la accion correctiva fue exitosa</li>
+          </ol>
+          
+          <div class="highlight-box">
+            <p><strong>Ejemplo de Hallazgo:</strong> Se detecto la baja de un activo critico sin que el registro de eliminacion se indexara correctamente en el panel de supervision.</p>
+            <p><strong>Causa Raiz:</strong> Incompatibilidad del script de automatizacion con las politicas de auditoria del sistema local.</p>
+            <p><strong>Accion Correctiva:</strong> Configurar alerta automatizada en el gestor de identidades para bloquear la transicion de estatus hasta validacion del hash de borrado.</p>
+          </div>
+          
+          <h3>10.2 Pilares de Mejora Proactiva</h3>
+          <ul>
+            <li><strong>Automatizacion del Offboarding:</strong> Integrar herramientas de sanitizacion con Microsoft Entra IAM, reduciendo intervencion humana</li>
+            <li><strong>Actualizacion del Modelo de Amenazas:</strong> Revision semestral de la matriz de riesgos con nuevas vulnerabilidades</li>
+            <li><strong>Evolucion del Plan de Conciencia:</strong> Simulaciones dinamicas de ingenieria social en tiempo real</li>
+          </ul>
+          
+          <h3>10.3 Conclusion General</h3>
+          <p>El equipo de consultoria academica de la UPSLP concluye el diseno detallado del Sistema de Gestion de Seguridad de la Informacion para el caso de estudio de ABB. La correcta alineacion entre las politicas funcionales, la asignacion de riesgos cuantitativos, los flujos de soporte tecnico, la ejecucion bajo estandares internacionales y las directrices de auditoria e identidad corporativa, demuestran la viabilidad de implementar un marco de gobernanza de ciberseguridad robusto, eficiente y apegado a las exigencias normativas de la industria tecnologica actual.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:#0a1628; padding:40px 0; border-top:1px solid #1e3a5f;">
+  <div class="container text-center">
+    <p style="margin:0;">&copy; 2026 Portafolio CNO V — Seguridad Informatica. UPSLP.</p>
+  </div>
+</footer>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/custom.js"></script>
+</body>
+</html>
